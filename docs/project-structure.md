@@ -357,7 +357,7 @@ export const config = {
 {
   "hero": {
     "greeting": "Hi, I'm",
-    "name": "Sardor",
+    "name": "Matkarim",
     "role": "Frontend Developer",
     "description": "I build modern web applications with React, Next.js, and TypeScript",
     "viewProjects": "View Projects",
@@ -399,7 +399,7 @@ export const config = {
   },
   "footer": {
     "builtWith": "Built with Next.js & TypeScript",
-    "copyright": "© {year} Sardor. All rights reserved."
+    "copyright": "© {year} Matkarim. All rights reserved."
   }
 }
 ```
@@ -409,7 +409,7 @@ export const config = {
 {
   "hero": {
     "greeting": "Привет, я",
-    "name": "Сардор",
+    "name": "Маткарим",
     "role": "Фронтенд разработчик",
     "description": "Создаю современные веб-приложения с React, Next.js и TypeScript",
     "viewProjects": "Мои проекты",
@@ -451,7 +451,7 @@ export const config = {
   },
   "footer": {
     "builtWith": "Создано с Next.js и TypeScript",
-    "copyright": "© {year} Сардор. Все права защищены."
+    "copyright": "© {year} Маткарим. Все права защищены."
   }
 }
 ```
@@ -461,7 +461,7 @@ export const config = {
 {
   "hero": {
     "greeting": "Salom, men",
-    "name": "Sardor",
+    "name": "Matkarim",
     "role": "Frontend dasturchi",
     "description": "React, Next.js va TypeScript yordamida zamonaviy veb-ilovalar yarataman",
     "viewProjects": "Loyihalarim",
@@ -503,7 +503,7 @@ export const config = {
   },
   "footer": {
     "builtWith": "Next.js va TypeScript bilan yaratilgan",
-    "copyright": "© {year} Sardor. Barcha huquqlar himoyalangan."
+    "copyright": "© {year} Matkarim. Barcha huquqlar himoyalangan."
   }
 }
 ```
