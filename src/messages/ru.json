@@ -1,0 +1,48 @@
+{
+  "hero": {
+    "greeting": "Привет, я",
+    "name": "Маткарим",
+    "role": "Фронтенд разработчик",
+    "description": "Создаю современные веб-приложения с React, Next.js и TypeScript",
+    "viewProjects": "Мои проекты",
+    "contactMe": "Связаться"
+  },
+  "about": {
+    "title": "Обо мне",
+    "description": "Фронтенд-разработчик с опытом создания масштабируемых веб-приложений с использованием современных технологий.",
+    "skillsTitle": "Навыки и технологии",
+    "experienceTitle": "Опыт работы"
+  },
+  "projects": {
+    "title": "Мои проекты",
+    "subtitle": "Open source проекты с GitHub",
+    "filterAll": "Все",
+    "stars": "{count} звёзд",
+    "forks": "{count} форков",
+    "viewCode": "Исходный код",
+    "liveDemo": "Демо",
+    "noProjects": "Проекты не найдены"
+  },
+  "contact": {
+    "title": "Связаться со мной",
+    "subtitle": "Не стесняйтесь обращаться",
+    "email": "Почта",
+    "telegram": "Телеграм",
+    "linkedin": "LinkedIn"
+  },
+  "nav": {
+    "home": "Главная",
+    "about": "Обо мне",
+    "projects": "Проекты",
+    "contact": "Контакт"
+  },
+  "theme": {
+    "light": "Светлая",
+    "dark": "Тёмная",
+    "system": "Система"
+  },
+  "footer": {
+    "builtWith": "Создано с Next.js и TypeScript",
+    "copyright": "© {year} Маткарим. Все права защищены."
+  }
+}

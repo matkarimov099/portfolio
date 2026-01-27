@@ -1,0 +1,48 @@
+{
+  "hero": {
+    "greeting": "Hi, I'm",
+    "name": "Matkarim",
+    "role": "Frontend Developer",
+    "description": "I build modern web applications with React, Next.js, and TypeScript",
+    "viewProjects": "View Projects",
+    "contactMe": "Contact Me"
+  },
+  "about": {
+    "title": "About Me",
+    "description": "Frontend developer with experience in building scalable web applications using modern technologies.",
+    "skillsTitle": "Skills & Technologies",
+    "experienceTitle": "Experience"
+  },
+  "projects": {
+    "title": "My Projects",
+    "subtitle": "Open source projects from GitHub",
+    "filterAll": "All",
+    "stars": "{count} stars",
+    "forks": "{count} forks",
+    "viewCode": "Source Code",
+    "liveDemo": "Live Demo",
+    "noProjects": "No projects found"
+  },
+  "contact": {
+    "title": "Get In Touch",
+    "subtitle": "Feel free to reach out",
+    "email": "Email",
+    "telegram": "Telegram",
+    "linkedin": "LinkedIn"
+  },
+  "nav": {
+    "home": "Home",
+    "about": "About",
+    "projects": "Projects",
+    "contact": "Contact"
+  },
+  "theme": {
+    "light": "Light",
+    "dark": "Dark",
+    "system": "System"
+  },
+  "footer": {
+    "builtWith": "Built with Next.js & TypeScript",
+    "copyright": "© {year} Matkarim. All rights reserved."
+  }
+}

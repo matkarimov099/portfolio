@@ -1,0 +1,48 @@
+{
+  "hero": {
+    "greeting": "Salom, men",
+    "name": "Matkarim",
+    "role": "Frontend dasturchi",
+    "description": "React, Next.js va TypeScript yordamida zamonaviy veb-ilovalar yarataman",
+    "viewProjects": "Loyihalarim",
+    "contactMe": "Bog'lanish"
+  },
+  "about": {
+    "title": "Men haqimda",
+    "description": "Zamonaviy texnologiyalar yordamida kengaytiriladigan veb-ilovalar yaratish tajribasiga ega frontend dasturchi.",
+    "skillsTitle": "Ko'nikma va texnologiyalar",
+    "experienceTitle": "Ish tajribasi"
+  },
+  "projects": {
+    "title": "Loyihalarim",
+    "subtitle": "GitHub dagi open source loyihalar",
+    "filterAll": "Barchasi",
+    "stars": "{count} yulduz",
+    "forks": "{count} fork",
+    "viewCode": "Manba kodi",
+    "liveDemo": "Demo",
+    "noProjects": "Loyihalar topilmadi"
+  },
+  "contact": {
+    "title": "Bog'lanish",
+    "subtitle": "Bemalol murojaat qiling",
+    "email": "Email",
+    "telegram": "Telegram",
+    "linkedin": "LinkedIn"
+  },
+  "nav": {
+    "home": "Bosh sahifa",
+    "about": "Men haqimda",
+    "projects": "Loyihalar",
+    "contact": "Bog'lanish"
+  },
+  "theme": {
+    "light": "Yorug'",
+    "dark": "Qorong'u",
+    "system": "Tizim"
+  },
+  "footer": {
+    "builtWith": "Next.js va TypeScript bilan yaratilgan",
+    "copyright": "© {year} Matkarim. Barcha huquqlar himoyalangan."
+  }
+}
