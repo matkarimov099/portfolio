@@ -1,4 +1,4 @@
-export const GITHUB_USERNAME = "matkarim-dev";
+export const GITHUB_USERNAME = "matkarimov099";
 
 export const NAV_ITEMS = [
   { key: "home", href: "#hero" },
@@ -8,11 +8,16 @@ export const NAV_ITEMS = [
 ] as const;
 
 export const SOCIAL_LINKS = [
-  { name: "GitHub", href: "https://github.com/matkarim-dev", icon: "github" },
+  { name: "GitHub", href: "https://github.com/matkarimov099", icon: "github" },
   {
     name: "LinkedIn",
-    href: "https://linkedin.com/in/matkarim-dev",
+    href: "https://www.linkedin.com/in/matkarim-matkarimov/",
     icon: "linkedin",
   },
-  { name: "Telegram", href: "https://t.me/matkarim_dev", icon: "telegram" },
+  { name: "Telegram", href: "https://t.me/m_matkarimov", icon: "telegram" },
+  {
+    name: "Instagram",
+    href: "https://www.instagram.com/matkarimov099",
+    icon: "instagram",
+  },
 ] as const;
