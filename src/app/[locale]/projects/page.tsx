@@ -10,7 +10,7 @@ export default async function ProjectsPage({
   setRequestLocale(locale);
 
   return (
-    <main>
+    <main className="pt-24">
       <ProjectsSection />
     </main>
   );

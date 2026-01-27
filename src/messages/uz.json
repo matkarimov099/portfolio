@@ -23,6 +23,25 @@
     "liveDemo": "Demo",
     "noProjects": "Loyihalar topilmadi"
   },
+  "github": {
+    "title": "GitHub Profil",
+    "subtitle": "GitHub dagi faoliyatim va repozitoriyalarim",
+    "viewGithub": "GitHub ni ochish",
+    "publicRepos": "Ochiq repozitoriyalar",
+    "publicGists": "Ochiq Gistlar",
+    "followers": "Obunachilar",
+    "following": "Obunalar",
+    "codeProjects": "Kod loyihalari",
+    "codeSnippets": "Kod parchalar",
+    "community": "Jamoa",
+    "connections": "Aloqalar",
+    "moreDetails": "Batafsil",
+    "memberSince": "A'zo bo'lgan sana",
+    "lastUpdated": "Oxirgi yangilanish",
+    "repositories": "Repozitoriyalar",
+    "privateRepos": "Yopiq repozitoriyalar",
+    "privateProjects": "Yopiq loyihalar"
+  },
   "contact": {
     "title": "Bog'lanish",
     "subtitle": "Bemalol murojaat qiling",
@@ -34,7 +53,8 @@
     "home": "Bosh sahifa",
     "about": "Men haqimda",
     "projects": "Loyihalar",
-    "contact": "Bog'lanish"
+    "contact": "Bog'lanish",
+    "github": "GitHub"
   },
   "theme": {
     "light": "Yorug'",
@@ -43,6 +63,9 @@
   },
   "footer": {
     "builtWith": "Next.js va TypeScript bilan yaratilgan",
-    "copyright": "© {year} Matkarim. Barcha huquqlar himoyalangan."
+    "copyright": "© {year} Matkarim. Barcha huquqlar himoyalangan.",
+    "version": "Frontend dasturchi v4.5",
+    "status": "Ishga tayyor",
+    "techStack": "React • Next.js • TypeScript • Tailwind"
   }
 }

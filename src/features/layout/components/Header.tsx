@@ -1,27 +1,84 @@
 "use client";
 
+import { useState } from "react";
 import { useTranslations } from "next-intl";
 import { NAV_ITEMS } from "@/shared/config/constants";
+import { Link, usePathname } from "@/i18n/navigation";
+import {
+  Navbar,
+  NavBody,
+  NavItems,
+  MobileNav,
+  MobileNavHeader,
+  MobileNavMenu,
+  MobileNavToggle,
+  NavbarButton,
+} from "@/shared/components/aceternity/resizable-navbar";
 
 export function Header() {
   const t = useTranslations("nav");
+  const [mobileOpen, setMobileOpen] = useState(false);
+  const pathname = usePathname();
+
+  const navItems = NAV_ITEMS.map((item) => ({
+    name: t(item.key),
+    link: item.href,
+  }));
 
   return (
-    <header className="sticky top-0 z-50 border-b bg-background/80 backdrop-blur-sm">
-      <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-6">
-        <span className="text-lg font-bold">Matkarim.dev</span>
-        <nav className="hidden gap-6 md:flex">
-          {NAV_ITEMS.map((item) => (
-            <a
-              key={item.key}
-              href={item.href}
-              className="text-sm text-muted-foreground transition-colors hover:text-foreground"
+    <Navbar>
+      <NavBody>
+        <Link
+          href="/"
+          className="relative z-20 flex items-center gap-1.5 text-lg font-bold text-foreground"
+        >
+          <span className="font-mono text-primary">&lt;/&gt;</span>
+          <span>Frontend Developer</span>
+        </Link>
+        <NavItems items={navItems} />
+        <div className="flex items-center gap-2">
+          <NavbarButton href="/contact" variant="gradient">
+            {t("contact")}
+          </NavbarButton>
+        </div>
+      </NavBody>
+
+      <MobileNav>
+        <MobileNavHeader>
+          <Link
+            href="/"
+            className="flex items-center gap-1.5 text-lg font-bold text-foreground"
+          >
+            <span className="font-mono text-primary">&lt;/&gt;</span>
+            <span>Frontend Developer</span>
+          </Link>
+          <MobileNavToggle
+            isOpen={mobileOpen}
+            onClick={() => setMobileOpen((prev) => !prev)}
+          />
+        </MobileNavHeader>
+        <MobileNavMenu isOpen={mobileOpen} onClose={() => setMobileOpen(false)}>
+          {navItems.map((navItem) => (
+            <Link
+              key={navItem.link}
+              href={navItem.link as any}
+              onClick={() => setMobileOpen(false)}
+              className={`text-sm ${
+                pathname === navItem.link
+                  ? "text-primary font-semibold"
+                  : "text-muted-foreground"
+              }`}
             >
-              {t(item.key)}
-            </a>
+              {navItem.name}
+            </Link>
           ))}
-        </nav>
-      </div>
-    </header>
+          <div className="flex w-full items-center justify-end">
+            <NavbarButton href="/contact" variant="gradient">
+              {t("contact")}
+            </NavbarButton>
+          </div>
+        </MobileNavMenu>
+      </MobileNav>
+    </Navbar>
   );
 }

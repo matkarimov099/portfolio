@@ -1,13 +1,28 @@
-import { useTranslations } from "next-intl";
+import { getTranslations } from "next-intl/server";
+import { githubService } from "../services/github.service";
+import { ProjectsGrid } from "./ProjectsGrid";
 
-export function ProjectsSection() {
-  const t = useTranslations("projects");
+export async function ProjectsSection() {
+  const t = await getTranslations("projects");
+
+  let repos: Awaited<ReturnType<typeof githubService.getRepos>> = [];
+  try {
+    repos = await githubService.getRepos();
+  } catch {
+    repos = [];
+  }
 
   return (
-    <section id="projects" className="py-24">
+    <section className="py-24">
       <div className="mx-auto max-w-6xl px-6">
-        <h2 className="text-3xl font-bold tracking-tight">{t("title")}</h2>
-        <p className="mt-2 text-muted-foreground">{t("subtitle")}</p>
+        <div className="text-center">
+          <p className="font-mono text-sm text-primary">{"// my-projects"}</p>
+          <h2 className="mt-2 text-3xl font-bold tracking-tight text-foreground">
+            {t("title")}
+          </h2>
+          <p className="mt-2 text-muted-foreground">{t("subtitle")}</p>
+        </div>
+        <ProjectsGrid repos={repos} />
       </div>
     </section>
   );

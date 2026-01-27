@@ -23,6 +23,25 @@
     "liveDemo": "Демо",
     "noProjects": "Проекты не найдены"
   },
+  "github": {
+    "title": "Профиль GitHub",
+    "subtitle": "Моя активность и репозитории на GitHub",
+    "viewGithub": "Открыть GitHub",
+    "publicRepos": "Публичные репозитории",
+    "publicGists": "Публичные Gists",
+    "followers": "Подписчики",
+    "following": "Подписки",
+    "codeProjects": "Проекты кода",
+    "codeSnippets": "Фрагменты кода",
+    "community": "Сообщество",
+    "connections": "Связи",
+    "moreDetails": "Подробнее",
+    "memberSince": "Участник с",
+    "lastUpdated": "Последнее обновление",
+    "repositories": "Репозитории",
+    "privateRepos": "Приватные репозитории",
+    "privateProjects": "Приватные проекты"
+  },
   "contact": {
     "title": "Связаться со мной",
     "subtitle": "Не стесняйтесь обращаться",
@@ -34,7 +53,8 @@
     "home": "Главная",
     "about": "Обо мне",
     "projects": "Проекты",
-    "contact": "Контакт"
+    "contact": "Контакт",
+    "github": "GitHub"
   },
   "theme": {
     "light": "Светлая",
@@ -43,6 +63,9 @@
   },
   "footer": {
     "builtWith": "Создано с Next.js и TypeScript",
-    "copyright": "© {year} Маткарим. Все права защищены."
+    "copyright": "© {year} Маткарим. Все права защищены.",
+    "version": "Фронтенд разработчик v4.5",
+    "status": "Открыт для работы",
+    "techStack": "React • Next.js • TypeScript • Tailwind"
   }
 }

@@ -23,6 +23,25 @@
     "liveDemo": "Live Demo",
     "noProjects": "No projects found"
   },
+  "github": {
+    "title": "GitHub Profile",
+    "subtitle": "My GitHub activity and repositories",
+    "viewGithub": "View GitHub",
+    "publicRepos": "Public Repositories",
+    "publicGists": "Public Gists",
+    "followers": "Followers",
+    "following": "Following",
+    "codeProjects": "Code projects",
+    "codeSnippets": "Code snippets",
+    "community": "Community",
+    "connections": "Connections",
+    "moreDetails": "More Details",
+    "memberSince": "Member Since",
+    "lastUpdated": "Last Updated",
+    "repositories": "Repositories",
+    "privateRepos": "Private Repositories",
+    "privateProjects": "Private projects"
+  },
   "contact": {
     "title": "Get In Touch",
     "subtitle": "Feel free to reach out",
@@ -34,7 +53,8 @@
     "home": "Home",
     "about": "About",
     "projects": "Projects",
-    "contact": "Contact"
+    "contact": "Contact",
+    "github": "GitHub"
   },
   "theme": {
     "light": "Light",
@@ -43,6 +63,9 @@
   },
   "footer": {
     "builtWith": "Built with Next.js & TypeScript",
-    "copyright": "© {year} Matkarim. All rights reserved."
+    "copyright": "© {year} Matkarim. All rights reserved.",
+    "version": "Frontend Developer v4.5",
+    "status": "Available for work",
+    "techStack": "React • Next.js • TypeScript • Tailwind"
   }
 }

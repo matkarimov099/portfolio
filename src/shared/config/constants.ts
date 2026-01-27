@@ -1,10 +1,11 @@
 export const GITHUB_USERNAME = "matkarimov099";
 
 export const NAV_ITEMS = [
-  { key: "home", href: "#hero" },
-  { key: "about", href: "#about" },
-  { key: "projects", href: "#projects" },
-  { key: "contact", href: "#contact" },
+  { key: "home", href: "/" },
+  { key: "about", href: "/about" },
+  { key: "projects", href: "/projects" },
+  { key: "github", href: "/github" },
+  { key: "contact", href: "/contact" },
 ] as const;
 
 export const SOCIAL_LINKS = [
