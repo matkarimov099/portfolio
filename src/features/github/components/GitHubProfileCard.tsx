@@ -25,46 +25,53 @@ export function GitHubProfileCard({ user }: Props) {
   const t = useTranslations("github");
 
   return (
-    <div className="mt-8 flex flex-col items-center gap-8 md:flex-row md:items-start">
-      <GlareCard className="flex flex-col items-center justify-center gap-4 p-6">
-        <Image
-          src={user.avatar_url}
-          alt={user.name ?? user.login}
-          width={80}
-          height={80}
-          className="rounded-full"
-        />
-        <h3 className="text-xl font-bold text-foreground">
-          {user.name ?? user.login}
-        </h3>
-        <p className="font-mono text-sm text-primary">@{user.login}</p>
-        {user.bio && (
-          <p className="text-center text-xs text-muted-foreground">
-            {user.bio}
-          </p>
-        )}
-      </GlareCard>
+    <div className="mt-8 flex justify-center">
+      <GlareCard
+        containerClassName="!w-full max-w-2xl !aspect-auto"
+        className="flex flex-col items-center gap-6 p-8 sm:flex-row sm:items-start"
+      >
+        {/* Avatar */}
+        <div className="shrink-0">
+          <Image
+            src={user.avatar_url}
+            alt={user.name ?? user.login}
+            width={100}
+            height={100}
+            className="rounded-full border-2 border-white/10"
+          />
+        </div>
 
-      <div className="flex-1 space-y-4">
-        <div className="rounded-xl border border-border bg-card p-6">
-          <div className="flex flex-wrap gap-2">
-            <span className="inline-flex items-center gap-1 rounded-full bg-muted px-3 py-1 text-xs text-muted-foreground">
+        {/* Info */}
+        <div className="flex flex-col items-center sm:items-start">
+          <h3 className="text-xl font-bold text-white">
+            {user.name ?? user.login}
+          </h3>
+          <p className="font-mono text-sm text-primary">@{user.login}</p>
+
+          {user.bio && (
+            <p className="mt-2 text-center text-sm text-neutral-300 sm:text-left">
+              {user.bio}
+            </p>
+          )}
+
+          <div className="mt-3 flex flex-wrap gap-2">
+            <span className="inline-flex items-center gap-1 rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs text-neutral-300 backdrop-blur-sm">
               <IconUser size={14} />
               {user.type}
             </span>
             {user.company && (
-              <span className="inline-flex items-center gap-1 rounded-full bg-muted px-3 py-1 text-xs text-muted-foreground">
+              <span className="inline-flex items-center gap-1 rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs text-neutral-300 backdrop-blur-sm">
                 <IconBuilding size={14} />
                 {user.company}
               </span>
             )}
             {user.location && (
-              <span className="inline-flex items-center gap-1 rounded-full bg-muted px-3 py-1 text-xs text-muted-foreground">
+              <span className="inline-flex items-center gap-1 rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs text-neutral-300 backdrop-blur-sm">
                 <IconMapPin size={14} />
                 {user.location}
               </span>
             )}
-            <span className="inline-flex items-center gap-1 rounded-full bg-muted px-3 py-1 text-xs text-muted-foreground">
+            <span className="inline-flex items-center gap-1 rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs text-neutral-300 backdrop-blur-sm">
               <IconCalendar size={14} />
               {formatDate(user.created_at)}
             </span>
@@ -74,13 +81,13 @@ export function GitHubProfileCard({ user }: Props) {
             href={user.html_url}
             target="_blank"
             rel="noopener noreferrer"
-            className="mt-4 inline-flex items-center gap-2 rounded-lg bg-primary px-5 py-2.5 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90"
+            className="mt-4 inline-flex items-center gap-2 rounded-lg bg-primary px-5 py-2 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90"
           >
             {t("viewGithub")}
             <IconExternalLink size={16} />
           </a>
         </div>
-      </div>
+      </GlareCard>
     </div>
   );
 }
