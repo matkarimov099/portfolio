@@ -1,5 +1,6 @@
 "use client";
 
+import { IconMapPin } from "@tabler/icons-react";
 import { motion } from "motion/react";
 import { useTranslations } from "next-intl";
 import { TypewriterEffect } from "@/shared/components/aceternity/typewriter-effect";
@@ -58,16 +59,10 @@ export function AboutSection() {
           >
             <WobbleCard containerClassName="h-full bg-blue-100 dark:bg-blue-900">
               <h3 className="text-xl font-bold text-blue-900 dark:text-white">
-                Who I Am
+                {t("whoIAm")}
               </h3>
               <p className="mt-2 text-blue-800 dark:text-neutral-200">
-                I am a Senior Frontend Developer with over 6 years of
-                professional experience building enterprise web applications. I
-                specialize in React, Next.js, and TypeScript, focusing on clean
-                architecture, performance optimization, and delivering polished
-                user experiences. I thrive in team environments, having led
-                frontend teams and mentored junior developers throughout my
-                career.
+                {t("whoIAmText")}
               </p>
             </WobbleCard>
           </motion.div>
@@ -81,22 +76,22 @@ export function AboutSection() {
           >
             <WobbleCard containerClassName="h-full bg-pink-100 dark:bg-pink-800">
               <h3 className="text-xl font-bold text-pink-900 dark:text-white">
-                Education
+                {t("education")}
               </h3>
               <p className="mt-2 text-sm text-pink-800 dark:text-neutral-200">
-                Bachelor&apos;s in Computer Engineering
+                {t("degree")}
               </p>
               <p className="text-sm text-pink-700 dark:text-neutral-300">
-                TUIT (al-Khwarizmi branch), Urgench
+                {t("university")}
               </p>
               <p className="text-sm text-pink-700 dark:text-neutral-300">
-                2018 - 2022
+                {t("educationYears")}
               </p>
             </WobbleCard>
           </motion.div>
 
           <motion.div
-            className="col-span-1 lg:col-span-3"
+            className="col-span-1 lg:col-span-2"
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, amount: 0.2 }}
@@ -105,34 +100,60 @@ export function AboutSection() {
           >
             <WobbleCard containerClassName="bg-emerald-100 dark:bg-emerald-900">
               <h3 className="text-xl font-bold text-emerald-900 dark:text-white">
-                Languages
+                {t("languages")}
               </h3>
               <div className="mt-3 flex flex-wrap gap-6">
                 <div>
                   <p className="font-semibold text-emerald-900 dark:text-white">
-                    English
+                    {t("uzbek")}
                   </p>
                   <p className="text-sm text-emerald-700 dark:text-neutral-300">
-                    B2 - Upper Intermediate
+                    {t("uzbekLevel")}
                   </p>
                 </div>
                 <div>
                   <p className="font-semibold text-emerald-900 dark:text-white">
-                    Russian
+                    {t("english")}
                   </p>
                   <p className="text-sm text-emerald-700 dark:text-neutral-300">
-                    B1 - Intermediate
+                    {t("englishLevel")}
                   </p>
                 </div>
                 <div>
                   <p className="font-semibold text-emerald-900 dark:text-white">
-                    Uzbek
+                    {t("russian")}
                   </p>
                   <p className="text-sm text-emerald-700 dark:text-neutral-300">
-                    Native
+                    {t("russianLevel")}
                   </p>
                 </div>
               </div>
+            </WobbleCard>
+          </motion.div>
+
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.2 }}
+            custom={3}
+            variants={fadeUp}
+          >
+            <WobbleCard containerClassName="h-full bg-amber-100 dark:bg-amber-900">
+              <h3 className="text-xl font-bold text-amber-900 dark:text-white">
+                {t("location")}
+              </h3>
+              <div className="mt-2 flex items-center gap-2">
+                <IconMapPin
+                  size={18}
+                  className="text-amber-700 dark:text-amber-300"
+                />
+                <p className="text-sm text-amber-800 dark:text-neutral-200">
+                  {t("currentLocation")}
+                </p>
+              </div>
+              <p className="mt-1 text-sm text-amber-700 dark:text-neutral-300">
+                {t("readyToRelocate")}
+              </p>
             </WobbleCard>
           </motion.div>
         </div>

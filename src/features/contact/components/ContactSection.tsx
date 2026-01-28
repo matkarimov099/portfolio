@@ -196,7 +196,7 @@ export function ContactSection() {
           className="absolute top-8 flex items-center gap-2 text-sm text-muted-foreground/50"
         >
           <IconGripVertical size={16} className="rotate-90" />
-          <span>Drag cards to explore</span>
+          <span>{t("dragHint")}</span>
         </motion.div>
       </DraggableCardContainer>
     </section>

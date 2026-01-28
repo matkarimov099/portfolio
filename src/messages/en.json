@@ -3,15 +3,47 @@
     "greeting": "Hi, I'm",
     "name": "Matkarim",
     "role": "Frontend Developer",
-    "description": "6+ years of experience building production-grade web applications with React, Next.js, and TypeScript",
+    "description": "4.5+ years of experience building production-grade web applications with React, Next.js, and TypeScript",
     "viewProjects": "View Projects",
     "contactMe": "Contact Me"
   },
   "about": {
     "title": "About Me",
-    "description": "Senior Frontend Developer with 6+ years of experience. Currently working at UNICON-SOFT (Tashkent). Previously led a development team at IT-FORLEAD for 2.5+ years. Graduated from TUIT (al-Khwarizmi branch, Urgench) in Computer Engineering.",
+    "description": "Frontend Developer with 4.5+ years of experience. Currently working as a Software Engineer at UNICON-SOFT (Tashkent).",
     "skillsTitle": "Skills & Technologies",
-    "experienceTitle": "Experience"
+    "experienceTitle": "Experience",
+    "whoIAm": "Who am I?",
+    "whoIAmText": "I'm a Frontend Developer with over 4.5 years of professional experience. I specialize in building enterprise-grade web applications. I have deep expertise in React, Next.js, and TypeScript. I focus on clean architecture, performance optimization, and delivering polished user experiences.",
+    "education": "Education",
+    "degree": "Bachelor's in Computer Engineering",
+    "university": "TUIT (al-Khwarizmi branch), Urgench",
+    "educationYears": "2018 - 2022",
+    "languages": "Languages",
+    "uzbek": "Uzbek",
+    "uzbekLevel": "Native",
+    "english": "English",
+    "englishLevel": "B2 - Upper Intermediate",
+    "russian": "Russian",
+    "russianLevel": "B1 - Intermediate",
+    "location": "Location",
+    "currentLocation": "Urgench, Uzbekistan",
+    "readyToRelocate": "Ready to relocate to Tashkent",
+    "experience1Title": "Software Engineer",
+    "experience1Company": "UNICON-SOFT, Tashkent",
+    "experience1Period": "2025 - Present",
+    "experience1Description": "Developing and maintaining web applications for educational institutions. Writing code, fixing bugs, refactoring, and designing user interfaces.",
+    "experience2Title": "Frontend Developer",
+    "experience2Company": "IT-FORLEAD",
+    "experience2Period": "2023 - 2025",
+    "experience2Description": "Implementing functionality and logic according to technical specifications and architectural decisions. Writing and optimizing code, analyzing bugs, and conducting code reviews.",
+    "experience3Title": "Frontend Developer",
+    "experience3Company": "Urgench State University",
+    "experience3Period": "2021 - 2022",
+    "experience3Description": "Developing and maintaining client-side web applications for the educational institution. Writing and optimizing code.",
+    "experience4Title": "Bachelor's in Computer Engineering",
+    "experience4Company": "TUIT (al-Khwarizmi branch), Urgench",
+    "experience4Period": "2018 - 2022",
+    "experience4Description": "Earned a Bachelor's degree with a strong foundation in software development, algorithms, and system design."
   },
   "projects": {
     "title": "My Projects",
@@ -45,6 +77,7 @@
   "contact": {
     "title": "Get In Touch",
     "subtitle": "Feel free to reach out",
+    "dragHint": "Drag cards to explore",
     "email": "Email",
     "telegram": "Telegram",
     "linkedin": "LinkedIn"
@@ -55,11 +88,6 @@
     "projects": "Projects",
     "contact": "Contact",
     "github": "GitHub"
-  },
-  "theme": {
-    "light": "Light",
-    "dark": "Dark",
-    "system": "System"
   },
   "footer": {
     "builtWith": "Built with Next.js & TypeScript",

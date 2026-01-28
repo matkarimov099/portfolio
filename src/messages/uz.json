@@ -3,15 +3,47 @@
     "greeting": "Salom, men",
     "name": "Matkarim",
     "role": "Frontend dasturchi",
-    "description": "6+ yillik tajriba — React, Next.js va TypeScript bilan production darajadagi veb-ilovalar yarataman",
+    "description": "4.5+ yillik tajriba — React, Next.js va TypeScript bilan production darajadagi veb-ilovalar yarataman",
     "viewProjects": "Loyihalarim",
     "contactMe": "Bog'lanish"
   },
   "about": {
     "title": "Men haqimda",
-    "description": "6+ yillik tajribaga ega Senior Frontend dasturchi. Hozirda UNICON-SOFT (Toshkent) da ishlayapman. Avval IT-FORLEAD da 2.5+ yil dasturlash jamoasini boshqarganman. TUIT (al-Xorazmiy filiali, Urganch) ni Kompyuter injiniringi yo'nalishi bo'yicha tugatganman.",
+    "description": "4.5+ yillik tajribaga ega Frontend dasturchi. Hozirda UNICON-SOFT (Toshkent) da Muhandis-dasturchi lavozimida ishlayapman.",
     "skillsTitle": "Ko'nikma va texnologiyalar",
-    "experienceTitle": "Ish tajribasi"
+    "experienceTitle": "Ish tajribasi",
+    "whoIAm": "Men kim?",
+    "whoIAmText": "Men 4.5+ yillik professional tajribaga ega Frontend dasturchiman. Korxona darajasidagi veb-ilovalar yaratish bo'yicha ixtisoslashganman. React, Next.js va TypeScript texnologiyalarida chuqur bilimga egaman. Toza arxitektura, samaradorlikni optimallashtirish va silliq foydalanuvchi tajribasini yaratishga e'tibor beraman.",
+    "education": "Ta'lim",
+    "degree": "Kompyuter injiniringi bo'yicha bakalavr",
+    "university": "TATU (al-Xorazmiy filiali), Urganch",
+    "educationYears": "2018 - 2022",
+    "languages": "Tillar",
+    "uzbek": "O'zbek tili",
+    "uzbekLevel": "Ona tili",
+    "english": "Ingliz tili",
+    "englishLevel": "B2 - Yuqori o'rta",
+    "russian": "Rus tili",
+    "russianLevel": "B1 - O'rta",
+    "location": "Joylashuv",
+    "currentLocation": "Urganch, O'zbekiston",
+    "readyToRelocate": "Toshkentga ko'chishga tayyor",
+    "experience1Title": "Muhandis-dasturchi",
+    "experience1Company": "UNICON-SOFT, Toshkent",
+    "experience1Period": "2025 - Hozir",
+    "experience1Description": "Ta'lim muassasalari uchun veb-ilovalarni ishlab chiqish va qo'llab-quvvatlash. Dasturiy kod yozish, buglarni tuzatish, refaktoring va foydalanuvchi interfeyslarini loyihalash.",
+    "experience2Title": "Frontend dasturchi",
+    "experience2Company": "IT-FORLEAD",
+    "experience2Period": "2023 - 2025",
+    "experience2Description": "Texnik topshiriq va arxitektura qarorlariga muvofiq funksionallik va mantiqni amalga oshirish. Kod yozish, optimallashtirish, buglarni tahlil qilish va boshqa dasturchilarga kod review o'tkazish.",
+    "experience3Title": "Frontend dasturchi",
+    "experience3Company": "Urganch davlat universiteti",
+    "experience3Period": "2021 - 2022",
+    "experience3Description": "Ta'lim muassasasi uchun veb-ilovalarning mijoz qismini ishlab chiqish va qo'llab-quvvatlash. Dasturiy kod yozish va optimallashtirish.",
+    "experience4Title": "Kompyuter injiniringi bo'yicha bakalavr",
+    "experience4Company": "TATU (al-Xorazmiy filiali), Urganch",
+    "experience4Period": "2018 - 2022",
+    "experience4Description": "Dasturiy ta'minot ishlab chiqish, algoritmlar va tizim loyihalash bo'yicha mustahkam poydevor qo'yilgan bakalavr darajasi."
   },
   "projects": {
     "title": "Loyihalarim",
@@ -45,6 +77,7 @@
   "contact": {
     "title": "Bog'lanish",
     "subtitle": "Bemalol murojaat qiling",
+    "dragHint": "Kartalarni sudrab ko'ring",
     "email": "Email",
     "telegram": "Telegram",
     "linkedin": "LinkedIn"
@@ -55,11 +88,6 @@
     "projects": "Loyihalar",
     "contact": "Bog'lanish",
     "github": "GitHub"
-  },
-  "theme": {
-    "light": "Yorug'",
-    "dark": "Qorong'u",
-    "system": "Tizim"
   },
   "footer": {
     "builtWith": "Next.js va TypeScript bilan yaratilgan",
