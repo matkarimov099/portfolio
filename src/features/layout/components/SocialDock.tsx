@@ -89,7 +89,7 @@ export function SocialDock() {
 
   return (
     <motion.div
-      onMouseMove={(e) => mouseY.set(e.pageY)}
+      onMouseMove={(e) => mouseY.set(e.clientY)}
       onMouseLeave={() => mouseY.set(Infinity)}
       className="fixed left-4 top-1/2 z-50 hidden w-16 -translate-y-1/2 flex-col items-start gap-4 rounded-2xl border border-white/10 bg-white/5 py-4 pl-3 shadow-2xl backdrop-blur-xl md:flex"
     >

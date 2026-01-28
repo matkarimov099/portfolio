@@ -10,7 +10,7 @@ export default async function ContactPage({
   setRequestLocale(locale);
 
   return (
-    <main className="pt-24">
+    <main className="h-screen overflow-hidden">
       <ContactSection />
     </main>
   );
