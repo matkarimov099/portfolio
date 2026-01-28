@@ -10,7 +10,7 @@ export default async function GitHubPage({
   setRequestLocale(locale);
 
   return (
-    <main className="pt-24">
+    <main className="pt-10">
       <GitHubSection />
     </main>
   );

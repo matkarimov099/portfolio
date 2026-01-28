@@ -16,3 +16,9 @@ export interface GitHubUser {
   total_private_repos?: number;
   owned_private_repos?: number;
 }
+
+export interface GitHubFollower {
+  login: string;
+  avatar_url: string;
+  html_url: string;
+}

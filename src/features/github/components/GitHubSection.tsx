@@ -1,13 +1,40 @@
-import { getTranslations } from "next-intl/server";
-import { githubUserService } from "../services/github-user.service";
+"use client";
+
+import { useTranslations } from "next-intl";
+import { GITHUB_USERNAME } from "@/shared/config/constants";
+import {
+  useGitHubUser,
+  useGitHubRepos,
+  useGitHubFollowers,
+} from "../hooks/use-github";
 import { GitHubProfileCard } from "./GitHubProfileCard";
 import { GitHubStats } from "./GitHubStats";
 import { GitHubDetails } from "./GitHubDetails";
 import { GitHubRepoList } from "./GitHubRepoList";
+import { GitHubFollowers } from "./GitHubFollowers";
 
-export async function GitHubSection() {
-  const t = await getTranslations("github");
-  const { user, repoNames } = await githubUserService.getUserData();
+export function GitHubSection() {
+  const t = useTranslations("github");
+  const { user, isLoading: userLoading } = useGitHubUser(GITHUB_USERNAME);
+  const { repoNames, isLoading: reposLoading } = useGitHubRepos(GITHUB_USERNAME);
+  const { followers, isLoading: followersLoading } =
+    useGitHubFollowers(GITHUB_USERNAME);
+
+  const isLoading = userLoading || reposLoading || followersLoading;
+
+  if (isLoading) {
+    return (
+      <section className="py-24">
+        <div className="mx-auto max-w-6xl px-6">
+          <div className="flex items-center justify-center py-20">
+            <div className="h-8 w-8 animate-spin rounded-full border-4 border-primary border-t-transparent" />
+          </div>
+        </div>
+      </section>
+    );
+  }
+
+  if (!user) return null;
 
   return (
     <section className="py-24">
@@ -23,8 +50,9 @@ export async function GitHubSection() {
         </div>
         <GitHubProfileCard user={user} />
         <GitHubStats user={user} />
+        <GitHubFollowers followers={followers ?? []} />
         <GitHubDetails user={user} />
-        <GitHubRepoList repoNames={repoNames} />
+        <GitHubRepoList repoNames={repoNames ?? []} />
       </div>
     </section>
   );
