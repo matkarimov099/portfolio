@@ -1,14 +1,14 @@
 "use client";
 
-import { useTranslations } from "next-intl";
 import {
   IconBrandGithub,
-  IconStar,
   IconGitFork,
   IconLock,
-  IconWorld,
   IconPointFilled,
+  IconStar,
+  IconWorld,
 } from "@tabler/icons-react";
+import { useTranslations } from "next-intl";
 import type { GitHubRepo } from "../types";
 
 const LANGUAGE_COLORS: Record<string, string> = {
@@ -37,7 +37,9 @@ const LANGUAGE_COLORS: Record<string, string> = {
 function timeAgo(dateStr: string): string {
   const now = new Date();
   const date = new Date(dateStr);
-  const days = Math.floor((now.getTime() - date.getTime()) / (1000 * 60 * 60 * 24));
+  const days = Math.floor(
+    (now.getTime() - date.getTime()) / (1000 * 60 * 60 * 24),
+  );
   if (days === 0) return "today";
   if (days === 1) return "yesterday";
   if (days < 30) return `${days}d ago`;
@@ -98,7 +100,9 @@ export function GitHubRepoList({ repos }: Props) {
                 <span className="flex items-center gap-1">
                   <IconPointFilled
                     size={12}
-                    style={{ color: LANGUAGE_COLORS[repo.language] ?? "#8b8b8b" }}
+                    style={{
+                      color: LANGUAGE_COLORS[repo.language] ?? "#8b8b8b",
+                    }}
                   />
                   {repo.language}
                 </span>

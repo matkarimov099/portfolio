@@ -1,6 +1,7 @@
 "use client";
 
 import { useTranslations } from "next-intl";
+import { motion } from "motion/react";
 import { GITHUB_USERNAME } from "@/shared/config/constants";
 import {
   useGitHubUser,
@@ -12,6 +13,15 @@ import { GitHubStats } from "./GitHubStats";
 import { GitHubDetails } from "./GitHubDetails";
 import { GitHubRepoList } from "./GitHubRepoList";
 import { GitHubFollowers } from "./GitHubFollowers";
+
+const fadeUp = {
+  hidden: { opacity: 0, y: 40 },
+  visible: (i: number) => ({
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.6, delay: i * 0.15, ease: "easeOut" as const },
+  }),
+};
 
 export function GitHubSection() {
   const t = useTranslations("github");
@@ -40,7 +50,14 @@ export function GitHubSection() {
   return (
     <section className="py-24">
       <div className="mx-auto max-w-6xl px-6">
-        <div className="text-center">
+        <motion.div
+          className="text-center"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.3 }}
+          custom={0}
+          variants={fadeUp}
+        >
           <p className="font-mono text-sm text-primary">
             {"// github-profile"}
           </p>
@@ -48,12 +65,49 @@ export function GitHubSection() {
             {t("title")}
           </h2>
           <p className="mt-2 text-muted-foreground">{t("subtitle")}</p>
-        </div>
-        <GitHubProfileCard user={user} />
+        </motion.div>
+
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.2 }}
+          custom={1}
+          variants={fadeUp}
+        >
+          <GitHubProfileCard user={user} />
+        </motion.div>
+
         <GitHubStats user={user} privateRepoCount={privateRepoCount} />
-        <GitHubFollowers followers={followers ?? []} />
-        <GitHubDetails user={user} />
-        <GitHubRepoList repos={repos ?? []} />
+
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.2 }}
+          custom={0}
+          variants={fadeUp}
+        >
+          <GitHubFollowers followers={followers ?? []} />
+        </motion.div>
+
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.2 }}
+          custom={0}
+          variants={fadeUp}
+        >
+          <GitHubDetails user={user} />
+        </motion.div>
+
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.1 }}
+          custom={0}
+          variants={fadeUp}
+        >
+          <GitHubRepoList repos={repos ?? []} />
+        </motion.div>
       </div>
     </section>
   );

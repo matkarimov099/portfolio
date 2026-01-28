@@ -1,10 +1,6 @@
 "use client";
 
-import {
-  IconBraces,
-  IconCode,
-  IconTerminal2,
-} from "@tabler/icons-react";
+import { IconBraces, IconCode, IconTerminal2 } from "@tabler/icons-react";
 import { motion } from "motion/react";
 import { useTranslations } from "next-intl";
 
@@ -123,10 +119,10 @@ export function HeroSection() {
           colorMode="monochrome"
           monochromeColor="#10b981"
           backgroundColor="transparent"
-          gridCols={48}
-          gridRows={36}
-          maxElevation={8}
-          darken={0.5}
+          gridCols={50}
+          gridRows={40}
+          maxElevation={35}
+          darken={0.4}
           className="h-full w-full"
         />
       </div>
@@ -143,7 +139,7 @@ export function HeroSection() {
           transition={{ duration: 20, repeat: Infinity, ease: "easeInOut" }}
         />
         <motion.div
-          className="absolute right-1/4 top-1/3 h-[400px] w-[400px] rounded-full bg-cyan-500/8 blur-[100px]"
+          className="absolute right-1/4 top-1/3 h-100 w-100 rounded-full bg-cyan-500/8 blur-[100px]"
           animate={{
             x: [0, -80, 60, 0],
             y: [0, 100, -40, 0],
@@ -152,7 +148,7 @@ export function HeroSection() {
           transition={{ duration: 25, repeat: Infinity, ease: "easeInOut" }}
         />
         <motion.div
-          className="absolute bottom-1/4 left-1/2 h-[350px] w-[350px] rounded-full bg-purple-500/8 blur-[100px]"
+          className="absolute bottom-1/4 left-1/2 h-87.5 w-87.5 rounded-full bg-purple-500/8 blur-[100px]"
           animate={{
             x: [0, 50, -80, 0],
             y: [0, -60, 40, 0],
@@ -163,12 +159,12 @@ export function HeroSection() {
 
       {/* Floating code snippets */}
       {CODE_SNIPPETS.map((snippet, i) => (
-        <FloatingCodeBlock key={i} {...snippet} />
+        <FloatingCodeBlock key={`${i}-${snippet.code}`} {...snippet} />
       ))}
 
       {/* Floating icons */}
       {FLOATING_ICONS.map((icon, i) => (
-        <FloatingIcon key={i} {...icon} />
+        <FloatingIcon key={`${i}-${icon.delay}`} {...icon} />
       ))}
 
       {/* Grid overlay */}
@@ -203,7 +199,7 @@ export function HeroSection() {
           variants={item}
           className="text-5xl font-bold tracking-tight sm:text-6xl md:text-7xl lg:text-8xl"
         >
-          <span className="bg-gradient-to-r from-primary via-emerald-400 to-cyan-400 bg-clip-text text-transparent">
+          <span className="bg-linear-to-r from-primary via-emerald-400 to-cyan-400 bg-clip-text text-transparent">
             {t("name")}
           </span>
         </motion.h1>
@@ -279,11 +275,14 @@ export function HeroSection() {
           <motion.span
             className="inline-block h-3.5 w-1.5 bg-primary mt-1"
             animate={{ opacity: [1, 0] }}
-            transition={{ duration: 0.8, repeat: Infinity, repeatType: "reverse" }}
+            transition={{
+              duration: 0.8,
+              repeat: Infinity,
+              repeatType: "reverse",
+            }}
           />
         </div>
       </motion.div>
-
     </section>
   );
 }

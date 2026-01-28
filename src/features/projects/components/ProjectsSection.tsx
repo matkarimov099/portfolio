@@ -16,11 +16,7 @@ export async function ProjectsSection() {
   return (
     <section className="py-10">
       <div className="mx-auto max-w-6xl px-6">
-        <div className="text-center">
-          <p className="font-mono text-sm text-primary">{"// my-projects"}</p>
-          <ProjectsTitle title={t("title")} />
-          <p className="mt-2 text-muted-foreground">{t("subtitle")}</p>
-        </div>
+        <ProjectsTitle title={t("title")} subtitle={t("subtitle")} />
         <ProjectsGrid repos={repos} />
       </div>
     </section>
