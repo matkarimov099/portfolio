@@ -1,7 +1,7 @@
 "use client";
 
-import { Timeline } from "@/shared/components/aceternity/timeline";
 import { EXPERIENCE } from "@/features/about/data/experience";
+import { Timeline } from "@/shared/components/aceternity/timeline";
 
 export function ExperienceTimeline() {
   const data = EXPERIENCE.map((exp) => ({

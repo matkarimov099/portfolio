@@ -1,11 +1,10 @@
 "use client";
 
-import { useRef, useState } from "react";
 import {
   IconBrandGithub,
+  IconBrandInstagram,
   IconBrandLinkedin,
   IconBrandTelegram,
-  IconBrandInstagram,
   IconMail,
 } from "@tabler/icons-react";
 import {
@@ -16,14 +15,35 @@ import {
   useSpring,
   useTransform,
 } from "motion/react";
+import { useRef, useState } from "react";
 import { siteConfig } from "@/shared/config/site";
 
 const items = [
-  { title: "GitHub", icon: <IconBrandGithub className="h-full w-full" />, href: siteConfig.links.github },
-  { title: "LinkedIn", icon: <IconBrandLinkedin className="h-full w-full" />, href: siteConfig.links.linkedin },
-  { title: "Telegram", icon: <IconBrandTelegram className="h-full w-full" />, href: siteConfig.links.telegram },
-  { title: "Instagram", icon: <IconBrandInstagram className="h-full w-full" />, href: siteConfig.links.instagram },
-  { title: "Email", icon: <IconMail className="h-full w-full" />, href: siteConfig.links.email },
+  {
+    title: "GitHub",
+    icon: <IconBrandGithub className="h-full w-full" />,
+    href: siteConfig.links.github,
+  },
+  {
+    title: "LinkedIn",
+    icon: <IconBrandLinkedin className="h-full w-full" />,
+    href: siteConfig.links.linkedin,
+  },
+  {
+    title: "Telegram",
+    icon: <IconBrandTelegram className="h-full w-full" />,
+    href: siteConfig.links.telegram,
+  },
+  {
+    title: "Instagram",
+    icon: <IconBrandInstagram className="h-full w-full" />,
+    href: siteConfig.links.instagram,
+  },
+  {
+    title: "Email",
+    icon: <IconMail className="h-full w-full" />,
+    href: siteConfig.links.email,
+  },
 ];
 
 function SocialIconContainer({
@@ -45,10 +65,22 @@ function SocialIconContainer({
   });
 
   const sizeTransform = useTransform(distance, [-150, 0, 150], [40, 80, 40]);
-  const iconSizeTransform = useTransform(distance, [-150, 0, 150], [20, 40, 20]);
+  const iconSizeTransform = useTransform(
+    distance,
+    [-150, 0, 150],
+    [20, 40, 20],
+  );
 
-  const size = useSpring(sizeTransform, { mass: 0.1, stiffness: 150, damping: 12 });
-  const iconSize = useSpring(iconSizeTransform, { mass: 0.1, stiffness: 150, damping: 12 });
+  const size = useSpring(sizeTransform, {
+    mass: 0.1,
+    stiffness: 150,
+    damping: 12,
+  });
+  const iconSize = useSpring(iconSizeTransform, {
+    mass: 0.1,
+    stiffness: 150,
+    damping: 12,
+  });
 
   const [hovered, setHovered] = useState(false);
 

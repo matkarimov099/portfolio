@@ -6,9 +6,12 @@ import {
   IconGitFork,
   IconStar,
 } from "@tabler/icons-react";
-import type { GitHubRepo } from "@/features/projects/types";
 import Image from "next/image";
-import { EvervaultCard, Icon } from "@/shared/components/aceternity/evervault-card";
+import type { GitHubRepo } from "@/features/projects/types";
+import {
+  EvervaultCard,
+  Icon,
+} from "@/shared/components/aceternity/evervault-card";
 import { GITHUB_USERNAME } from "@/shared/config/constants";
 
 interface ProjectCardProps {

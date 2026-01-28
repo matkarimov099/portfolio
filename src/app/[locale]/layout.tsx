@@ -1,10 +1,10 @@
 import { NextIntlClientProvider } from "next-intl";
 import { getMessages, setRequestLocale } from "next-intl/server";
 import { Providers } from "@/core/providers";
-import { routing } from "@/i18n/routing";
-import { SocialDock } from "@/features/layout/components/SocialDock";
-import { NavDock } from "@/features/layout/components/NavDock";
 import { LanguageSwitcher } from "@/features/layout/components/LanguageSwitcher";
+import { NavDock } from "@/features/layout/components/NavDock";
+import { SocialDock } from "@/features/layout/components/SocialDock";
+import { routing } from "@/i18n/routing";
 
 export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));

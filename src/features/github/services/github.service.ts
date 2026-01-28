@@ -1,5 +1,5 @@
 import axios from "axios";
-import type { GitHubUser, GitHubFollower, GitHubRepo } from "../types";
+import type { GitHubFollower, GitHubRepo, GitHubUser } from "../types";
 
 const githubApi = axios.create();
 
@@ -11,7 +11,9 @@ export const githubService = {
     return data;
   },
 
-  getRepos: async (username: string): Promise<{ repos: GitHubRepo[]; privateCount: number }> => {
+  getRepos: async (
+    username: string,
+  ): Promise<{ repos: GitHubRepo[]; privateCount: number }> => {
     const { data } = await githubApi.get<GitHubRepo[]>(
       `/api/github/repos?username=${username}`,
     );

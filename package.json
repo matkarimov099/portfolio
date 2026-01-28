@@ -7,7 +7,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "biome check",
-    "format": "biome format --write"
+    "format": "biome format --write",
+    "fix": "biome format --write src/ && biome lint --write --unsafe src/ && biome check --write --unsafe src/"
   },
   "dependencies": {
     "@fontsource-variable/noto-sans": "^5.2.10",

@@ -1,9 +1,9 @@
 "use client";
 
-import { useEffect, type RefObject } from "react";
+import { type RefObject, useEffect } from "react";
 
 export function useOutsideClick(
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  // biome-ignore lint/suspicious/noExplicitAny: ref can be any element type
   ref: RefObject<any>,
   callback: (event: MouseEvent | TouchEvent) => void,
 ) {

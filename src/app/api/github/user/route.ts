@@ -28,7 +28,9 @@ export async function GET(request: NextRequest) {
   }
 
   // Fallback to public endpoint
-  const res = await fetch(`https://api.github.com/users/${username}`, { headers });
+  const res = await fetch(`https://api.github.com/users/${username}`, {
+    headers,
+  });
   if (!res.ok) {
     return NextResponse.json(
       { error: "GitHub API error" },

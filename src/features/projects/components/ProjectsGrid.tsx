@@ -1,7 +1,7 @@
 "use client";
 
-import { useMemo, useState } from "react";
 import { motion } from "motion/react";
+import { useMemo, useState } from "react";
 import type { GitHubRepo } from "@/features/projects/types";
 import { ProjectCard } from "./ProjectCard";
 

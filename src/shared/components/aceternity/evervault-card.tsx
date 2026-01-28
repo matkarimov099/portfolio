@@ -1,8 +1,8 @@
-// @ts-nocheck
 "use client";
-import { useMotionValue } from "motion/react";
-import React, { useState, useEffect } from "react";
-import { useMotionTemplate, motion } from "motion/react";
+import type { MotionValue } from "motion/react";
+import { motion, useMotionTemplate, useMotionValue } from "motion/react";
+import type React from "react";
+import { useEffect, useState } from "react";
 import { cn } from "@/shared/lib/utils";
 
 export const EvervaultCard = ({
@@ -12,20 +12,20 @@ export const EvervaultCard = ({
   text?: string;
   className?: string;
 }) => {
-  let mouseX = useMotionValue(0);
-  let mouseY = useMotionValue(0);
+  const mouseX = useMotionValue(0);
+  const mouseY = useMotionValue(0);
 
   const [randomString, setRandomString] = useState("");
 
   useEffect(() => {
-    let str = generateRandomString(1500);
+    const str = generateRandomString(1500);
     setRandomString(str);
   }, []);
 
-  function onMouseMove({ currentTarget, clientX, clientY }: any) {
-    let { left, top } = currentTarget.getBoundingClientRect();
-    mouseX.set(clientX - left);
-    mouseY.set(clientY - top);
+  function onMouseMove(e: React.MouseEvent<HTMLDivElement>) {
+    const { left, top } = e.currentTarget.getBoundingClientRect();
+    mouseX.set(e.clientX - left);
+    mouseY.set(e.clientY - top);
 
     const str = generateRandomString(1500);
     setRandomString(str);
@@ -38,6 +38,7 @@ export const EvervaultCard = ({
         className,
       )}
     >
+      {/* biome-ignore lint/a11y/noStaticElementInteractions: decorative element */}
       <div
         onMouseMove={onMouseMove}
         className="group/card w-full relative overflow-hidden bg-transparent flex items-center justify-center h-full"
@@ -60,22 +61,30 @@ export const EvervaultCard = ({
   );
 };
 
-export function CardPattern({ mouseX, mouseY, randomString }: any) {
-  let maskImage = useMotionTemplate`radial-gradient(250px at ${mouseX}px ${mouseY}px, white, transparent)`;
-  let style = { maskImage, WebkitMaskImage: maskImage };
+export function CardPattern({
+  mouseX,
+  mouseY,
+  randomString,
+}: {
+  mouseX: MotionValue<number>;
+  mouseY: MotionValue<number>;
+  randomString: string;
+}) {
+  const maskImage = useMotionTemplate`radial-gradient(250px at ${mouseX}px ${mouseY}px, white, transparent)`;
+  const style = { maskImage, WebkitMaskImage: maskImage };
 
   return (
     <div className="pointer-events-none">
-      <div className="absolute inset-0 [mask-image:linear-gradient(white,transparent)] group-hover/card:opacity-50"></div>
+      <div className="absolute inset-0 mask-[linear-gradient(white,transparent)] group-hover/card:opacity-50"></div>
       <motion.div
-        className="absolute inset-0 bg-gradient-to-r from-green-500 to-blue-700 opacity-0 group-hover/card:opacity-100 backdrop-blur-xl transition duration-500"
+        className="absolute inset-0 bg-linear-to-r from-green-500 to-blue-700 opacity-0 group-hover/card:opacity-100 backdrop-blur-xl transition duration-500"
         style={style}
       />
       <motion.div
         className="absolute inset-0 opacity-0 mix-blend-overlay group-hover/card:opacity-100"
         style={style}
       >
-        <p className="absolute inset-x-0 text-xs h-full break-words whitespace-pre-wrap text-white font-mono font-bold transition duration-500">
+        <p className="absolute inset-x-0 text-xs h-full wrap-break-word whitespace-pre-wrap text-white font-mono font-bold transition duration-500">
           {randomString}
         </p>
       </motion.div>
@@ -93,7 +102,7 @@ export const generateRandomString = (length: number) => {
   return result;
 };
 
-export const Icon = ({ className, ...rest }: any) => {
+export const Icon = ({ className, ...rest }: React.SVGProps<SVGSVGElement>) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -102,6 +111,7 @@ export const Icon = ({ className, ...rest }: any) => {
       strokeWidth="1.5"
       stroke="currentColor"
       className={className}
+      aria-hidden="true"
       {...rest}
     >
       <path strokeLinecap="round" strokeLinejoin="round" d="M12 6v12m6-6H6" />

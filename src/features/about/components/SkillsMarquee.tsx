@@ -1,8 +1,8 @@
 "use client";
 
+import { SKILL_CATEGORIES } from "@/features/about/data/skills";
 import { InfiniteMovingCards } from "@/shared/components/aceternity/infinite-moving-cards";
 import { TypewriterEffect } from "@/shared/components/aceternity/typewriter-effect";
-import { SKILL_CATEGORIES } from "@/features/about/data/skills";
 
 const skillDescriptions: Record<string, string> = {
   React: "Building modern, interactive UIs with component-driven architecture",

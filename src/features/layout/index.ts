@@ -1,2 +1,3 @@
-export { Header } from "./components/Header";
-export { Footer } from "./components/Footer";
+export { LanguageSwitcher } from "./components/LanguageSwitcher";
+export { NavDock } from "./components/NavDock";
+export { SocialDock } from "./components/SocialDock";

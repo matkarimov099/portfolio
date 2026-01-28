@@ -1,9 +1,8 @@
-// @ts-nocheck
 "use client";
 
-import { cn } from "@/shared/lib/utils";
 import { motion, stagger, useAnimate, useInView } from "motion/react";
 import { useEffect } from "react";
+import { cn } from "@/shared/lib/utils";
 
 export const TypewriterEffect = ({
   words,
@@ -43,17 +42,18 @@ export const TypewriterEffect = ({
         },
       );
     }
-  }, [isInView]);
+  }, [isInView, animate]);
 
   const renderWords = () => {
     return (
       <motion.div ref={scope} className="inline">
         {wordsArray.map((word, idx) => {
           return (
-            <div key={`word-${idx}`} className="inline-block">
+            <div key={`${idx}-${word.text}`} className="inline-block">
               {word.text.map((char, index) => (
                 <motion.span
                   initial={{}}
+                  // biome-ignore lint/suspicious/noArrayIndexKey: static list for animation
                   key={`char-${index}`}
                   className={cn(
                     `text-foreground opacity-0 hidden`,
@@ -91,7 +91,7 @@ export const TypewriterEffect = ({
           repeatType: "reverse",
         }}
         className={cn(
-          "inline-block rounded-sm w-[4px] h-4 md:h-6 lg:h-10 bg-blue-500",
+          "inline-block rounded-sm w-1 h-4 md:h-6 lg:h-10 bg-blue-500",
           cursorClassName,
         )}
       ></motion.span>
@@ -123,9 +123,11 @@ export const TypewriterEffectSmooth = ({
       <div>
         {wordsArray.map((word, idx) => {
           return (
+            // biome-ignore lint/suspicious/noArrayIndexKey: static list for animation
             <div key={`word-${idx}`} className="inline-block">
               {word.text.map((char, index) => (
                 <span
+                  // biome-ignore lint/suspicious/noArrayIndexKey: static list for animation
                   key={`char-${index}`}
                   className={cn(`text-foreground `, word.className)}
                 >
@@ -179,7 +181,7 @@ export const TypewriterEffectSmooth = ({
           repeatType: "reverse",
         }}
         className={cn(
-          "block rounded-sm w-[4px]  h-4 sm:h-6 xl:h-12 bg-blue-500",
+          "block rounded-sm w-1  h-4 sm:h-6 xl:h-12 bg-blue-500",
           cursorClassName,
         )}
       ></motion.span>

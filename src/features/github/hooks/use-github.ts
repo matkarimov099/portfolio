@@ -19,7 +19,10 @@ export function useGitHubUser(username: string) {
     staleTime: STALE_TIME,
   });
 
-  return useMemo(() => ({ user: data, isLoading, error }), [data, isLoading, error]);
+  return useMemo(
+    () => ({ user: data, isLoading, error }),
+    [data, isLoading, error],
+  );
 }
 
 export function useGitHubRepos(username: string) {

@@ -1,19 +1,20 @@
 "use client";
 
-import { TypewriterEffect } from "@/shared/components/aceternity/typewriter-effect";
 import {
-  IconStar,
-  IconGitFork,
   IconBrandGithub,
   IconExternalLink,
+  IconGitFork,
+  IconStar,
 } from "@tabler/icons-react";
+import Image from "next/image";
 import { Link } from "@/i18n/navigation";
-import { GITHUB_USERNAME } from "@/shared/config/constants";
 import {
-  CardContainer,
   CardBody,
+  CardContainer,
   CardItem,
 } from "@/shared/components/aceternity/3d-card";
+import { TypewriterEffect } from "@/shared/components/aceternity/typewriter-effect";
+import { GITHUB_USERNAME } from "@/shared/config/constants";
 
 interface Repo {
   id: number;
@@ -70,11 +71,11 @@ export function FeaturedProjects({ repos }: { repos: Repo[] }) {
                   <div
                     className={`aspect-video w-full bg-gradient-to-br ${LANG_COLORS[repo.language || ""] || "from-primary to-cyan-500"} relative overflow-hidden`}
                   >
-                    <img
+                    <Image
                       src={`https://opengraph.githubassets.com/1/${GITHUB_USERNAME}/${repo.name}`}
                       alt={repo.name}
-                      className="h-full w-full object-cover opacity-90 transition-transform group-hover/card:scale-105"
-                      loading="lazy"
+                      fill
+                      className="object-cover opacity-90 transition-transform group-hover/card:scale-105"
                     />
                   </div>
                 </CardItem>

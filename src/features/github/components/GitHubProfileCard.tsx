@@ -1,14 +1,14 @@
 "use client";
 
-import Image from "next/image";
-import { useTranslations } from "next-intl";
 import {
-  IconUser,
   IconBuilding,
-  IconMapPin,
   IconCalendar,
   IconExternalLink,
+  IconMapPin,
+  IconUser,
 } from "@tabler/icons-react";
+import Image from "next/image";
+import { useTranslations } from "next-intl";
 import { GlareCard } from "@/shared/components/aceternity/glare-card";
 import type { GitHubUser } from "../types";
 

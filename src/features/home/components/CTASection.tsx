@@ -1,10 +1,10 @@
 "use client";
 
+import { IconMail, IconTerminal2 } from "@tabler/icons-react";
 import { motion } from "motion/react";
-import { TypewriterEffect } from "@/shared/components/aceternity/typewriter-effect";
-import { IconTerminal2, IconMail } from "@tabler/icons-react";
-import { Meteors } from "@/shared/components/aceternity/meteors";
 import { Link } from "@/i18n/navigation";
+import { Meteors } from "@/shared/components/aceternity/meteors";
+import { TypewriterEffect } from "@/shared/components/aceternity/typewriter-effect";
 
 export function CTASection() {
   return (

@@ -1,18 +1,18 @@
 "use client";
 
-import { useTranslations } from "next-intl";
 import { motion } from "motion/react";
+import { useTranslations } from "next-intl";
 import { GITHUB_USERNAME } from "@/shared/config/constants";
 import {
-  useGitHubUser,
-  useGitHubRepos,
   useGitHubFollowers,
+  useGitHubRepos,
+  useGitHubUser,
 } from "../hooks/use-github";
-import { GitHubProfileCard } from "./GitHubProfileCard";
-import { GitHubStats } from "./GitHubStats";
 import { GitHubDetails } from "./GitHubDetails";
-import { GitHubRepoList } from "./GitHubRepoList";
 import { GitHubFollowers } from "./GitHubFollowers";
+import { GitHubProfileCard } from "./GitHubProfileCard";
+import { GitHubRepoList } from "./GitHubRepoList";
+import { GitHubStats } from "./GitHubStats";
 
 const fadeUp = {
   hidden: { opacity: 0, y: 40 },
@@ -26,8 +26,11 @@ const fadeUp = {
 export function GitHubSection() {
   const t = useTranslations("github");
   const { user, isLoading: userLoading } = useGitHubUser(GITHUB_USERNAME);
-  const { repos, repoNames, privateRepoCount, isLoading: reposLoading } =
-    useGitHubRepos(GITHUB_USERNAME);
+  const {
+    repos,
+    privateRepoCount,
+    isLoading: reposLoading,
+  } = useGitHubRepos(GITHUB_USERNAME);
   const { followers, isLoading: followersLoading } =
     useGitHubFollowers(GITHUB_USERNAME);
 

@@ -1,12 +1,12 @@
 "use client";
 
-import { motion } from "motion/react";
 import {
-  IconGitFork,
-  IconUsers,
   IconCode,
+  IconGitFork,
   IconStar,
+  IconUsers,
 } from "@tabler/icons-react";
+import { motion } from "motion/react";
 import type { GitHubUser } from "@/features/github/types";
 import { CometCard } from "@/shared/components/aceternity/comet-card";
 

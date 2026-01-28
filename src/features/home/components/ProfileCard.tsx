@@ -1,16 +1,16 @@
 "use client";
 
-import Image from "next/image";
 import {
   IconBrandGithub,
   IconBrandLinkedin,
   IconBrandTelegram,
-  IconMapPin,
   IconCode,
+  IconMapPin,
 } from "@tabler/icons-react";
-import { siteConfig } from "@/shared/config/site";
+import Image from "next/image";
 import type { GitHubUser } from "@/features/github/types";
 import { CometCard } from "@/shared/components/aceternity/comet-card";
+import { siteConfig } from "@/shared/config/site";
 
 export function ProfileCard({ user }: { user: GitHubUser | null }) {
   return (

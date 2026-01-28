@@ -1,14 +1,16 @@
 "use client";
 
-import { cn } from "@/shared/lib/utils";
-
-import React, {
+import type React from "react";
+import {
   createContext,
-  useState,
+  type ElementType,
+  useCallback,
   useContext,
-  useRef,
   useEffect,
+  useRef,
+  useState,
 } from "react";
+import { cn } from "@/shared/lib/utils";
 
 const MouseEnterContext = createContext<
   [boolean, React.Dispatch<React.SetStateAction<boolean>>] | undefined
@@ -35,12 +37,12 @@ export const CardContainer = ({
     containerRef.current.style.transform = `rotateY(${x}deg) rotateX(${y}deg)`;
   };
 
-  const handleMouseEnter = (e: React.MouseEvent<HTMLDivElement>) => {
+  const handleMouseEnter = (_e: React.MouseEvent<HTMLDivElement>) => {
     setIsMouseEntered(true);
     if (!containerRef.current) return;
   };
 
-  const handleMouseLeave = (e: React.MouseEvent<HTMLDivElement>) => {
+  const handleMouseLeave = (_e: React.MouseEvent<HTMLDivElement>) => {
     if (!containerRef.current) return;
     setIsMouseEntered(false);
     containerRef.current.style.transform = `rotateY(0deg) rotateX(0deg)`;
@@ -56,6 +58,7 @@ export const CardContainer = ({
           perspective: "1000px",
         }}
       >
+        {/* biome-ignore lint/a11y/noStaticElementInteractions: decorative 3D card effect */}
         <div
           ref={containerRef}
           onMouseEnter={handleMouseEnter}
@@ -107,8 +110,7 @@ export const CardItem = ({
   rotateZ = 0,
   ...rest
 }: React.ComponentPropsWithRef<"div"> & {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  as?: any;
+  as?: ElementType;
   translateX?: number | string;
   translateY?: number | string;
   translateZ?: number | string;
@@ -119,18 +121,26 @@ export const CardItem = ({
   const ref = useRef<HTMLDivElement>(null);
   const [isMouseEntered] = useMouseEnter();
 
-  useEffect(() => {
-    handleAnimations();
-  }, [isMouseEntered]);
-
-  const handleAnimations = () => {
+  const handleAnimations = useCallback(() => {
     if (!ref.current) return;
     if (isMouseEntered) {
       ref.current.style.transform = `translateX(${translateX}px) translateY(${translateY}px) translateZ(${translateZ}px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) rotateZ(${rotateZ}deg)`;
     } else {
       ref.current.style.transform = `translateX(0px) translateY(0px) translateZ(0px) rotateX(0deg) rotateY(0deg) rotateZ(0deg)`;
     }
-  };
+  }, [
+    isMouseEntered,
+    translateX,
+    translateY,
+    translateZ,
+    rotateX,
+    rotateY,
+    rotateZ,
+  ]);
+
+  useEffect(() => {
+    handleAnimations();
+  }, [handleAnimations]);
 
   return (
     <Tag

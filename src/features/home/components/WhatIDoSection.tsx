@@ -1,18 +1,18 @@
 "use client";
 
-import { TypewriterEffect } from "@/shared/components/aceternity/typewriter-effect";
 import {
-  IconBrandReact,
-  IconBrandNextjs,
-  IconBrandTypescript,
-  IconDeviceMobile,
   IconApi,
   IconBraces,
+  IconBrandNextjs,
+  IconBrandReact,
+  IconBrandTypescript,
+  IconDeviceMobile,
 } from "@tabler/icons-react";
 import {
-  DraggableCardContainer,
   DraggableCardBody,
+  DraggableCardContainer,
 } from "@/shared/components/aceternity/draggable-card";
+import { TypewriterEffect } from "@/shared/components/aceternity/typewriter-effect";
 
 const SERVICES = [
   {

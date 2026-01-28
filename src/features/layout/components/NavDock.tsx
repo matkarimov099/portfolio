@@ -1,13 +1,12 @@
 "use client";
 
-import { useRef, useState } from "react";
 import {
-  IconHome,
-  IconUser,
-  IconCode,
   IconBrandGithub,
-  IconMail,
+  IconCode,
+  IconHome,
   IconLayoutNavbarCollapse,
+  IconMail,
+  IconUser,
 } from "@tabler/icons-react";
 import {
   AnimatePresence,
@@ -17,14 +16,35 @@ import {
   useSpring,
   useTransform,
 } from "motion/react";
+import { useRef, useState } from "react";
 import { Link } from "@/i18n/navigation";
 
 const NAV_ITEMS = [
-  { title: "Home", icon: <IconHome className="h-full w-full" />, href: "/" },
-  { title: "About", icon: <IconUser className="h-full w-full" />, href: "/about" },
-  { title: "Projects", icon: <IconCode className="h-full w-full" />, href: "/projects" },
-  { title: "GitHub", icon: <IconBrandGithub className="h-full w-full" />, href: "/github" },
-  { title: "Contact", icon: <IconMail className="h-full w-full" />, href: "/contact" },
+  {
+    title: "Home",
+    icon: <IconHome className="h-full w-full" />,
+    href: "/" as const,
+  },
+  {
+    title: "About",
+    icon: <IconUser className="h-full w-full" />,
+    href: "/about" as const,
+  },
+  {
+    title: "Projects",
+    icon: <IconCode className="h-full w-full" />,
+    href: "/projects" as const,
+  },
+  {
+    title: "GitHub",
+    icon: <IconBrandGithub className="h-full w-full" />,
+    href: "/github" as const,
+  },
+  {
+    title: "Contact",
+    icon: <IconMail className="h-full w-full" />,
+    href: "/contact" as const,
+  },
 ];
 
 function NavIconContainer({
@@ -36,7 +56,7 @@ function NavIconContainer({
   mouseX: MotionValue;
   title: string;
   icon: React.ReactNode;
-  href: string;
+  href: "/" | "/about" | "/projects" | "/github" | "/contact";
 }) {
   const ref = useRef<HTMLDivElement>(null);
 
@@ -48,19 +68,43 @@ function NavIconContainer({
   const widthTransform = useTransform(distance, [-150, 0, 150], [40, 80, 40]);
   const heightTransform = useTransform(distance, [-150, 0, 150], [40, 80, 40]);
 
-  const widthTransformIcon = useTransform(distance, [-150, 0, 150], [20, 40, 20]);
-  const heightTransformIcon = useTransform(distance, [-150, 0, 150], [20, 40, 20]);
+  const widthTransformIcon = useTransform(
+    distance,
+    [-150, 0, 150],
+    [20, 40, 20],
+  );
+  const heightTransformIcon = useTransform(
+    distance,
+    [-150, 0, 150],
+    [20, 40, 20],
+  );
 
-  const width = useSpring(widthTransform, { mass: 0.1, stiffness: 150, damping: 12 });
-  const height = useSpring(heightTransform, { mass: 0.1, stiffness: 150, damping: 12 });
+  const width = useSpring(widthTransform, {
+    mass: 0.1,
+    stiffness: 150,
+    damping: 12,
+  });
+  const height = useSpring(heightTransform, {
+    mass: 0.1,
+    stiffness: 150,
+    damping: 12,
+  });
 
-  const widthIcon = useSpring(widthTransformIcon, { mass: 0.1, stiffness: 150, damping: 12 });
-  const heightIcon = useSpring(heightTransformIcon, { mass: 0.1, stiffness: 150, damping: 12 });
+  const widthIcon = useSpring(widthTransformIcon, {
+    mass: 0.1,
+    stiffness: 150,
+    damping: 12,
+  });
+  const heightIcon = useSpring(heightTransformIcon, {
+    mass: 0.1,
+    stiffness: 150,
+    damping: 12,
+  });
 
   const [hovered, setHovered] = useState(false);
 
   return (
-    <Link href={href as any}>
+    <Link href={href}>
       <motion.div
         ref={ref}
         style={{ width, height }}
@@ -121,11 +165,15 @@ export function NavDock() {
                   key={item.title}
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: 10, transition: { delay: idx * 0.05 } }}
+                  exit={{
+                    opacity: 0,
+                    y: 10,
+                    transition: { delay: idx * 0.05 },
+                  }}
                   transition={{ delay: (NAV_ITEMS.length - 1 - idx) * 0.05 }}
                 >
                   <Link
-                    href={item.href as any}
+                    href={item.href}
                     className="flex h-10 w-10 items-center justify-center rounded-full border border-white/10 bg-white/5 backdrop-blur-xl"
                     onClick={() => setOpen(false)}
                   >
@@ -137,6 +185,7 @@ export function NavDock() {
           )}
         </AnimatePresence>
         <button
+          type="button"
           onClick={() => setOpen(!open)}
           className="flex h-10 w-10 items-center justify-center rounded-full border border-white/10 bg-white/5 backdrop-blur-xl"
         >

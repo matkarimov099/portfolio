@@ -1,6 +1,6 @@
 // @ts-nocheck
 "use client";
-import React, { useRef, useEffect, useState, useCallback } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import { cn } from "@/shared/lib/utils";
 
 type WebcamPixelGridProps = {
@@ -149,19 +149,25 @@ export const WebcamPixelGrid: React.FC<WebcamPixelGridProps> = ({
 
     return () => {
       if (streamRef.current) {
-        streamRef.current.getTracks().forEach((track) => track.stop());
+        streamRef.current.getTracks().forEach((track) => {
+          track.stop();
+        });
       }
     };
   }, [requestCameraAccess]);
 
+  // Ref to hold the render function for self-referencing
+  const renderRef = useRef<() => void>(() => {});
+
   // Main render loop
-  const render = useCallback(() => {
+  // Update ref when render changes
+  renderRef.current = useCallback(() => {
     const video = videoRef.current;
     const processingCanvas = processingCanvasRef.current;
     const displayCanvas = displayCanvasRef.current;
 
     if (!video || !processingCanvas || !displayCanvas || video.readyState < 2) {
-      animationRef.current = requestAnimationFrame(render);
+      animationRef.current = requestAnimationFrame(() => renderRef.current());
       return;
     }
 
@@ -171,7 +177,7 @@ export const WebcamPixelGrid: React.FC<WebcamPixelGridProps> = ({
     const dispCtx = displayCanvas.getContext("2d");
 
     if (!procCtx || !dispCtx) {
-      animationRef.current = requestAnimationFrame(render);
+      animationRef.current = requestAnimationFrame(() => renderRef.current());
       return;
     }
 
@@ -371,34 +377,38 @@ export const WebcamPixelGrid: React.FC<WebcamPixelGridProps> = ({
       }
     }
 
-    animationRef.current = requestAnimationFrame(render);
+    animationRef.current = requestAnimationFrame(() => renderRef.current());
   }, [
     gridCols,
     gridRows,
     mirror,
     motionSensitivity,
     colorMode,
-    monoRGB,
     maxElevation,
     elevationSmoothing,
     backgroundColor,
     gapRatio,
     invertColors,
     darken,
-    borderRGB,
     borderOpacity,
+    monoRGB.r,
+    monoRGB.g,
+    monoRGB.b,
+    borderRGB.r,
+    borderRGB.g,
+    borderRGB.b,
   ]);
 
   // Start render loop when ready
   useEffect(() => {
     if (!isReady) return;
 
-    animationRef.current = requestAnimationFrame(render);
+    animationRef.current = requestAnimationFrame(() => renderRef.current());
 
     return () => {
       cancelAnimationFrame(animationRef.current);
     };
-  }, [isReady, render]);
+  }, [isReady]);
 
   return (
     <div className={cn("relative w-full h-full", className)}>
@@ -432,6 +442,7 @@ export const WebcamPixelGrid: React.FC<WebcamPixelGridProps> = ({
           <div className="relative flex items-start gap-3 rounded-lg border border-white/10 bg-black/80 p-4 backdrop-blur-xl shadow-2xl max-w-sm">
             {/* Close button */}
             <button
+              type="button"
               onClick={() => setShowErrorPopup(false)}
               className="absolute top-2 right-2 p-1 rounded-md text-white/40 hover:text-white/70 hover:bg-white/10 transition-colors"
             >
@@ -440,6 +451,7 @@ export const WebcamPixelGrid: React.FC<WebcamPixelGridProps> = ({
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
+                aria-hidden="true"
               >
                 <path
                   strokeLinecap="round"
@@ -451,12 +463,13 @@ export const WebcamPixelGrid: React.FC<WebcamPixelGridProps> = ({
             </button>
 
             {/* Camera icon */}
-            <div className="flex-shrink-0 w-10 h-10 rounded-full bg-white/10 flex items-center justify-center">
+            <div className="shrink-0 w-10 h-10 rounded-full bg-white/10 flex items-center justify-center">
               <svg
                 className="w-5 h-5 text-white/60"
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
+                aria-hidden="true"
               >
                 <path
                   strokeLinecap="round"
@@ -476,6 +489,7 @@ export const WebcamPixelGrid: React.FC<WebcamPixelGridProps> = ({
                 Enable camera for the interactive background effect
               </p>
               <button
+                type="button"
                 onClick={requestCameraAccess}
                 className="mt-3 inline-flex items-center gap-1.5 rounded-md bg-white/10 px-3 py-1.5 text-xs font-medium text-white hover:bg-white/20 transition-colors"
               >
@@ -484,6 +498,7 @@ export const WebcamPixelGrid: React.FC<WebcamPixelGridProps> = ({
                   fill="none"
                   viewBox="0 0 24 24"
                   stroke="currentColor"
+                  aria-hidden="true"
                 >
                   <path
                     strokeLinecap="round"
@@ -502,6 +517,7 @@ export const WebcamPixelGrid: React.FC<WebcamPixelGridProps> = ({
       {/* Minimized error indicator */}
       {error && !showErrorPopup && (
         <button
+          type="button"
           onClick={() => setShowErrorPopup(true)}
           className="fixed top-4 right-4 z-50 w-10 h-10 rounded-full bg-black/60 border border-white/10 backdrop-blur-xl flex items-center justify-center text-white/50 hover:text-white/80 hover:bg-black/80 transition-all hover:scale-105 shadow-lg"
           title="Camera access required"
@@ -511,6 +527,7 @@ export const WebcamPixelGrid: React.FC<WebcamPixelGridProps> = ({
             fill="none"
             viewBox="0 0 24 24"
             stroke="currentColor"
+            aria-hidden="true"
           >
             <path
               strokeLinecap="round"

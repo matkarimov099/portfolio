@@ -1,2 +1,2 @@
 export { AboutSection } from "./components/AboutSection";
-export type { Skill, Experience } from "./types";
+export type { Experience, Skill } from "./types";
