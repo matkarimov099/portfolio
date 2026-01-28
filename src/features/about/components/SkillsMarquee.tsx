@@ -1,6 +1,7 @@
 "use client";
 
 import { InfiniteMovingCards } from "@/shared/components/aceternity/infinite-moving-cards";
+import { TypewriterEffect } from "@/shared/components/aceternity/typewriter-effect";
 import { SKILL_CATEGORIES } from "@/features/about/data/skills";
 
 const skillDescriptions: Record<string, string> = {
@@ -43,9 +44,11 @@ export function SkillsMarquee() {
 
   return (
     <div className="mt-16 space-y-4">
-      <h3 className="mb-6 text-center text-2xl font-bold text-foreground">
-        Skills & Technologies
-      </h3>
+      <TypewriterEffect
+        words={[{ text: "Skills" }, { text: "&" }, { text: "Technologies" }]}
+        className="mb-6 text-xl sm:text-2xl font-bold"
+        cursorClassName="bg-primary h-4 md:h-6"
+      />
       <InfiniteMovingCards items={rowOne} direction="left" speed="slow" />
       <InfiniteMovingCards items={rowTwo} direction="right" speed="slow" />
     </div>
