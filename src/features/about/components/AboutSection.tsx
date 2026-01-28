@@ -24,7 +24,7 @@ export function AboutSection() {
               Who I Am
             </h3>
             <p className="mt-2 text-blue-800 dark:text-neutral-200">
-              I am a Senior Frontend Developer with over 4 years of professional
+              I am a Senior Frontend Developer with over 6 years of professional
               experience building enterprise web applications. I specialize in
               React, Next.js, and TypeScript, focusing on clean architecture,
               performance optimization, and delivering polished user

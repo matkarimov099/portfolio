@@ -1,13 +1,12 @@
 "use client";
 
-import { useTranslations } from "next-intl";
-import { motion } from "motion/react";
 import {
-  IconArrowDown,
-  IconCode,
   IconBraces,
+  IconCode,
   IconTerminal2,
 } from "@tabler/icons-react";
+import { motion } from "motion/react";
+import { useTranslations } from "next-intl";
 
 import { Link } from "@/i18n/navigation";
 import { WebcamPixelGrid } from "@/shared/components/aceternity/webcam-pixel-grid";
@@ -135,7 +134,7 @@ export function HeroSection() {
       {/* Animated gradient mesh background */}
       <div className="absolute inset-0">
         <motion.div
-          className="absolute left-1/4 top-1/4 h-[500px] w-[500px] rounded-full bg-primary/10 blur-[120px]"
+          className="absolute left-1/4 top-1/4 h-125 w-125 rounded-full bg-primary/10 blur-[120px]"
           animate={{
             x: [0, 100, -50, 0],
             y: [0, -80, 60, 0],
@@ -255,20 +254,36 @@ export function HeroSection() {
         </motion.div>
       </motion.div>
 
-      {/* Scroll indicator */}
+      {/* Glassmorphism Terminal Card */}
       <motion.div
-        className="absolute bottom-8 left-1/2 -translate-x-1/2"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 2 }}
+        className="absolute bottom-24 left-8 z-20 hidden md:block"
+        initial={{ opacity: 0, x: -20 }}
+        animate={{ opacity: 1, x: 0 }}
+        transition={{ delay: 1.8, duration: 0.6 }}
       >
-        <motion.div
-          animate={{ y: [0, 8, 0] }}
-          transition={{ duration: 1.5, repeat: Infinity }}
-        >
-          <IconArrowDown className="size-5 text-muted-foreground" />
-        </motion.div>
+        <div className="w-72 rounded-2xl border border-white/10 bg-white/5 p-4 font-mono text-sm shadow-2xl backdrop-blur-xl">
+          <div className="flex items-center gap-2 border-b border-white/10 pb-2 mb-3">
+            <span className="h-2.5 w-2.5 rounded-full bg-red-500/80" />
+            <span className="h-2.5 w-2.5 rounded-full bg-yellow-500/80" />
+            <span className="h-2.5 w-2.5 rounded-full bg-green-500/80" />
+            <span className="ml-2 text-xs text-muted-foreground">terminal</span>
+          </div>
+          <p className="text-muted-foreground">
+            <span className="text-primary">$</span> matkarim --version
+          </p>
+          <p className="text-foreground">v6.1.0 — Frontend Developer</p>
+          <p className="mt-1.5 text-muted-foreground">
+            <span className="text-primary">$</span> matkarim --status
+          </p>
+          <p className="text-emerald-500">● Available for hire</p>
+          <motion.span
+            className="inline-block h-3.5 w-1.5 bg-primary mt-1"
+            animate={{ opacity: [1, 0] }}
+            transition={{ duration: 0.8, repeat: Infinity, repeatType: "reverse" }}
+          />
+        </div>
       </motion.div>
+
     </section>
   );
 }

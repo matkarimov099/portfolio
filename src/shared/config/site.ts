@@ -1,6 +1,6 @@
 export const siteConfig = {
   name: "Matkarim Matkarimov",
-  description: "Frontend Developer — 4.5+ years of experience",
+  description: "Frontend Developer — 6+ years of experience",
   url: "https://matkarim.dev",
   ogImage: "/images/og-image.png",
   links: {

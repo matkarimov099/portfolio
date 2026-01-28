@@ -3,13 +3,13 @@
     "greeting": "Hi, I'm",
     "name": "Matkarim",
     "role": "Frontend Developer",
-    "description": "4.5+ years of experience building production-grade web applications with React, Next.js, and TypeScript",
+    "description": "6+ years of experience building production-grade web applications with React, Next.js, and TypeScript",
     "viewProjects": "View Projects",
     "contactMe": "Contact Me"
   },
   "about": {
     "title": "About Me",
-    "description": "Senior Frontend Developer with 4.5+ years of experience. Currently working at UNICON-SOFT (Tashkent). Previously led a development team at IT-FORLEAD for 2.5+ years. Graduated from TUIT (al-Khwarizmi branch, Urgench) in Computer Engineering.",
+    "description": "Senior Frontend Developer with 6+ years of experience. Currently working at UNICON-SOFT (Tashkent). Previously led a development team at IT-FORLEAD for 2.5+ years. Graduated from TUIT (al-Khwarizmi branch, Urgench) in Computer Engineering.",
     "skillsTitle": "Skills & Technologies",
     "experienceTitle": "Experience"
   },

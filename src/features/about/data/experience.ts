@@ -19,7 +19,7 @@ export const EXPERIENCE: Experience[] = [
   {
     title: "Frontend Team Lead",
     company: "IT-FORLEAD, Tashkent",
-    period: "2021 - 2024",
+    period: "2020 - 2024",
     description:
       "Led a frontend team for over 2.5 years, delivering multiple web applications from scratch. Conducted code reviews, established development workflows, and collaborated closely with backend and design teams to ship reliable products.",
     technologies: ["React", "Next.js", "TypeScript", "Redux", "REST API"],
