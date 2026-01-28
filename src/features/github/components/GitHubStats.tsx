@@ -12,9 +12,10 @@ import type { GitHubUser } from "../types";
 
 interface Props {
   user: GitHubUser;
+  privateRepoCount: number;
 }
 
-export function GitHubStats({ user }: Props) {
+export function GitHubStats({ user, privateRepoCount }: Props) {
   const t = useTranslations("github");
 
   const stats = [
@@ -25,11 +26,11 @@ export function GitHubStats({ user }: Props) {
       icon: IconCode,
       color: "border-l-blue-500 text-blue-500",
     },
-    ...(user.owned_private_repos != null
+    ...(privateRepoCount > 0
       ? [
           {
             label: t("privateRepos"),
-            value: user.owned_private_repos,
+            value: privateRepoCount,
             description: t("privateProjects"),
             icon: IconLock,
             color: "border-l-purple-500 text-purple-500",
@@ -64,7 +65,7 @@ export function GitHubStats({ user }: Props) {
       {stats.map((stat) => (
         <div
           key={stat.label}
-          className={`rounded-xl border border-l-4 border-border bg-card p-5 ${stat.color.split(" ")[0]}`}
+          className={`rounded-xl border border-l-4 border-white/10 bg-white/5 p-5 backdrop-blur-xl ${stat.color.split(" ")[0]}`}
         >
           <div className="flex items-center gap-2">
             <stat.icon size={20} className={stat.color.split(" ")[1]} />

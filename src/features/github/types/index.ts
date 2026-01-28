@@ -22,3 +22,14 @@ export interface GitHubFollower {
   avatar_url: string;
   html_url: string;
 }
+
+export interface GitHubRepo {
+  name: string;
+  description: string | null;
+  language: string | null;
+  stargazers_count: number;
+  forks_count: number;
+  private: boolean;
+  html_url: string;
+  updated_at: string;
+}

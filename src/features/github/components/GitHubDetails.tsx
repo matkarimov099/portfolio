@@ -23,7 +23,7 @@ export function GitHubDetails({ user }: Props) {
   ];
 
   return (
-    <div className="mt-6 rounded-xl border border-border bg-card p-6">
+    <div className="mt-6 rounded-xl border border-white/10 bg-white/5 p-6 backdrop-blur-xl">
       <h3 className="mb-4 font-mono text-sm font-semibold text-primary">
         {"// "}
         {t("moreDetails")}

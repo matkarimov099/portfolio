@@ -60,7 +60,7 @@
   --animate-aurora: aurora 60s linear infinite;
 
   /* Meteors */
-  --animate-meteor-effect: meteor 5s linear infinite;
+  --animate-meteor-effect: meteor linear infinite;
 
   /* Infinite Scroll */
   --animate-scroll: scroll var(--animation-duration, 40s)

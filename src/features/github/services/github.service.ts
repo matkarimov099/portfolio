@@ -1,32 +1,29 @@
 import axios from "axios";
-import type { GitHubUser, GitHubFollower } from "../types";
+import type { GitHubUser, GitHubFollower, GitHubRepo } from "../types";
 
-const githubApi = axios.create({
-  baseURL: "https://api.github.com",
-  headers: {
-    Accept: "application/vnd.github.v3+json",
-    ...(process.env.NEXT_PUBLIC_GITHUB_TOKEN && {
-      Authorization: `Bearer ${process.env.NEXT_PUBLIC_GITHUB_TOKEN}`,
-    }),
-  },
-});
+const githubApi = axios.create();
 
 export const githubService = {
   getUser: async (username: string): Promise<GitHubUser> => {
-    const { data } = await githubApi.get<GitHubUser>(`/users/${username}`);
+    const { data } = await githubApi.get<GitHubUser>(
+      `/api/github/user?username=${username}`,
+    );
     return data;
   },
 
-  getRepos: async (username: string): Promise<string[]> => {
-    const { data } = await githubApi.get<{ name: string }[]>(
-      `/users/${username}/repos?per_page=100&sort=updated&type=owner`,
+  getRepos: async (username: string): Promise<{ repos: GitHubRepo[]; privateCount: number }> => {
+    const { data } = await githubApi.get<GitHubRepo[]>(
+      `/api/github/repos?username=${username}`,
     );
-    return data.map((r) => r.name);
+    return {
+      repos: data,
+      privateCount: data.filter((r) => r.private).length,
+    };
   },
 
   getFollowers: async (username: string): Promise<GitHubFollower[]> => {
     const { data } = await githubApi.get<GitHubFollower[]>(
-      `/users/${username}/followers?per_page=100`,
+      `/api/github/followers?username=${username}`,
     );
     return data;
   },

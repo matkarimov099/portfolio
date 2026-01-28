@@ -16,7 +16,8 @@ import { GitHubFollowers } from "./GitHubFollowers";
 export function GitHubSection() {
   const t = useTranslations("github");
   const { user, isLoading: userLoading } = useGitHubUser(GITHUB_USERNAME);
-  const { repoNames, isLoading: reposLoading } = useGitHubRepos(GITHUB_USERNAME);
+  const { repos, repoNames, privateRepoCount, isLoading: reposLoading } =
+    useGitHubRepos(GITHUB_USERNAME);
   const { followers, isLoading: followersLoading } =
     useGitHubFollowers(GITHUB_USERNAME);
 
@@ -49,10 +50,10 @@ export function GitHubSection() {
           <p className="mt-2 text-muted-foreground">{t("subtitle")}</p>
         </div>
         <GitHubProfileCard user={user} />
-        <GitHubStats user={user} />
+        <GitHubStats user={user} privateRepoCount={privateRepoCount} />
         <GitHubFollowers followers={followers ?? []} />
         <GitHubDetails user={user} />
-        <GitHubRepoList repoNames={repoNames ?? []} />
+        <GitHubRepoList repos={repos ?? []} />
       </div>
     </section>
   );

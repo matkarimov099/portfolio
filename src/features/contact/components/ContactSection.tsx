@@ -1,19 +1,20 @@
 "use client";
 
-import { useTranslations } from "next-intl";
-import { motion } from "motion/react";
-import { IconGripVertical } from "@tabler/icons-react";
 import {
-  IconMail,
-  IconBrandTelegram,
-  IconBrandLinkedin,
   IconBrandGithub,
   IconBrandInstagram,
+  IconBrandLinkedin,
+  IconBrandTelegram,
+  IconGripVertical,
+  IconMail,
 } from "@tabler/icons-react";
+import { motion } from "motion/react";
+import { useTranslations } from "next-intl";
 import {
-  DraggableCardContainer,
   DraggableCardBody,
+  DraggableCardContainer,
 } from "@/shared/components/aceternity/draggable-card";
+import { Meteors } from "@/shared/components/aceternity/meteors";
 import { siteConfig } from "@/shared/config/site";
 
 const CONTACT_ITEMS = [
@@ -23,7 +24,8 @@ const CONTACT_ITEMS = [
     value: "matkarimov099",
     href: siteConfig.links.github,
     gradient: "from-[#333] to-[#555]",
-    desktop: "md:top-[calc(50%-230px)] md:left-[calc(50%-350px)] md:rotate-[-8deg]",
+    desktop:
+      "md:top-[calc(50%-230px)] md:left-[calc(50%-350px)] md:rotate-[-8deg]",
     mobile: "top-[calc(50%-290px)] left-[calc(50%-120px)] rotate-[-6deg]",
     z: "z-[1]",
     wiggleDelay: 0.8,
@@ -34,7 +36,8 @@ const CONTACT_ITEMS = [
     value: "Matkarim Matkarimov",
     href: siteConfig.links.linkedin,
     gradient: "from-[#0A66C2] to-[#0d8de8]",
-    desktop: "md:top-[calc(50%-250px)] md:left-[calc(50%-130px)] md:rotate-[4deg]",
+    desktop:
+      "md:top-[calc(50%-250px)] md:left-[calc(50%-130px)] md:rotate-[4deg]",
     mobile: "top-[calc(50%-180px)] left-[calc(50%-100px)] rotate-[3deg]",
     z: "z-[2]",
     wiggleDelay: 1.0,
@@ -45,7 +48,8 @@ const CONTACT_ITEMS = [
     value: "matkarimov099",
     href: siteConfig.links.instagram,
     gradient: "from-[#F58529] via-[#DD2A7B] to-[#8134AF]",
-    desktop: "md:top-[calc(50%-240px)] md:left-[calc(50%+100px)] md:rotate-[6deg]",
+    desktop:
+      "md:top-[calc(50%-240px)] md:left-[calc(50%+100px)] md:rotate-[6deg]",
     mobile: "top-[calc(50%-70px)] left-[calc(50%-130px)] rotate-[5deg]",
     z: "z-[3]",
     wiggleDelay: 1.2,
@@ -56,7 +60,8 @@ const CONTACT_ITEMS = [
     value: "matkarimov1099@gmail.com",
     href: siteConfig.links.email,
     gradient: "from-emerald-500 to-emerald-700",
-    desktop: "md:top-[calc(50%-10px)] md:left-[calc(50%-280px)] md:rotate-[-2deg]",
+    desktop:
+      "md:top-[calc(50%-10px)] md:left-[calc(50%-280px)] md:rotate-[-2deg]",
     mobile: "top-[calc(50%+40px)] left-[calc(50%-90px)] rotate-[-2deg]",
     z: "z-[4]",
     wiggleDelay: 1.4,
@@ -90,7 +95,8 @@ export function ContactSection() {
   const t = useTranslations("contact");
 
   return (
-    <section className="h-full">
+    <section className="relative h-full">
+      <Meteors number={30} />
       <DraggableCardContainer className="relative flex h-full w-full items-center justify-center overflow-clip">
         <div className="pointer-events-none absolute top-1/2 mx-auto max-w-md -translate-y-1/2 text-center">
           <p className="font-mono text-sm text-primary">{"// contact"}</p>
@@ -110,9 +116,7 @@ export function ContactSection() {
             custom={c.wiggleDelay}
             className={`absolute ${c.mobile} ${c.desktop} ${c.z}`}
           >
-            <DraggableCardBody
-              className="!min-h-0 !w-auto !p-8"
-            >
+            <DraggableCardBody className="!min-h-0 !w-auto !p-8">
               <div className="relative z-10 flex h-48 w-48 flex-col items-center justify-center gap-4 md:h-56 md:w-56">
                 <div
                   className={`rounded-xl bg-gradient-to-br ${c.gradient} p-4 shadow-lg`}

@@ -29,7 +29,15 @@ export function useGitHubRepos(username: string) {
     staleTime: STALE_TIME,
   });
 
-  return useMemo(() => ({ repoNames: data, isLoading }), [data, isLoading]);
+  return useMemo(
+    () => ({
+      repos: data?.repos,
+      repoNames: data?.repos?.map((r) => r.name),
+      privateRepoCount: data?.privateCount ?? 0,
+      isLoading,
+    }),
+    [data, isLoading],
+  );
 }
 
 export function useGitHubFollowers(username: string) {
