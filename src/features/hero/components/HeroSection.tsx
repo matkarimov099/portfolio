@@ -252,8 +252,8 @@ export function HeroSection() {
 
       {/* Glassmorphism Terminal Card */}
       <motion.div
-        className="absolute bottom-24 left-8 z-20 hidden md:block"
-        initial={{ opacity: 0, x: -20 }}
+        className="absolute bottom-24 right-8 z-20 hidden md:block"
+        initial={{ opacity: 0, x: 20 }}
         animate={{ opacity: 1, x: 0 }}
         transition={{ delay: 1.8, duration: 0.6 }}
       >
