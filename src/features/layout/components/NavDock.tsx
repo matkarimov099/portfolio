@@ -5,7 +5,7 @@ import {
   IconCode,
   IconHome,
   IconLayoutNavbarCollapse,
-  IconMail,
+  IconPhone,
   IconUser,
 } from "@tabler/icons-react";
 import {
@@ -42,7 +42,7 @@ const NAV_ITEMS = [
   },
   {
     title: "Contact",
-    icon: <IconMail className="h-full w-full" />,
+    icon: <IconPhone className="h-full w-full" />,
     href: "/contact" as const,
   },
 ];

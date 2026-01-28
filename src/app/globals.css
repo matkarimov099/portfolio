@@ -63,12 +63,10 @@
   --animate-meteor-effect: meteor linear infinite;
 
   /* Infinite Scroll */
-  --animate-scroll: scroll var(--animation-duration, 40s)
-    var(--animation-direction, forwards) linear infinite;
+  --animate-scroll: scroll 40s linear infinite;
 
   /* Background Ripple */
-  --animate-cell-ripple: cell-ripple var(--duration, 200ms) ease-out none 1
-    var(--delay, 0ms);
+  --animate-cell-ripple: cell-ripple 200ms ease-out none 1;
 
   @keyframes spotlight {
     0% {

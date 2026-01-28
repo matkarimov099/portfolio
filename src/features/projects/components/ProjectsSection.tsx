@@ -6,7 +6,7 @@ import { ProjectsTitle } from "./ProjectsTitle";
 export async function ProjectsSection() {
   const t = await getTranslations("projects");
 
-  let repos: Awaited<ReturnType<typeof githubService.getRepos>> = [];
+  let repos: Awaited<ReturnType<typeof githubService.getRepos>>;
   try {
     repos = await githubService.getRepos();
   } catch {
