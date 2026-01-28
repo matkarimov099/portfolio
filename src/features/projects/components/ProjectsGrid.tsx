@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useMemo } from "react";
+import { useMemo, useState } from "react";
 import type { GitHubRepo } from "@/features/projects/types";
 import { ProjectCard } from "./ProjectCard";
 
@@ -29,12 +29,13 @@ export function ProjectsGrid({ repos }: ProjectsGridProps) {
       <div className="mt-8 flex flex-wrap gap-2">
         {languages.map((lang) => (
           <button
+            type="button"
             key={lang}
             onClick={() => setActiveFilter(lang)}
             className={`rounded-full px-4 py-1.5 text-sm transition-colors ${
               activeFilter === lang
                 ? "bg-primary text-primary-foreground"
-                : "bg-muted text-muted-foreground hover:bg-muted/80"
+                : "border border-white/10 bg-white/5 text-muted-foreground backdrop-blur-sm hover:bg-white/10"
             }`}
           >
             {lang}

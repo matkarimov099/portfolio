@@ -1,122 +1,100 @@
 "use client";
 
 import {
-  CardContainer,
-  CardBody,
-  CardItem,
-} from "@/shared/components/aceternity/3d-card";
-import {
-  IconStar,
-  IconGitFork,
-  IconExternalLink,
   IconBrandGithub,
+  IconExternalLink,
+  IconGitFork,
+  IconStar,
 } from "@tabler/icons-react";
-import { GITHUB_USERNAME } from "@/shared/config/constants";
 import type { GitHubRepo } from "@/features/projects/types";
-
-const LANG_COLORS: Record<string, string> = {
-  TypeScript: "from-blue-500/20 to-cyan-500/20",
-  JavaScript: "from-yellow-500/20 to-orange-500/20",
-  Python: "from-green-500/20 to-emerald-500/20",
-  HTML: "from-red-500/20 to-orange-500/20",
-  CSS: "from-purple-500/20 to-pink-500/20",
-  Vue: "from-emerald-500/20 to-green-500/20",
-  Dart: "from-cyan-500/20 to-blue-500/20",
-};
+import Image from "next/image";
+import { EvervaultCard, Icon } from "@/shared/components/aceternity/evervault-card";
+import { GITHUB_USERNAME } from "@/shared/config/constants";
 
 interface ProjectCardProps {
   repo: GitHubRepo;
 }
 
 export function ProjectCard({ repo }: ProjectCardProps) {
-  const gradientBg =
-    LANG_COLORS[repo.language || ""] || "from-primary/20 to-cyan-500/20";
-
   return (
-    <CardContainer containerClassName="py-4">
-      <CardBody className="relative group/card dark:hover:shadow-2xl dark:hover:shadow-primary/[0.1] bg-card border-border w-full h-auto rounded-xl border overflow-hidden">
-        {/* OG Image */}
-        <CardItem translateZ={30} className="w-full">
-          <div
-            className={`aspect-[2/1] w-full bg-gradient-to-br ${gradientBg} overflow-hidden`}
-          >
-            <img
-              src={`https://opengraph.githubassets.com/1/${GITHUB_USERNAME}/${repo.name}`}
-              alt={repo.name}
-              className="h-full w-full object-cover opacity-80 transition-transform group-hover/card:scale-105"
-              loading="lazy"
-            />
-          </div>
-        </CardItem>
+    <div className="relative flex flex-col items-start border border-white/10 bg-white/5 p-4 backdrop-blur-xl">
+      <Icon className="absolute -top-3 -left-3 h-6 w-6 text-white" />
+      <Icon className="absolute -bottom-3 -left-3 h-6 w-6 text-white" />
+      <Icon className="absolute -top-3 -right-3 h-6 w-6 text-white" />
+      <Icon className="absolute -bottom-3 -right-3 h-6 w-6 text-white" />
 
-        <div className="p-5">
-          <CardItem
-            translateZ={50}
-            className="text-lg font-bold text-foreground"
-          >
-            {repo.name}
-          </CardItem>
+      <div className="relative aspect-[2/1] w-full">
+        {/* OG Image as background */}
+        <Image
+          src={`https://opengraph.githubassets.com/1/${GITHUB_USERNAME}/${repo.name}`}
+          alt={repo.name}
+          fill
+          className="object-cover"
+        />
+        {/* Evervault overlay on hover */}
+        <div className="absolute inset-0 z-10">
+          <EvervaultCard className="!aspect-auto h-full" />
+        </div>
+      </div>
 
-          <CardItem
-            translateZ={40}
-            className="mt-2 text-sm text-muted-foreground line-clamp-2"
-          >
-            {repo.description || "No description provided."}
-          </CardItem>
+      <div className="relative z-20 mt-3 w-full">
+        <h3 className="text-lg font-bold text-foreground">{repo.name}</h3>
+        <p className="mt-1.5 text-sm font-light text-muted-foreground line-clamp-2">
+          {repo.description || "No description provided."}
+        </p>
 
-          <CardItem translateZ={30} className="mt-3 flex items-center gap-3">
-            {repo.language && (
-              <span className="rounded-full bg-primary/10 px-2.5 py-0.5 text-xs text-primary">
-                {repo.language}
-              </span>
-            )}
-            <span className="flex items-center gap-1 text-xs text-muted-foreground">
-              <IconStar size={14} />
-              {repo.stars}
+        <div className="mt-3 flex items-center gap-2 flex-wrap">
+          {repo.language && (
+            <span className="rounded-full border border-white/10 bg-white/5 px-2.5 py-0.5 text-xs text-primary backdrop-blur-sm">
+              {repo.language}
             </span>
-            <span className="flex items-center gap-1 text-xs text-muted-foreground">
-              <IconGitFork size={14} />
-              {repo.forks}
-            </span>
-          </CardItem>
-
-          {repo.topics.length > 0 && (
-            <CardItem translateZ={20} className="mt-3 flex flex-wrap gap-1">
-              {repo.topics.slice(0, 4).map((topic) => (
-                <span
-                  key={topic}
-                  className="rounded-full bg-muted px-2 py-0.5 text-xs text-muted-foreground"
-                >
-                  {topic}
-                </span>
-              ))}
-            </CardItem>
           )}
+          <span className="flex items-center gap-1 rounded-full border border-white/10 bg-white/5 px-2 py-0.5 text-xs text-muted-foreground backdrop-blur-sm">
+            <IconStar size={14} />
+            {repo.stars}
+          </span>
+          <span className="flex items-center gap-1 rounded-full border border-white/10 bg-white/5 px-2 py-0.5 text-xs text-muted-foreground backdrop-blur-sm">
+            <IconGitFork size={14} />
+            {repo.forks}
+          </span>
+        </div>
 
-          <CardItem translateZ={60} className="mt-4 flex items-center gap-3">
+        {repo.topics.length > 0 && (
+          <div className="mt-3 flex flex-wrap gap-1">
+            {repo.topics.slice(0, 4).map((topic) => (
+              <span
+                key={topic}
+                className="rounded-full border border-white/10 bg-white/5 px-2 py-0.5 text-xs text-muted-foreground backdrop-blur-sm"
+              >
+                {topic}
+              </span>
+            ))}
+          </div>
+        )}
+
+        <div className="mt-4 flex items-center gap-3">
+          <a
+            href={repo.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center gap-1.5 rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs text-foreground backdrop-blur-sm transition-colors hover:bg-white/10"
+          >
+            <IconBrandGithub size={14} />
+            Source
+          </a>
+          {repo.homepage && (
             <a
-              href={repo.url}
+              href={repo.homepage}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-1.5 rounded-lg bg-muted px-3 py-1.5 text-xs text-foreground transition-colors hover:bg-muted/80"
+              className="flex items-center gap-1.5 rounded-full border border-white/10 bg-primary/20 px-3 py-1 text-xs text-primary backdrop-blur-sm transition-colors hover:bg-primary/30"
             >
-              <IconBrandGithub size={14} />
-              Source Code
+              <IconExternalLink size={14} />
+              Live Demo
             </a>
-            {repo.homepage && (
-              <a
-                href={repo.homepage}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-1.5 rounded-lg bg-primary px-3 py-1.5 text-xs text-primary-foreground"
-              >
-                <IconExternalLink size={14} />
-                Live Demo
-              </a>
-            )}
-          </CardItem>
+          )}
         </div>
-      </CardBody>
-    </CardContainer>
+      </div>
+    </div>
   );
 }

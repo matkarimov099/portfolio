@@ -7,6 +7,7 @@ const nextConfig: NextConfig = {
     remotePatterns: [
       { hostname: "api.microlink.io" },
       { hostname: "avatars.githubusercontent.com" },
+      { hostname: "opengraph.githubassets.com" },
     ],
   },
 };
