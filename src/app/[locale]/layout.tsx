@@ -4,6 +4,7 @@ import { Providers } from "@/core/providers";
 import { routing } from "@/i18n/routing";
 import { SocialDock } from "@/features/layout/components/SocialDock";
 import { NavDock } from "@/features/layout/components/NavDock";
+import { LanguageSwitcher } from "@/features/layout/components/LanguageSwitcher";
 
 export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));
@@ -26,6 +27,7 @@ export default async function LocaleLayout({
         {children}
         <NavDock />
         <SocialDock />
+        <LanguageSwitcher />
       </NextIntlClientProvider>
     </Providers>
   );
