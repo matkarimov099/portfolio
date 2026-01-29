@@ -72,7 +72,11 @@
     "lastUpdated": "Oxirgi yangilanish",
     "repositories": "Repozitoriyalar",
     "privateRepos": "Yopiq repozitoriyalar",
-    "privateProjects": "Yopiq loyihalar"
+    "privateProjects": "Yopiq loyihalar",
+    "charts": "Statistika",
+    "languageDistribution": "Tillar",
+    "starsComparison": "Top repozitoriyalar",
+    "commitActivity": "Faollik"
   },
   "contact": {
     "title": "Bog'lanish",

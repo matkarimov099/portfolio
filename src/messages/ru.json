@@ -72,7 +72,11 @@
     "lastUpdated": "Последнее обновление",
     "repositories": "Репозитории",
     "privateRepos": "Приватные репозитории",
-    "privateProjects": "Приватные проекты"
+    "privateProjects": "Приватные проекты",
+    "charts": "Статистика",
+    "languageDistribution": "Языки",
+    "starsComparison": "Топ репозитории",
+    "commitActivity": "Активность"
   },
   "contact": {
     "title": "Связаться со мной",

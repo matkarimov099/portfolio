@@ -8,6 +8,7 @@ import {
   useGitHubRepos,
   useGitHubUser,
 } from "../hooks/use-github";
+import { GitHubCharts } from "./GitHubCharts";
 import { GitHubDetails } from "./GitHubDetails";
 import { GitHubFollowers } from "./GitHubFollowers";
 import { GitHubProfileCard } from "./GitHubProfileCard";
@@ -81,6 +82,8 @@ export function GitHubSection() {
         </motion.div>
 
         <GitHubStats user={user} privateRepoCount={privateRepoCount} />
+
+        <GitHubCharts repos={repos ?? []} />
 
         <motion.div
           initial="hidden"

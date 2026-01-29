@@ -72,7 +72,11 @@
     "lastUpdated": "Last Updated",
     "repositories": "Repositories",
     "privateRepos": "Private Repositories",
-    "privateProjects": "Private projects"
+    "privateProjects": "Private projects",
+    "charts": "Statistics",
+    "languageDistribution": "Languages",
+    "starsComparison": "Top Repositories",
+    "commitActivity": "Activity"
   },
   "contact": {
     "title": "Get In Touch",

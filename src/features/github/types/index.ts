@@ -33,3 +33,21 @@ export interface GitHubRepo {
   html_url: string;
   updated_at: string;
 }
+
+// Chart types
+export interface LanguageData {
+  name: string;
+  value: number;
+  color: string;
+}
+
+export interface RepoStarsData {
+  name: string;
+  stars: number;
+  forks: number;
+}
+
+export interface ActivityData {
+  month: string;
+  repos: number;
+}
