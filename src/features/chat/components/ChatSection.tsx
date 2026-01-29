@@ -38,11 +38,11 @@ export function ChatSection() {
   }
 
   return (
-    <section className="flex min-h-[calc(100vh-80px)] flex-col px-4 pb-8 pt-4 md:pb-10 md:pt-8">
+    <section className="flex min-h-[calc(100vh-10px)] flex-col px-4 pb-14 pt-4 md:pb-2 md:pt-2">
       <div className="mx-auto w-full max-w-2xl flex-1 flex flex-col">
         {/* Header */}
         <motion.div
-          className="mb-6 text-center md:mb-8"
+          className="mb-2 text-center md:mb-3"
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, amount: 0.3 }}
@@ -54,7 +54,7 @@ export function ChatSection() {
               {t("title")}
             </span>
           </div>
-          <h2 className="text-2xl font-bold tracking-tight text-foreground md:text-3xl">
+          <h2 className="text-xl font-bold tracking-tight text-foreground md:text-2xl">
             {t("subtitle")}
           </h2>
         </motion.div>
