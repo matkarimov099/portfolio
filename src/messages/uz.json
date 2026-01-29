@@ -87,12 +87,28 @@
     "telegram": "Telegram",
     "linkedin": "LinkedIn"
   },
+  "chat": {
+    "title": "Men bilan suhbat",
+    "subtitle": "Savolingizni yozing, tez orada javob beraman",
+    "startTitle": "Suhbatni boshlash",
+    "startDescription": "Ismingizni kiriting va suhbatni boshlang",
+    "namePlaceholder": "Ismingiz",
+    "startChat": "Boshlash",
+    "starting": "Boshlanmoqda...",
+    "chatting": "Onlayn",
+    "offline": "Xabar qoldiring",
+    "newChat": "Yangi chat",
+    "clearChat": "Xabarlarni tozalash",
+    "messagePlaceholder": "Xabar yozing...",
+    "emptyChat": "Suhbatni boshlang..."
+  },
   "nav": {
     "home": "Bosh sahifa",
     "about": "Men haqimda",
     "projects": "Loyihalar",
     "contact": "Bog'lanish",
-    "github": "GitHub"
+    "github": "GitHub",
+    "chat": "Chat"
   },
   "footer": {
     "builtWith": "Next.js va TypeScript bilan yaratilgan",

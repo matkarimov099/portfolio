@@ -87,12 +87,28 @@
     "telegram": "Telegram",
     "linkedin": "LinkedIn"
   },
+  "chat": {
+    "title": "Chat with Me",
+    "subtitle": "Ask a question, I'll reply shortly",
+    "startTitle": "Start a Conversation",
+    "startDescription": "Enter your name to start chatting with me",
+    "namePlaceholder": "Your name",
+    "startChat": "Start Chat",
+    "starting": "Starting...",
+    "chatting": "Online",
+    "offline": "Leave a message",
+    "newChat": "New Chat",
+    "clearChat": "Clear messages",
+    "messagePlaceholder": "Type a message...",
+    "emptyChat": "Start the conversation..."
+  },
   "nav": {
     "home": "Home",
     "about": "About",
     "projects": "Projects",
     "contact": "Contact",
-    "github": "GitHub"
+    "github": "GitHub",
+    "chat": "Chat"
   },
   "footer": {
     "builtWith": "Built with Next.js & TypeScript",

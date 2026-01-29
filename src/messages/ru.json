@@ -87,12 +87,28 @@
     "telegram": "Телеграм",
     "linkedin": "LinkedIn"
   },
+  "chat": {
+    "title": "Написать мне",
+    "subtitle": "Задайте вопрос, я отвечу в ближайшее время",
+    "startTitle": "Начать разговор",
+    "startDescription": "Введите имя, чтобы начать чат",
+    "namePlaceholder": "Ваше имя",
+    "startChat": "Начать чат",
+    "starting": "Запуск...",
+    "chatting": "Онлайн",
+    "offline": "Оставить сообщение",
+    "newChat": "Новый чат",
+    "clearChat": "Очистить сообщения",
+    "messagePlaceholder": "Введите сообщение...",
+    "emptyChat": "Начните разговор..."
+  },
   "nav": {
     "home": "Главная",
     "about": "Обо мне",
     "projects": "Проекты",
     "contact": "Контакт",
-    "github": "GitHub"
+    "github": "GitHub",
+    "chat": "Чат"
   },
   "footer": {
     "builtWith": "Создано с Next.js и TypeScript",

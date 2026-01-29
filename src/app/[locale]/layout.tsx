@@ -1,6 +1,7 @@
 import { NextIntlClientProvider } from "next-intl";
 import { getMessages, setRequestLocale } from "next-intl/server";
 import { Providers } from "@/core/providers";
+import { ChatProvider, ChatWidget } from "@/features/chat";
 import { LanguageSwitcher } from "@/features/layout/components/LanguageSwitcher";
 import { NavDock } from "@/features/layout/components/NavDock";
 import { SocialDock } from "@/features/layout/components/SocialDock";
@@ -24,10 +25,13 @@ export default async function LocaleLayout({
   return (
     <Providers>
       <NextIntlClientProvider messages={messages} locale={locale}>
-        {children}
-        <NavDock />
-        <SocialDock />
-        <LanguageSwitcher />
+        <ChatProvider>
+          {children}
+          <NavDock />
+          <SocialDock />
+          <LanguageSwitcher />
+          <ChatWidget />
+        </ChatProvider>
       </NextIntlClientProvider>
     </Providers>
   );

@@ -5,6 +5,7 @@ import {
   IconCode,
   IconHome,
   IconLayoutNavbarCollapse,
+  IconMessageCircle,
   IconPhone,
   IconUser,
 } from "@tabler/icons-react";
@@ -41,6 +42,12 @@ const NAV_ITEMS = [
     href: "/github" as const,
   },
   {
+    title: "Chat",
+    icon: <IconMessageCircle className="h-full w-full text-emerald-400" />,
+    href: "/chat" as const,
+    isHighlighted: true,
+  },
+  {
     title: "Contact",
     icon: <IconPhone className="h-full w-full" />,
     href: "/contact" as const,
@@ -52,11 +59,13 @@ function NavIconContainer({
   title,
   icon,
   href,
+  isHighlighted,
 }: {
   mouseX: MotionValue;
   title: string;
   icon: React.ReactNode;
-  href: "/" | "/about" | "/projects" | "/github" | "/contact";
+  href: "/" | "/about" | "/projects" | "/github" | "/chat" | "/contact";
+  isHighlighted?: boolean;
 }) {
   const ref = useRef<HTMLDivElement>(null);
 
@@ -126,7 +135,7 @@ function NavIconContainer({
         </AnimatePresence>
         <motion.div
           style={{ width: widthIcon, height: heightIcon }}
-          className="flex items-center justify-center"
+          className={`flex items-center justify-center ${isHighlighted ? "text-emerald-400" : ""}`}
         >
           {icon}
         </motion.div>
@@ -174,10 +183,14 @@ export function NavDock() {
                 >
                   <Link
                     href={item.href}
-                    className="flex h-10 w-10 items-center justify-center rounded-full border border-white/10 bg-white/5 backdrop-blur-xl"
+                    className={`flex h-10 w-10 items-center justify-center rounded-full border backdrop-blur-xl ${item.isHighlighted ? "border-emerald-400/30 bg-emerald-400/10" : "border-white/10 bg-white/5"}`}
                     onClick={() => setOpen(false)}
                   >
-                    <div className="h-4 w-4">{item.icon}</div>
+                    <div
+                      className={`h-4 w-4 ${item.isHighlighted ? "text-emerald-400" : ""}`}
+                    >
+                      {item.icon}
+                    </div>
                   </Link>
                 </motion.div>
               ))}

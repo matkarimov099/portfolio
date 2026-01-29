@@ -26,7 +26,7 @@ export function LanguageSwitcher() {
   };
 
   return (
-    <div className="fixed bottom-6 right-6 z-50">
+    <div className="fixed bottom-6 left-6 z-50">
       <AnimatePresence>
         {open &&
           otherLocales.map((loc, idx) => (
@@ -40,7 +40,7 @@ export function LanguageSwitcher() {
                 transition: { delay: idx * 0.05 },
               }}
               transition={{ delay: (otherLocales.length - 1 - idx) * 0.05 }}
-              className="absolute right-0"
+              className="absolute left-0"
               style={{ bottom: `${(otherLocales.length - idx) * 48 + 8}px` }}
             >
               <button
