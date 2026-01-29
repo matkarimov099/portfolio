@@ -7,6 +7,35 @@ import type {
   SendMessageInput,
 } from "../types";
 
+function getDeviceInfo() {
+  const parser = new UAParser(navigator.userAgent);
+  const result = parser.getResult();
+
+  const deviceType = result.device.type || "desktop";
+  const deviceVendor = result.device.vendor || "";
+  const deviceModel = result.device.model || "";
+
+  let device = `${deviceVendor} ${deviceModel}`.trim();
+  if (!device) {
+    device =
+      deviceType === "mobile"
+        ? "Mobile"
+        : deviceType === "tablet"
+          ? "Tablet"
+          : "Desktop";
+  }
+
+  const os = result.os.name
+    ? `${result.os.name} ${result.os.version || ""}`.trim()
+    : "";
+
+  const browser = result.browser.name
+    ? `${result.browser.name} ${result.browser.version || ""}`.trim()
+    : "";
+
+  return { device, os, browser };
+}
+
 export const chatService = {
   async createSession(input: CreateSessionInput): Promise<ChatSession> {
     const { data, error } = await supabase
@@ -42,12 +71,15 @@ export const chatService = {
   },
 
   async sendMessage(input: SendMessageInput): Promise<ChatMessage> {
+    const deviceInfo = input.sender_type === "visitor" ? getDeviceInfo() : {};
+
     const { data, error } = await supabase
       .from("chat_messages")
       .insert({
         session_id: input.session_id,
         sender_type: input.sender_type,
         message: input.message,
+        ...deviceInfo,
       })
       .select()
       .single();
@@ -61,33 +93,7 @@ export const chatService = {
     visitorName: string,
     message: string,
   ): Promise<void> {
-    const parser = new UAParser(navigator.userAgent);
-    const result = parser.getResult();
-
-    // Device info (without emoji)
-    const deviceType = result.device.type || "desktop";
-    const deviceVendor = result.device.vendor || "";
-    const deviceModel = result.device.model || "";
-
-    let device = `${deviceVendor} ${deviceModel}`.trim();
-    if (!device) {
-      device =
-        deviceType === "mobile"
-          ? "Mobile"
-          : deviceType === "tablet"
-            ? "Tablet"
-            : "Desktop";
-    }
-
-    // OS info
-    const os = result.os.name
-      ? `${result.os.name} ${result.os.version || ""}`.trim()
-      : "";
-
-    // Browser info
-    const browser = result.browser.name
-      ? `${result.browser.name} ${result.browser.version || ""}`.trim()
-      : "";
+    const { device, os, browser } = getDeviceInfo();
 
     await fetch("/api/chat/notify", {
       method: "POST",
