@@ -2,6 +2,7 @@
 
 import {
   IconBrandGit,
+  IconCalendarEvent,
   IconCode,
   IconLock,
   IconStar,
@@ -19,6 +20,25 @@ const fadeUp = {
     transition: { duration: 0.5, delay: i * 0.1, ease: "easeOut" as const },
   }),
 };
+
+function formatDate(dateStr: string): string {
+  const d = new Date(dateStr);
+  const months = [
+    "Jan",
+    "Feb",
+    "Mar",
+    "Apr",
+    "May",
+    "Jun",
+    "Jul",
+    "Aug",
+    "Sep",
+    "Oct",
+    "Nov",
+    "Dec",
+  ];
+  return `${d.getDate()} ${months[d.getMonth()]} ${d.getFullYear()}`;
+}
 
 interface Props {
   user: GitHubUser;
@@ -68,6 +88,14 @@ export function GitHubStats({ user, privateRepoCount }: Props) {
       icon: IconStar,
       color: "border-l-red-500 text-red-500",
     },
+    {
+      label: t("timeline"),
+      icon: IconCalendarEvent,
+      color: "border-l-cyan-500 text-cyan-500",
+      isTimeline: true,
+      memberSince: formatDate(user.created_at),
+      lastUpdated: formatDate(user.updated_at),
+    },
   ];
 
   return (
@@ -86,12 +114,35 @@ export function GitHubStats({ user, privateRepoCount }: Props) {
             <stat.icon size={20} className={stat.color.split(" ")[1]} />
             <span className="text-sm text-muted-foreground">{stat.label}</span>
           </div>
-          <p className="mt-2 text-3xl font-bold text-foreground">
-            {stat.value}
-          </p>
-          <p className="mt-1 text-xs text-muted-foreground">
-            {stat.description}
-          </p>
+          {stat.isTimeline ? (
+            <div className="mt-2 flex gap-4">
+              <div>
+                <p className="text-xs text-muted-foreground">
+                  {t("memberSince")}
+                </p>
+                <p className="text-base font-bold text-foreground">
+                  {stat.memberSince}
+                </p>
+              </div>
+              <div>
+                <p className="text-xs text-muted-foreground">
+                  {t("lastUpdated")}
+                </p>
+                <p className="text-base font-bold text-foreground">
+                  {stat.lastUpdated}
+                </p>
+              </div>
+            </div>
+          ) : (
+            <>
+              <p className="mt-2 text-3xl font-bold text-foreground">
+                {stat.value}
+              </p>
+              <p className="mt-1 text-xs text-muted-foreground">
+                {stat.description}
+              </p>
+            </>
+          )}
         </motion.div>
       ))}
     </div>

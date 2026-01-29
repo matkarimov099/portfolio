@@ -9,7 +9,6 @@ import {
   useGitHubUser,
 } from "../hooks/use-github";
 import { GitHubCharts } from "./GitHubCharts";
-import { GitHubDetails } from "./GitHubDetails";
 import { GitHubFollowers } from "./GitHubFollowers";
 import { GitHubProfileCard } from "./GitHubProfileCard";
 import { GitHubRepoList } from "./GitHubRepoList";
@@ -93,16 +92,6 @@ export function GitHubSection() {
           variants={fadeUp}
         >
           <GitHubFollowers followers={followers ?? []} />
-        </motion.div>
-
-        <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.2 }}
-          custom={0}
-          variants={fadeUp}
-        >
-          <GitHubDetails user={user} />
         </motion.div>
 
         <motion.div
