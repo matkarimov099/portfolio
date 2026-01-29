@@ -100,7 +100,8 @@
     "newChat": "Yangi chat",
     "clearChat": "Xabarlarni tozalash",
     "messagePlaceholder": "Xabar yozing...",
-    "emptyChat": "Suhbatni boshlang..."
+    "emptyChat": "Suhbatni boshlang...",
+    "maximize": "To'liq chatni ochish"
   },
   "nav": {
     "home": "Bosh sahifa",

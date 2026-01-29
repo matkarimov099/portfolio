@@ -1,12 +1,14 @@
 "use client";
 
 import {
+  IconMaximize,
   IconMessageCircle,
   IconPlus,
   IconTrash,
   IconX,
 } from "@tabler/icons-react";
 import { AnimatePresence, motion } from "motion/react";
+import { useRouter } from "next/navigation";
 import { useTranslations } from "next-intl";
 import { useState } from "react";
 import { useChat } from "../hooks/use-chat";
@@ -16,6 +18,7 @@ import { StartChatForm } from "./StartChatForm";
 
 export function ChatWidget() {
   const t = useTranslations("chat");
+  const router = useRouter();
   const [isOpen, setIsOpen] = useState(false);
   const {
     session,
@@ -57,13 +60,26 @@ export function ChatWidget() {
                   {session ? t("chatting") : t("offline")}
                 </p>
               </div>
-              <button
-                type="button"
-                onClick={() => setIsOpen(false)}
-                className="rounded-lg p-1 text-muted-foreground transition-colors hover:bg-white/10 hover:text-foreground"
-              >
-                <IconX size={20} />
-              </button>
+              <div className="flex items-center gap-1">
+                <button
+                  type="button"
+                  onClick={() => {
+                    router.push("/chat");
+                    setIsOpen(false);
+                  }}
+                  className="rounded-lg p-1 text-muted-foreground transition-colors hover:bg-white/10 hover:text-foreground"
+                  title={t("maximize") || "Maximize"}
+                >
+                  <IconMaximize size={20} />
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setIsOpen(false)}
+                  className="rounded-lg p-1 text-muted-foreground transition-colors hover:bg-white/10 hover:text-foreground"
+                >
+                  <IconX size={20} />
+                </button>
+              </div>
             </div>
 
             {/* Content */}

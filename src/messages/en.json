@@ -100,7 +100,8 @@
     "newChat": "New Chat",
     "clearChat": "Clear messages",
     "messagePlaceholder": "Type a message...",
-    "emptyChat": "Start the conversation..."
+    "emptyChat": "Start the conversation...",
+    "maximize": "Open full chat"
   },
   "nav": {
     "home": "Home",

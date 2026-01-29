@@ -2,9 +2,9 @@
 
 import {
   IconBrandGithub,
+  IconCategoryFilled,
   IconCode,
   IconHome,
-  IconLayoutNavbarCollapse,
   IconMessageCircle,
   IconPhone,
   IconUser,
@@ -18,7 +18,7 @@ import {
   useTransform,
 } from "motion/react";
 import { useRef, useState } from "react";
-import { Link } from "@/i18n/navigation";
+import { Link, usePathname } from "@/i18n/navigation";
 
 const NAV_ITEMS = [
   {
@@ -43,7 +43,7 @@ const NAV_ITEMS = [
   },
   {
     title: "Chat",
-    icon: <IconMessageCircle className="h-full w-full text-emerald-400" />,
+    icon: <IconMessageCircle className="h-full w-full text-orange-400" />,
     href: "/chat" as const,
     isHighlighted: true,
   },
@@ -60,12 +60,14 @@ function NavIconContainer({
   icon,
   href,
   isHighlighted,
+  isActive,
 }: {
   mouseX: MotionValue;
   title: string;
   icon: React.ReactNode;
   href: "/" | "/about" | "/projects" | "/github" | "/chat" | "/contact";
   isHighlighted?: boolean;
+  isActive?: boolean;
 }) {
   const ref = useRef<HTMLDivElement>(null);
 
@@ -119,7 +121,9 @@ function NavIconContainer({
         style={{ width, height }}
         onMouseEnter={() => setHovered(true)}
         onMouseLeave={() => setHovered(false)}
-        className="relative flex aspect-square items-center justify-center rounded-full bg-white/10"
+        className={`relative flex aspect-square items-center justify-center rounded-full ${
+          isActive ? "bg-emerald-500/20" : "bg-white/10"
+        }`}
       >
         <AnimatePresence>
           {hovered && (
@@ -135,7 +139,13 @@ function NavIconContainer({
         </AnimatePresence>
         <motion.div
           style={{ width: widthIcon, height: heightIcon }}
-          className={`flex items-center justify-center ${isHighlighted ? "text-emerald-400" : ""}`}
+          className={`flex items-center justify-center ${
+            isActive
+              ? "text-emerald-400"
+              : isHighlighted
+                ? "text-orange-400"
+                : ""
+          }`}
         >
           {icon}
         </motion.div>
@@ -146,6 +156,7 @@ function NavIconContainer({
 
 export function NavDock() {
   const mouseX = useMotionValue(Infinity);
+  const pathname = usePathname();
   const [open, setOpen] = useState(false);
 
   return (
@@ -154,10 +165,17 @@ export function NavDock() {
       <motion.div
         onMouseMove={(e) => mouseX.set(e.pageX)}
         onMouseLeave={() => mouseX.set(Infinity)}
-        className="fixed bottom-6 left-1/2 z-50 mx-auto hidden h-16 -translate-x-1/2 items-end gap-4 rounded-2xl border border-white/10 bg-white/5 px-4 pb-3 shadow-2xl backdrop-blur-xl md:flex"
+        className="fixed bottom-2 left-1/2 z-50 mx-auto hidden h-16 -translate-x-1/2 items-end gap-4 rounded-2xl border border-white/10 bg-white/5 px-4 pb-3 shadow-2xl backdrop-blur-xl md:flex"
       >
         {NAV_ITEMS.map((item) => (
-          <NavIconContainer mouseX={mouseX} key={item.title} {...item} />
+          <NavIconContainer
+            mouseX={mouseX}
+            key={item.title}
+            {...item}
+            isActive={
+              pathname === item.href || (item.href === "/" && pathname === "/")
+            }
+          />
         ))}
       </motion.div>
 
@@ -167,42 +185,76 @@ export function NavDock() {
           {open && (
             <motion.div
               layoutId="nav-dock"
-              className="absolute inset-x-0 bottom-full mb-2 flex flex-col items-center gap-2"
+              className="absolute bottom-0 -translate-x-1/2"
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.8 }}
+              transition={{ duration: 0.2 }}
             >
-              {NAV_ITEMS.map((item, idx) => (
-                <motion.div
-                  key={item.title}
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{
-                    opacity: 0,
-                    y: 10,
-                    transition: { delay: idx * 0.05 },
-                  }}
-                  transition={{ delay: (NAV_ITEMS.length - 1 - idx) * 0.05 }}
-                >
-                  <Link
-                    href={item.href}
-                    className={`flex h-10 w-10 items-center justify-center rounded-full border backdrop-blur-xl ${item.isHighlighted ? "border-emerald-400/30 bg-emerald-400/10" : "border-white/10 bg-white/5"}`}
-                    onClick={() => setOpen(false)}
+              {NAV_ITEMS.map((item, idx) => {
+                const totalItems = NAV_ITEMS.length;
+                const radius = 85;
+                const angle = Math.PI - (idx / (totalItems - 1)) * Math.PI;
+                const x = radius * Math.cos(angle);
+                const y = radius * Math.sin(angle);
+                const isActive =
+                  pathname === item.href ||
+                  (item.href === "/" && pathname === "/");
+
+                return (
+                  <motion.div
+                    key={item.title}
+                    initial={{ opacity: 0, scale: 0 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    exit={{
+                      opacity: 0,
+                      scale: 0,
+                      transition: { delay: idx * 0.03 },
+                    }}
+                    transition={{ delay: (totalItems - 1 - idx) * 0.03 }}
+                    style={{
+                      position: "absolute",
+                      left: `calc(-50% + ${x}px)`,
+                      bottom: `${y}px`,
+                    }}
                   >
-                    <div
-                      className={`h-4 w-4 ${item.isHighlighted ? "text-emerald-400" : ""}`}
+                    <Link
+                      href={item.href}
+                      className={`flex h-12 w-12 items-center justify-center rounded-full border backdrop-blur-xl transition-all ${
+                        isActive
+                          ? "border-emerald-400/30 bg-emerald-400/10 shadow-lg shadow-emerald-400/25"
+                          : item.isHighlighted
+                            ? "border-orange-400/30 bg-orange-400/10"
+                            : "border-white/10 bg-white/5"
+                      }`}
+                      onClick={() => setOpen(false)}
                     >
-                      {item.icon}
-                    </div>
-                  </Link>
-                </motion.div>
-              ))}
+                      <div
+                        className={`h-6 w-6 transition-colors ${
+                          isActive
+                            ? "text-emerald-400"
+                            : item.isHighlighted
+                              ? "text-orange-400"
+                              : "text-muted-foreground"
+                        }`}
+                      >
+                        {item.icon}
+                      </div>
+                    </Link>
+                  </motion.div>
+                );
+              })}
             </motion.div>
           )}
         </AnimatePresence>
         <button
           type="button"
           onClick={() => setOpen(!open)}
-          className="flex h-10 w-10 items-center justify-center rounded-full border border-white/10 bg-white/5 backdrop-blur-xl"
+          className={`flex h-12 w-12 items-center justify-center rounded-full border backdrop-blur-xl transition-colors ${open ? "border-white/10 bg-white/5" : "border-white/10 bg-white/5"}`}
         >
-          <IconLayoutNavbarCollapse className="h-5 w-5 text-muted-foreground" />
+          <IconCategoryFilled
+            className={`h-7 w-7 text-muted-foreground transition-transform ${open ? "rotate-180" : ""}`}
+          />
         </button>
       </div>
     </>

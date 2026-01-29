@@ -10,7 +10,7 @@ export default async function ChatPage({ params }: Props) {
   setRequestLocale(locale);
 
   return (
-    <main className="pt-10">
+    <main className="h-screen overflow-hidden">
       <ChatSection />
     </main>
   );

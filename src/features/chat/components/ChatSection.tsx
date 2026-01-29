@@ -38,7 +38,7 @@ export function ChatSection() {
   }
 
   return (
-    <section className="flex min-h-[calc(100vh-80px)] flex-col px-4 pb-28 pt-4 md:pb-24 md:pt-8">
+    <section className="flex min-h-[calc(100vh-80px)] flex-col px-4 pb-8 pt-4 md:pb-10 md:pt-8">
       <div className="mx-auto w-full max-w-2xl flex-1 flex flex-col">
         {/* Header */}
         <motion.div
@@ -61,7 +61,7 @@ export function ChatSection() {
 
         {/* Chat Container */}
         <motion.div
-          className="flex flex-1 flex-col overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-b from-white/10 to-white/5 shadow-2xl backdrop-blur-xl md:rounded-3xl"
+          className="flex flex-1 flex-col overflow-hidden rounded-2xl border border-white/10 bg-linear-to-b from-white/10 to-white/5 shadow-2xl backdrop-blur-xl md:rounded-3xl"
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, amount: 0.1 }}

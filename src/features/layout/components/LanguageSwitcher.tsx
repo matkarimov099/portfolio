@@ -26,7 +26,7 @@ export function LanguageSwitcher() {
   };
 
   return (
-    <div className="fixed bottom-6 left-6 z-50">
+    <div className="fixed bottom-6 left-4 z-50">
       <AnimatePresence>
         {open &&
           otherLocales.map((loc, idx) => (
@@ -39,14 +39,14 @@ export function LanguageSwitcher() {
                 y: 10,
                 transition: { delay: idx * 0.05 },
               }}
-              transition={{ delay: (otherLocales.length - 1 - idx) * 0.05 }}
+              transition={{ delay: (otherLocales.length - 1 - idx) * 0.08 }}
               className="absolute left-0"
-              style={{ bottom: `${(otherLocales.length - idx) * 48 + 8}px` }}
+              style={{ bottom: `${(otherLocales.length - idx) * 56 + 8}px` }}
             >
               <button
                 type="button"
                 onClick={() => switchLocale(loc)}
-                className="flex h-10 w-10 items-center justify-center rounded-full border border-white/10 bg-white/5 text-xs font-bold text-muted-foreground shadow-2xl backdrop-blur-xl transition-colors hover:bg-white/10 hover:text-foreground"
+                className="flex h-12 w-12 items-center justify-center rounded-full border border-white/10 bg-white/5 text-xs font-bold text-muted-foreground shadow-2xl backdrop-blur-xl transition-colors hover:bg-white/10 hover:text-foreground"
               >
                 {LOCALE_LABELS[loc]}
               </button>
@@ -56,7 +56,7 @@ export function LanguageSwitcher() {
       <button
         type="button"
         onClick={() => setOpen(!open)}
-        className="relative flex h-10 w-10 items-center justify-center rounded-full border border-white/10 bg-white/5 text-xs font-bold text-primary shadow-2xl backdrop-blur-xl transition-colors hover:bg-white/10"
+        className="relative flex h-12 w-12 items-center justify-center rounded-full border border-white/10 bg-white/5 text-xs font-bold text-primary shadow-2xl backdrop-blur-xl transition-colors hover:bg-white/10"
       >
         {LOCALE_LABELS[locale]}
       </button>
