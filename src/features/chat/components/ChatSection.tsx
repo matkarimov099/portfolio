@@ -3,6 +3,7 @@
 import { IconMessageCircle, IconPlus, IconTrash } from "@tabler/icons-react";
 import { motion } from "motion/react";
 import { useTranslations } from "next-intl";
+import { useEffect } from "react";
 import { useChat } from "../hooks/use-chat";
 import { ChatForm } from "./ChatForm";
 import { ChatMessages } from "./ChatMessages";
@@ -27,7 +28,13 @@ export function ChatSection() {
     sendMessage,
     clearMessages,
     endSession,
+    markAsRead,
   } = useChat();
+
+  // Chat sahifasida xabarlarni darhol o'qilgan deb belgilash
+  useEffect(() => {
+    markAsRead();
+  }, [markAsRead]);
 
   if (isLoading) {
     return (

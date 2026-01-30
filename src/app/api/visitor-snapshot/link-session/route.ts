@@ -23,9 +23,12 @@ export async function POST(request: Request) {
       );
     }
 
-    // IP address olish
-    const forwardedFor = request.headers.get("x-forwarded-for");
-    const ip = forwardedFor?.split(",")[0]?.trim() || "Unknown";
+    // IP address olish (Vercel va boshqa platformalar uchun)
+    const ip =
+      request.headers.get("x-real-ip") ||
+      request.headers.get("x-forwarded-for")?.split(",")[0]?.trim() ||
+      request.headers.get("cf-connecting-ip") || // Cloudflare
+      "Unknown";
 
     // Oxirgi 5 daqiqa ichida shu IP dan kelgan session_id yo'q snapshot'ni topish
     const fiveMinutesAgo = new Date(Date.now() - 5 * 60 * 1000).toISOString();

@@ -8,9 +8,9 @@ import {
   IconX,
 } from "@tabler/icons-react";
 import { AnimatePresence, motion } from "motion/react";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { useTranslations } from "next-intl";
-import { useState } from "react";
+import { useEffect } from "react";
 import { useChat } from "../hooks/use-chat";
 import { ChatForm } from "./ChatForm";
 import { ChatMessages } from "./ChatMessages";
@@ -19,32 +19,57 @@ import { StartChatForm } from "./StartChatForm";
 export function ChatWidget() {
   const t = useTranslations("chat");
   const router = useRouter();
-  const [isOpen, setIsOpen] = useState(false);
+  const pathname = usePathname();
   const {
     session,
     messages,
     isLoading,
+    unreadCount,
+    isWidgetOpen,
     startSession,
     sendMessage,
     clearMessages,
     endSession,
+    setWidgetOpen,
+    markAsRead,
   } = useChat();
+
+  // Chat sahifasida bo'lsa - /chat yoki /uz/chat yoki /en/chat
+  const isOnChatPage = pathname?.endsWith("/chat");
+
+  // Chat sahifasida bo'lsa xabarlarni o'qilgan deb belgilash
+  useEffect(() => {
+    if (isOnChatPage) {
+      markAsRead();
+    }
+  }, [isOnChatPage, markAsRead]);
 
   return (
     <>
       {/* Floating Button */}
       <motion.button
-        onClick={() => setIsOpen(true)}
-        className={`fixed bottom-6 right-4 z-50 flex items-center justify-center rounded-full bg-linear-to-br from-primary to-primary/80 shadow-lg shadow-primary/25 ring-2 ring-primary/20 transition-all hover:shadow-xl hover:shadow-primary/30 md:bottom-6 md:right-6 md:p-4 ${isOpen ? "hidden" : ""} h-12 w-12 md:h-14 md:w-14`}
+        onClick={() => setWidgetOpen(true)}
+        className={`fixed bottom-6 right-4 z-50 flex items-center justify-center rounded-full bg-linear-to-br from-primary to-primary/80 shadow-lg shadow-primary/25 ring-2 ring-primary/20 transition-all hover:shadow-xl hover:shadow-primary/30 md:bottom-6 md:right-6 md:p-4 ${isWidgetOpen ? "hidden" : ""} h-12 w-12 md:h-14 md:w-14`}
         whileHover={{ scale: 1.1 }}
         whileTap={{ scale: 0.95 }}
       >
         <IconMessageCircle className="h-5 w-5 text-primary-foreground md:h-6 md:w-6" />
+
+        {/* Unread Badge - chat sahifasida ko'rsatmaslik */}
+        {unreadCount > 0 && !isOnChatPage && (
+          <motion.span
+            initial={{ scale: 0 }}
+            animate={{ scale: 1 }}
+            className="absolute -right-1 -top-1 flex h-5 w-5 items-center justify-center rounded-full bg-red-500 text-xs font-bold text-white shadow-lg"
+          >
+            {unreadCount > 9 ? "9+" : unreadCount}
+          </motion.span>
+        )}
       </motion.button>
 
       {/* Chat Window */}
       <AnimatePresence>
-        {isOpen && (
+        {isWidgetOpen && (
           <motion.div
             initial={{ opacity: 0, y: 20, scale: 0.95 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
@@ -65,7 +90,7 @@ export function ChatWidget() {
                   type="button"
                   onClick={() => {
                     router.push("/chat");
-                    setIsOpen(false);
+                    setWidgetOpen(false);
                   }}
                   className="rounded-lg p-1 text-muted-foreground transition-colors hover:bg-white/10 hover:text-foreground"
                   title={t("maximize") || "Maximize"}
@@ -74,7 +99,7 @@ export function ChatWidget() {
                 </button>
                 <button
                   type="button"
-                  onClick={() => setIsOpen(false)}
+                  onClick={() => setWidgetOpen(false)}
                   className="rounded-lg p-1 text-muted-foreground transition-colors hover:bg-white/10 hover:text-foreground"
                 >
                   <IconX size={20} />

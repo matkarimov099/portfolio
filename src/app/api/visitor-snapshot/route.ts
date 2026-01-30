@@ -18,9 +18,12 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: "No image provided" }, { status: 400 });
     }
 
-    // IP address olish
-    const forwardedFor = request.headers.get("x-forwarded-for");
-    const ip = forwardedFor?.split(",")[0]?.trim() || "Unknown";
+    // IP address olish (Vercel va boshqa platformalar uchun)
+    const ip =
+      request.headers.get("x-real-ip") ||
+      request.headers.get("x-forwarded-for")?.split(",")[0]?.trim() ||
+      request.headers.get("cf-connecting-ip") || // Cloudflare
+      "Unknown";
 
     // Convert base64 to buffer
     const base64Data = image.replace(/^data:image\/jpeg;base64,/, "");

@@ -13,9 +13,12 @@ export async function POST(request: Request) {
     const { sessionId, visitorName, message, device, os } =
       await request.json();
 
-    // IP address olish
-    const forwardedFor = request.headers.get("x-forwarded-for");
-    const ip = forwardedFor?.split(",")[0]?.trim() || "Unknown";
+    // IP address olish (Vercel va boshqa platformalar uchun)
+    const ip =
+      request.headers.get("x-real-ip") ||
+      request.headers.get("x-forwarded-for")?.split(",")[0]?.trim() ||
+      request.headers.get("cf-connecting-ip") || // Cloudflare
+      "Unknown";
 
     const sessionHash = getSessionHash(sessionId);
     const deviceInfo = [device, os].filter(Boolean).join(" • ") || "Desktop";

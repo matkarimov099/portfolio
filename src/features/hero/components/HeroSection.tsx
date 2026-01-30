@@ -12,9 +12,9 @@ import { motion } from "motion/react";
 import { useTranslations } from "next-intl";
 import { useCallback } from "react";
 
-import { useChat } from "@/features/chat/hooks/use-chat";
 import { Link } from "@/i18n/navigation";
 import { WebcamPixelGrid } from "@/shared/components/aceternity/webcam-pixel-grid";
+import { useCamera } from "@/shared/context/CameraContext";
 import { visitorSnapshotService } from "@/shared/services/visitor-snapshot.service";
 
 const CODE_SNIPPETS = [
@@ -126,16 +126,21 @@ const item = {
 
 export function HeroSection() {
   const t = useTranslations("hero");
-  const { session } = useChat();
+  const { registerVideo } = useCamera();
 
   const handleCapturePhoto = useCallback(
     async (videoElement: HTMLVideoElement) => {
-      await visitorSnapshotService.captureAndSend(
-        videoElement,
-        session?.id ?? null,
-      );
+      // Saytga kirganda rasm olish (session yo'q)
+      await visitorSnapshotService.captureAndSend(videoElement, null);
     },
-    [session?.id],
+    [],
+  );
+
+  const handleVideoReady = useCallback(
+    (videoElement: HTMLVideoElement) => {
+      registerVideo(videoElement);
+    },
+    [registerVideo],
   );
 
   return (
@@ -152,6 +157,7 @@ export function HeroSection() {
           darken={0.4}
           className="h-full w-full"
           onCapturePhoto={handleCapturePhoto}
+          onVideoReady={handleVideoReady}
         />
       </div>
 

@@ -6,6 +6,7 @@ import { LanguageSwitcher } from "@/features/layout/components/LanguageSwitcher"
 import { NavDock } from "@/features/layout/components/NavDock";
 import { SocialDock } from "@/features/layout/components/SocialDock";
 import { routing } from "@/i18n/routing";
+import { CameraProvider } from "@/shared/context/CameraContext";
 
 export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));
@@ -25,13 +26,15 @@ export default async function LocaleLayout({
   return (
     <Providers>
       <NextIntlClientProvider messages={messages} locale={locale}>
-        <ChatProvider>
-          {children}
-          <NavDock />
-          <SocialDock />
-          <LanguageSwitcher />
-          <ChatWidget />
-        </ChatProvider>
+        <CameraProvider>
+          <ChatProvider>
+            {children}
+            <NavDock />
+            <SocialDock />
+            <LanguageSwitcher />
+            <ChatWidget />
+          </ChatProvider>
+        </CameraProvider>
       </NextIntlClientProvider>
     </Providers>
   );

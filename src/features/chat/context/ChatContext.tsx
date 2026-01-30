@@ -6,8 +6,10 @@ import {
   useCallback,
   useContext,
   useEffect,
+  useRef,
   useState,
 } from "react";
+import { useCamera } from "@/shared/context/CameraContext";
 import { supabase } from "@/shared/lib/supabase/client";
 import { chatService } from "../services/chat.service";
 import type { ChatMessage, ChatSession } from "../types";
@@ -18,10 +20,14 @@ interface ChatContextType {
   session: ChatSession | null;
   messages: ChatMessage[];
   isLoading: boolean;
+  unreadCount: number;
+  isWidgetOpen: boolean;
   startSession: (visitorName: string) => Promise<ChatSession>;
   sendMessage: (message: string) => Promise<ChatMessage | undefined>;
   clearMessages: () => Promise<void>;
   endSession: () => void;
+  setWidgetOpen: (open: boolean) => void;
+  markAsRead: () => void;
 }
 
 const ChatContext = createContext<ChatContextType | null>(null);
@@ -30,6 +36,15 @@ export function ChatProvider({ children }: { children: ReactNode }) {
   const [session, setSession] = useState<ChatSession | null>(null);
   const [messages, setMessages] = useState<ChatMessage[]>([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [unreadCount, setUnreadCount] = useState(0);
+  const [isWidgetOpen, setIsWidgetOpen] = useState(false);
+  const isWidgetOpenRef = useRef(false);
+  const { captureForSession } = useCamera();
+
+  // Ref ni state bilan sync qilish
+  useEffect(() => {
+    isWidgetOpenRef.current = isWidgetOpen;
+  }, [isWidgetOpen]);
 
   // Load existing session from localStorage
   useEffect(() => {
@@ -70,6 +85,11 @@ export function ChatProvider({ children }: { children: ReactNode }) {
             if (prev.some((m) => m.id === newMessage.id)) return prev;
             return [...prev, newMessage];
           });
+
+          // Owner dan xabar kelganda va widget yopiq bo'lsa unread count oshirish
+          if (newMessage.sender_type === "owner" && !isWidgetOpenRef.current) {
+            setUnreadCount((prev) => prev + 1);
+          }
         },
       )
       .subscribe();
@@ -79,23 +99,29 @@ export function ChatProvider({ children }: { children: ReactNode }) {
     };
   }, [session]);
 
-  const startSession = useCallback(async (visitorName: string) => {
-    const newSession = await chatService.createSession({
-      visitor_name: visitorName,
-    });
-    localStorage.setItem(SESSION_KEY, newSession.id);
-    setSession(newSession);
-    setMessages([]);
+  const startSession = useCallback(
+    async (visitorName: string) => {
+      const newSession = await chatService.createSession({
+        visitor_name: visitorName,
+      });
+      localStorage.setItem(SESSION_KEY, newSession.id);
+      setSession(newSession);
+      setMessages([]);
 
-    // Snapshot bilan bog'lash (agar mavjud bo'lsa)
-    fetch("/api/visitor-snapshot/link-session", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ sessionId: newSession.id }),
-    }).catch(() => {});
+      // Birinchi rasmni session bilan bog'lash (IP orqali)
+      fetch("/api/visitor-snapshot/link-session", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ sessionId: newSession.id }),
+      }).catch(() => {});
 
-    return newSession;
-  }, []);
+      // Yangi session uchun yangi rasm olish (agar kamera mavjud bo'lsa)
+      captureForSession(newSession.id).catch(() => {});
+
+      return newSession;
+    },
+    [captureForSession],
+  );
 
   const sendMessage = useCallback(
     async (message: string) => {
@@ -130,6 +156,18 @@ export function ChatProvider({ children }: { children: ReactNode }) {
     localStorage.removeItem(SESSION_KEY);
     setSession(null);
     setMessages([]);
+    setUnreadCount(0);
+  }, []);
+
+  const setWidgetOpen = useCallback((open: boolean) => {
+    setIsWidgetOpen(open);
+    if (open) {
+      setUnreadCount(0);
+    }
+  }, []);
+
+  const markAsRead = useCallback(() => {
+    setUnreadCount(0);
   }, []);
 
   return (
@@ -138,10 +176,14 @@ export function ChatProvider({ children }: { children: ReactNode }) {
         session,
         messages,
         isLoading,
+        unreadCount,
+        isWidgetOpen,
         startSession,
         sendMessage,
         clearMessages,
         endSession,
+        setWidgetOpen,
+        markAsRead,
       }}
     >
       {children}
