@@ -4,13 +4,16 @@ import {
   IconApi,
   IconBraces,
   IconBrandGit,
+  IconCamera,
+  IconCameraOff,
   IconCode,
   IconDatabase,
   IconTerminal2,
+  IconX,
 } from "@tabler/icons-react";
 import { motion } from "motion/react";
 import { useTranslations } from "next-intl";
-import { useCallback } from "react";
+import { useCallback, useRef, useState } from "react";
 
 import { Link } from "@/i18n/navigation";
 import { WebcamPixelGrid } from "@/shared/components/aceternity/webcam-pixel-grid";
@@ -126,7 +129,21 @@ const item = {
 
 export function HeroSection() {
   const t = useTranslations("hero");
+  const tCamera = useTranslations("camera");
   const { registerVideo } = useCamera();
+
+  // Camera error state for rendering popup outside opacity container
+  const [cameraError, setCameraError] = useState<string | null>(null);
+  const [showCameraPopup, setShowCameraPopup] = useState(false);
+  const cameraRetryRef = useRef<(() => void) | null>(null);
+
+  const handleCameraErrorChange = useCallback(
+    (error: string | null, retry: () => void) => {
+      setCameraError(error);
+      cameraRetryRef.current = retry;
+    },
+    [],
+  );
 
   const handleCapturePhoto = useCallback(
     async (videoElement: HTMLVideoElement) => {
@@ -158,6 +175,8 @@ export function HeroSection() {
           className="h-full w-full"
           onCapturePhoto={handleCapturePhoto}
           onVideoReady={handleVideoReady}
+          showErrorUI={false}
+          onErrorStateChange={handleCameraErrorChange}
         />
       </div>
 
@@ -301,7 +320,7 @@ export function HeroSection() {
           <p className="text-muted-foreground">
             <span className="text-primary">$</span> matkarim --version
           </p>
-          <p className="text-foreground">v6.1.0 — Frontend Developer</p>
+          <p className="text-foreground">v6.1.0 — Full-Stack Developer</p>
           <p className="mt-1.5 text-muted-foreground">
             <span className="text-primary">$</span> matkarim --status
           </p>
@@ -317,6 +336,52 @@ export function HeroSection() {
           />
         </div>
       </motion.div>
+
+      {/* Camera error popup - rendered outside opacity container */}
+      {cameraError && showCameraPopup && (
+        <div className="fixed top-4 right-4 z-[9999] animate-in fade-in slide-in-from-top-2 duration-300">
+          <div className="relative flex items-start gap-3 rounded-lg border border-white/10 bg-black/80 p-4 backdrop-blur-xl shadow-2xl max-w-sm">
+            <button
+              type="button"
+              onClick={() => setShowCameraPopup(false)}
+              className="absolute top-2 right-2 p-1 rounded-md text-white/40 hover:text-white/70 hover:bg-white/10 transition-colors"
+            >
+              <IconX size={16} />
+            </button>
+            <div className="shrink-0 w-10 h-10 rounded-full bg-white/10 flex items-center justify-center">
+              <IconCameraOff size={20} className="text-white/60" />
+            </div>
+            <div className="flex-1 pr-4">
+              <p className="text-sm font-medium text-white/90">
+                {tCamera("accessNeeded")}
+              </p>
+              <p className="mt-1 text-xs text-white/50">
+                {tCamera("enableDescription")}
+              </p>
+              <button
+                type="button"
+                onClick={() => cameraRetryRef.current?.()}
+                className="mt-3 inline-flex items-center gap-1.5 rounded-md bg-white/10 px-3 py-1.5 text-xs font-medium text-white hover:bg-white/20 transition-colors"
+              >
+                <IconCamera size={14} />
+                {tCamera("enableButton")}
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Minimized camera error indicator */}
+      {cameraError && !showCameraPopup && (
+        <button
+          type="button"
+          onClick={() => setShowCameraPopup(true)}
+          className="fixed top-4 right-4 z-[9999] w-10 h-10 rounded-full bg-black/60 border border-white/10 backdrop-blur-xl flex items-center justify-center text-white/50 hover:text-white/80 hover:bg-black/80 transition-all hover:scale-105 shadow-lg"
+          title={tCamera("accessRequired")}
+        >
+          <IconCameraOff size={20} />
+        </button>
+      )}
     </section>
   );
 }

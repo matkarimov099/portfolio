@@ -1,9 +1,10 @@
-// @ts-nocheck
 "use client";
+
+import { IconCamera, IconCameraOff, IconX } from "@tabler/icons-react";
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import { cn } from "@/shared/lib/utils";
 
-type WebcamPixelGridProps = {
+interface WebcamPixelGridProps {
   /** Number of columns in the grid */
   gridCols?: number;
   /** Number of rows in the grid */
@@ -38,11 +39,22 @@ type WebcamPixelGridProps = {
   onWebcamError?: (error: Error) => void;
   /** Callback when webcam is ready */
   onWebcamReady?: () => void;
-  /** Callback to capture photo when webcam is ready (passes video element) */
+  /** Callback to capture a photo when the webcam is ready (passes a video element) */
   onCapturePhoto?: (videoElement: HTMLVideoElement) => void;
-  /** Callback when video element is ready (for external access) */
+  /** Callback when a video element is ready (for external access) */
   onVideoReady?: (videoElement: HTMLVideoElement) => void;
-};
+  /** Translation texts for camera UI */
+  translations?: {
+    accessNeeded?: string;
+    enableDescription?: string;
+    enableButton?: string;
+    accessRequired?: string;
+  };
+  /** Whether to show internal error UI (default: true) */
+  showErrorUI?: boolean;
+  /** Callback when the error state changes, provides retry function */
+  onErrorStateChange?: (error: string | null, retry: () => void) => void;
+}
 
 type PixelData = {
   r: number;
@@ -73,7 +85,18 @@ export const WebcamPixelGrid: React.FC<WebcamPixelGridProps> = ({
   onWebcamReady,
   onCapturePhoto,
   onVideoReady,
+  translations = {},
+  showErrorUI = true,
+  onErrorStateChange,
 }) => {
+  const t = {
+    accessNeeded: translations.accessNeeded || "Camera access needed",
+    enableDescription:
+      translations.enableDescription ||
+      "Enable camera for the interactive background effect",
+    enableButton: translations.enableButton || "Enable Camera",
+    accessRequired: translations.accessRequired || "Camera access required",
+  };
   const videoRef = useRef<HTMLVideoElement>(null);
   const processingCanvasRef = useRef<HTMLCanvasElement>(null);
   const displayCanvasRef = useRef<HTMLCanvasElement>(null);
@@ -163,7 +186,7 @@ export const WebcamPixelGrid: React.FC<WebcamPixelGridProps> = ({
 
   // Initialize webcam on mount
   useEffect(() => {
-    requestCameraAccess();
+    requestCameraAccess().then();
 
     return () => {
       if (streamRef.current) {
@@ -173,6 +196,11 @@ export const WebcamPixelGrid: React.FC<WebcamPixelGridProps> = ({
       }
     };
   }, [requestCameraAccess]);
+
+  // Notify parent about error state changes
+  useEffect(() => {
+    onErrorStateChange?.(error, requestCameraAccess);
+  }, [error, onErrorStateChange, requestCameraAccess]);
 
   // Ref to hold the render function for self-referencing
   const renderRef = useRef<() => void>(() => {});
@@ -300,7 +328,7 @@ export const WebcamPixelGrid: React.FC<WebcamPixelGridProps> = ({
     dispCtx.fillStyle = backgroundColor;
     dispCtx.fillRect(0, 0, displayWidth, displayHeight);
 
-    // Calculate cell size (always square, cover entire container like object-fit: cover)
+    // Calculate cell size (always square, cover the entire container like object-fit: cover)
     const cellSize = Math.max(
       displayWidth / gridCols,
       displayHeight / gridRows,
@@ -373,7 +401,7 @@ export const WebcamPixelGrid: React.FC<WebcamPixelGridProps> = ({
           dispCtx.fill();
         }
 
-        // Draw top face (main cell) - brighter when elevated
+        // Draw the top face (main cell) - brighter when elevated
         const brightness = 1 + elevation * 0.05;
         dispCtx.fillStyle = `rgb(${Math.min(255, Math.round(pixel.r * brightness))}, ${Math.min(255, Math.round(pixel.g * brightness))}, ${Math.min(255, Math.round(pixel.b * brightness))})`;
         dispCtx.fillRect(
@@ -454,9 +482,9 @@ export const WebcamPixelGrid: React.FC<WebcamPixelGridProps> = ({
         style={{ backgroundColor }}
       />
 
-      {/* Error popup */}
-      {error && showErrorPopup && (
-        <div className="fixed top-4 right-4 z-50 animate-in fade-in slide-in-from-top-2 duration-300">
+      {/* Error popup - only render if showErrorUI is true */}
+      {showErrorUI && error && showErrorPopup && (
+        <div className="fixed top-4 right-4 z-[9999] animate-in fade-in slide-in-from-top-2 duration-300">
           <div className="relative flex items-start gap-3 rounded-lg border border-white/10 bg-black/80 p-4 backdrop-blur-xl shadow-2xl max-w-sm">
             {/* Close button */}
             <button
@@ -464,104 +492,44 @@ export const WebcamPixelGrid: React.FC<WebcamPixelGridProps> = ({
               onClick={() => setShowErrorPopup(false)}
               className="absolute top-2 right-2 p-1 rounded-md text-white/40 hover:text-white/70 hover:bg-white/10 transition-colors"
             >
-              <svg
-                className="w-4 h-4"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-                aria-hidden="true"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M6 18L18 6M6 6l12 12"
-                />
-              </svg>
+              <IconX size={16} />
             </button>
 
             {/* Camera icon */}
             <div className="shrink-0 w-10 h-10 rounded-full bg-white/10 flex items-center justify-center">
-              <svg
-                className="w-5 h-5 text-white/60"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-                aria-hidden="true"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={1.5}
-                  d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"
-                />
-              </svg>
+              <IconCameraOff size={20} className="text-white/60" />
             </div>
 
             {/* Content */}
             <div className="flex-1 pr-4">
               <p className="text-sm font-medium text-white/90">
-                Camera access needed
+                {t.accessNeeded}
               </p>
               <p className="mt-1 text-xs text-white/50">
-                Enable camera for the interactive background effect
+                {t.enableDescription}
               </p>
               <button
                 type="button"
                 onClick={requestCameraAccess}
                 className="mt-3 inline-flex items-center gap-1.5 rounded-md bg-white/10 px-3 py-1.5 text-xs font-medium text-white hover:bg-white/20 transition-colors"
               >
-                <svg
-                  className="w-3.5 h-3.5"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                  aria-hidden="true"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"
-                  />
-                </svg>
-                Enable Camera
+                <IconCamera size={14} />
+                {t.enableButton}
               </button>
             </div>
           </div>
         </div>
       )}
 
-      {/* Minimized error indicator */}
-      {error && !showErrorPopup && (
+      {/* Minimized error indicator - only render if showErrorUI is true */}
+      {showErrorUI && error && !showErrorPopup && (
         <button
           type="button"
           onClick={() => setShowErrorPopup(true)}
-          className="fixed top-4 right-4 z-50 w-10 h-10 rounded-full bg-black/60 border border-white/10 backdrop-blur-xl flex items-center justify-center text-white/50 hover:text-white/80 hover:bg-black/80 transition-all hover:scale-105 shadow-lg"
-          title="Camera access required"
+          className="fixed top-4 right-4 z-[9999] w-10 h-10 rounded-full bg-black/60 border border-white/10 backdrop-blur-xl flex items-center justify-center text-white/50 hover:text-white/80 hover:bg-black/80 transition-all hover:scale-105 shadow-lg"
+          title={t.accessRequired}
         >
-          <svg
-            className="w-5 h-5"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-            aria-hidden="true"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={1.5}
-              d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"
-            />
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M3 3l18 18"
-              className="text-red-400"
-              stroke="currentColor"
-            />
-          </svg>
+          <IconCameraOff size={20} />
         </button>
       )}
     </div>

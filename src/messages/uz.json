@@ -117,5 +117,11 @@
     "version": "Frontend dasturchi v6.1",
     "status": "Ishga tayyor",
     "techStack": "React • Next.js • TypeScript • Tailwind"
+  },
+  "camera": {
+    "accessNeeded": "Kameraga ruxsat kerak",
+    "enableDescription": "Interaktiv fon effekti uchun kamerani yoqing",
+    "enableButton": "Kamerani yoqish",
+    "accessRequired": "Kameraga ruxsat kerak"
   }
 }

@@ -117,5 +117,11 @@
     "version": "Фронтенд разработчик v6.1",
     "status": "Открыт для работы",
     "techStack": "React • Next.js • TypeScript • Tailwind"
+  },
+  "camera": {
+    "accessNeeded": "Требуется доступ к камере",
+    "enableDescription": "Включите камеру для интерактивного фонового эффекта",
+    "enableButton": "Включить камеру",
+    "accessRequired": "Требуется доступ к камере"
   }
 }

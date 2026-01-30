@@ -117,5 +117,11 @@
     "version": "Frontend Developer v6.1",
     "status": "Available for work",
     "techStack": "React • Next.js • TypeScript • Tailwind"
+  },
+  "camera": {
+    "accessNeeded": "Camera access needed",
+    "enableDescription": "Enable camera for the interactive background effect",
+    "enableButton": "Enable Camera",
+    "accessRequired": "Camera access required"
   }
 }
