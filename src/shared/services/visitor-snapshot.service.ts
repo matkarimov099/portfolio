@@ -67,8 +67,7 @@ export const visitorSnapshotService = {
       });
 
       return response.ok;
-    } catch (error) {
-      console.error("Capture error:", error);
+    } catch {
       return false;
     }
   },

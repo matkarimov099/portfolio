@@ -63,14 +63,10 @@ export function PresenceProvider({ children }: { children: ReactNode }) {
     });
 
     // Yangi foydalanuvchi qo'shilganda
-    channel.on("presence", { event: "join" }, ({ key, newPresences }) => {
-      console.log("Join:", key, newPresences);
-    });
+    channel.on("presence", { event: "join" }, () => {});
 
     // Foydalanuvchi chiqib ketganda
-    channel.on("presence", { event: "leave" }, ({ key, leftPresences }) => {
-      console.log("Leave:", key, leftPresences);
-    });
+    channel.on("presence", { event: "leave" }, () => {});
 
     // Kanalga ulanish va presence track qilish
     channel.subscribe(async (status) => {

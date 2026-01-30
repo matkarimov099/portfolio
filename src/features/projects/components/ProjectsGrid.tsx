@@ -51,7 +51,7 @@ export function ProjectsGrid({ repos }: ProjectsGridProps) {
             onClick={() => setActiveFilter(lang)}
             className={`rounded-full px-4 py-1.5 text-sm transition-colors ${
               activeFilter === lang
-                ? "bg-primary text-primary-foreground"
+                ? "bg-emerald-700 text-white"
                 : "border border-white/10 bg-white/5 text-muted-foreground backdrop-blur-sm hover:bg-white/10"
             }`}
           >

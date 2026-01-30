@@ -3,8 +3,7 @@
 import { AnimatePresence, motion } from "motion/react";
 import { useLocale } from "next-intl";
 import { useState } from "react";
-import { usePathname, useRouter } from "@/i18n/navigation";
-import { routing } from "@/i18n/routing";
+import { routing, usePathname, useRouter } from "@/i18n/routing";
 
 const LOCALE_LABELS: Record<string, string> = {
   en: "EN",
@@ -46,6 +45,7 @@ export function LanguageSwitcher() {
               <button
                 type="button"
                 onClick={() => switchLocale(loc)}
+                aria-label={`Switch to ${loc === "en" ? "English" : loc === "ru" ? "Russian" : "Uzbek"}`}
                 className="flex h-12 w-12 items-center justify-center rounded-full border border-white/10 bg-white/5 text-xs font-bold text-muted-foreground shadow-2xl backdrop-blur-xl transition-colors hover:bg-white/10 hover:text-foreground"
               >
                 {LOCALE_LABELS[loc]}
@@ -56,6 +56,8 @@ export function LanguageSwitcher() {
       <button
         type="button"
         onClick={() => setOpen(!open)}
+        aria-label={`Current language: ${locale === "en" ? "English" : locale === "ru" ? "Russian" : "Uzbek"}. Click to change`}
+        aria-expanded={open}
         className="relative flex h-12 w-12 items-center justify-center rounded-full border border-white/10 bg-white/5 text-xs font-bold text-primary shadow-2xl backdrop-blur-xl transition-colors hover:bg-white/10"
       >
         {LOCALE_LABELS[locale]}

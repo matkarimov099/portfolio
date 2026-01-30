@@ -484,19 +484,26 @@ export const WebcamPixelGrid: React.FC<WebcamPixelGridProps> = ({
 
       {/* Error popup - only render if showErrorUI is true */}
       {showErrorUI && error && showErrorPopup && (
-        <div className="fixed top-4 right-4 z-[9999] animate-in fade-in slide-in-from-top-2 duration-300">
+        <div
+          className="fixed top-4 right-4 z-[9999] animate-in fade-in slide-in-from-top-2 duration-300"
+          role="alert"
+        >
           <div className="relative flex items-start gap-3 rounded-lg border border-white/10 bg-black/80 p-4 backdrop-blur-xl shadow-2xl max-w-sm">
             {/* Close button */}
             <button
               type="button"
               onClick={() => setShowErrorPopup(false)}
-              className="absolute top-2 right-2 p-1 rounded-md text-white/40 hover:text-white/70 hover:bg-white/10 transition-colors"
+              className="absolute top-2 right-2 p-1 rounded-md text-white/70 hover:text-white hover:bg-white/10 transition-colors"
+              aria-label="Close camera access notification"
             >
-              <IconX size={16} />
+              <IconX size={16} aria-hidden="true" />
             </button>
 
             {/* Camera icon */}
-            <div className="shrink-0 w-10 h-10 rounded-full bg-white/10 flex items-center justify-center">
+            <div
+              className="shrink-0 w-10 h-10 rounded-full bg-white/10 flex items-center justify-center"
+              aria-hidden="true"
+            >
               <IconCameraOff size={20} className="text-white/60" />
             </div>
 
@@ -505,7 +512,7 @@ export const WebcamPixelGrid: React.FC<WebcamPixelGridProps> = ({
               <p className="text-sm font-medium text-white/90">
                 {t.accessNeeded}
               </p>
-              <p className="mt-1 text-xs text-white/50">
+              <p className="mt-1 text-xs text-white/60">
                 {t.enableDescription}
               </p>
               <button
@@ -513,7 +520,7 @@ export const WebcamPixelGrid: React.FC<WebcamPixelGridProps> = ({
                 onClick={requestCameraAccess}
                 className="mt-3 inline-flex items-center gap-1.5 rounded-md bg-white/10 px-3 py-1.5 text-xs font-medium text-white hover:bg-white/20 transition-colors"
               >
-                <IconCamera size={14} />
+                <IconCamera size={14} aria-hidden="true" />
                 {t.enableButton}
               </button>
             </div>
@@ -526,10 +533,10 @@ export const WebcamPixelGrid: React.FC<WebcamPixelGridProps> = ({
         <button
           type="button"
           onClick={() => setShowErrorPopup(true)}
-          className="fixed top-4 right-4 z-[9999] w-10 h-10 rounded-full bg-black/60 border border-white/10 backdrop-blur-xl flex items-center justify-center text-white/50 hover:text-white/80 hover:bg-black/80 transition-all hover:scale-105 shadow-lg"
-          title={t.accessRequired}
+          className="fixed top-4 right-4 z-[9999] w-10 h-10 rounded-full bg-black/60 border border-white/10 backdrop-blur-xl flex items-center justify-center text-white/60 hover:text-white/90 hover:bg-black/80 transition-all hover:scale-105 shadow-lg"
+          aria-label={t.accessRequired}
         >
-          <IconCameraOff size={20} />
+          <IconCameraOff size={20} aria-hidden="true" />
         </button>
       )}
     </div>

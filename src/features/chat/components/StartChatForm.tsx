@@ -67,11 +67,11 @@ export function StartChatForm({ onStart }: Props) {
         <button
           type="submit"
           disabled={isStarting || !name.trim()}
-          className="w-full rounded-2xl bg-primary py-4 text-base font-semibold text-primary-foreground shadow-lg shadow-primary/25 transition-all hover:scale-[1.02] hover:shadow-xl hover:shadow-primary/30 active:scale-[0.98] disabled:opacity-50 disabled:hover:scale-100"
+          className="w-full rounded-2xl bg-emerald-700 py-4 text-base font-semibold text-white shadow-lg shadow-emerald-700/25 transition-all hover:bg-emerald-800 hover:scale-[1.02] hover:shadow-xl hover:shadow-emerald-700/30 active:scale-[0.98] disabled:opacity-50 disabled:hover:scale-100"
         >
           {isStarting ? (
             <span className="flex items-center justify-center gap-2">
-              <span className="h-4 w-4 animate-spin rounded-full border-2 border-primary-foreground border-t-transparent" />
+              <span className="h-4 w-4 animate-spin rounded-full border-2 border-white border-t-transparent" />
               {t("starting")}
             </span>
           ) : (

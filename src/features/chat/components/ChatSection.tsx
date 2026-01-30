@@ -101,17 +101,17 @@ export function ChatSection() {
                     type="button"
                     onClick={clearMessages}
                     className="rounded-lg p-2 text-muted-foreground transition-colors hover:bg-white/10 hover:text-foreground"
-                    title={t("clearChat")}
+                    aria-label={t("clearChat")}
                   >
-                    <IconTrash size={18} />
+                    <IconTrash size={18} aria-hidden="true" />
                   </button>
                   <button
                     type="button"
                     onClick={endSession}
                     className="flex items-center gap-1.5 rounded-lg px-3 py-2 text-sm text-muted-foreground transition-colors hover:bg-white/10 hover:text-foreground"
-                    title={t("newChat")}
+                    aria-label={t("newChat")}
                   >
-                    <IconPlus size={16} />
+                    <IconPlus size={16} aria-hidden="true" />
                     <span className="hidden sm:inline">{t("newChat")}</span>
                   </button>
                 </div>

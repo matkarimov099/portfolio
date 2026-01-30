@@ -1,11 +1,16 @@
 import { NextIntlClientProvider } from "next-intl";
 import { getMessages, setRequestLocale } from "next-intl/server";
+import { JsonLd } from "@/components/seo";
 import { Providers } from "@/core/providers";
 import { ChatProvider, ChatWidget } from "@/features/chat";
 import { LanguageSwitcher } from "@/features/layout/components/LanguageSwitcher";
 import { NavDock } from "@/features/layout/components/NavDock";
 import { SocialDock } from "@/features/layout/components/SocialDock";
 import { routing } from "@/i18n/routing";
+import {
+  generatePersonSchema,
+  generateWebSiteSchema,
+} from "@/lib/seo/structured-data";
 import { OnlineCounter } from "@/shared/components/OnlineCounter";
 import { CameraProvider } from "@/shared/context/CameraContext";
 import { PresenceProvider } from "@/shared/context/PresenceContext";
@@ -31,6 +36,10 @@ export default async function LocaleLayout({
         <PresenceProvider>
           <CameraProvider>
             <ChatProvider>
+              {/* JSON-LD Structured Data */}
+              <JsonLd data={generatePersonSchema()} />
+              <JsonLd data={generateWebSiteSchema()} />
+
               {children}
               <NavDock />
               <SocialDock />

@@ -49,11 +49,15 @@ export function ChatWidget() {
       {/* Floating Button */}
       <motion.button
         onClick={() => setWidgetOpen(true)}
+        aria-label={t("title")}
         className={`fixed bottom-6 right-4 z-50 flex items-center justify-center rounded-full bg-linear-to-br from-primary to-primary/80 shadow-lg shadow-primary/25 ring-2 ring-primary/20 transition-all hover:shadow-xl hover:shadow-primary/30 md:bottom-6 md:right-6 md:p-4 ${isWidgetOpen ? "hidden" : ""} h-12 w-12 md:h-14 md:w-14`}
         whileHover={{ scale: 1.1 }}
         whileTap={{ scale: 0.95 }}
       >
-        <IconMessageCircle className="h-5 w-5 text-primary-foreground md:h-6 md:w-6" />
+        <IconMessageCircle
+          className="h-5 w-5 text-primary-foreground md:h-6 md:w-6"
+          aria-hidden="true"
+        />
 
         {/* Unread Badge - chat sahifasida ko'rsatmaslik */}
         {unreadCount > 0 && !isOnChatPage && (
@@ -93,16 +97,17 @@ export function ChatWidget() {
                     setWidgetOpen(false);
                   }}
                   className="rounded-lg p-1 text-muted-foreground transition-colors hover:bg-white/10 hover:text-foreground"
-                  title={t("maximize") || "Maximize"}
+                  aria-label={t("maximize") || "Maximize"}
                 >
-                  <IconMaximize size={20} />
+                  <IconMaximize size={20} aria-hidden="true" />
                 </button>
                 <button
                   type="button"
                   onClick={() => setWidgetOpen(false)}
                   className="rounded-lg p-1 text-muted-foreground transition-colors hover:bg-white/10 hover:text-foreground"
+                  aria-label="Close chat"
                 >
-                  <IconX size={20} />
+                  <IconX size={20} aria-hidden="true" />
                 </button>
               </div>
             </div>
@@ -123,17 +128,17 @@ export function ChatWidget() {
                       type="button"
                       onClick={clearMessages}
                       className="rounded p-1 text-muted-foreground hover:bg-white/10 hover:text-foreground"
-                      title={t("clearChat")}
+                      aria-label={t("clearChat")}
                     >
-                      <IconTrash size={14} />
+                      <IconTrash size={14} aria-hidden="true" />
                     </button>
                     <button
                       type="button"
                       onClick={endSession}
                       className="rounded p-1 text-muted-foreground hover:bg-white/10 hover:text-foreground"
-                      title={t("newChat")}
+                      aria-label={t("newChat")}
                     >
-                      <IconPlus size={14} />
+                      <IconPlus size={14} aria-hidden="true" />
                     </button>
                   </div>
                 </div>

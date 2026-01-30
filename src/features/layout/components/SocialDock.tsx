@@ -85,7 +85,7 @@ function SocialIconContainer({
   const [hovered, setHovered] = useState(false);
 
   return (
-    <a href={href} target="_blank" rel="noopener noreferrer">
+    <a href={href} target="_blank" rel="noopener noreferrer" aria-label={title}>
       <motion.div
         ref={ref}
         style={{ width: size, height: size }}
@@ -100,6 +100,7 @@ function SocialIconContainer({
               animate={{ opacity: 1, x: 0, y: "-50%" }}
               exit={{ opacity: 0, x: 10, y: "-50%" }}
               className="absolute left-full top-1/2 ml-2 w-fit rounded-md border border-white/10 bg-white/10 px-2 py-0.5 text-xs whitespace-pre text-foreground backdrop-blur-xl"
+              aria-hidden="true"
             >
               {title}
             </motion.div>
@@ -108,6 +109,7 @@ function SocialIconContainer({
         <motion.div
           style={{ width: iconSize, height: iconSize }}
           className="flex items-center justify-center"
+          aria-hidden="true"
         >
           {icon}
         </motion.div>

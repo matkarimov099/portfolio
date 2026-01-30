@@ -33,7 +33,7 @@ pnpm dlx shadcn@latest init
 ## Papka Strukturasi
 
 ```
-portfolio/
+nurchinnilari/
 ├── public/                               # Statik fayllar
 │   ├── images/
 │   │   ├── avatar.webp                   # Profil rasmi (WebP format — optimallashtirilgan)

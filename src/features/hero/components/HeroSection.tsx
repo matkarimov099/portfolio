@@ -15,7 +15,7 @@ import { motion } from "motion/react";
 import { useTranslations } from "next-intl";
 import { useCallback, useRef, useState } from "react";
 
-import { Link } from "@/i18n/navigation";
+import { Link } from "@/i18n/routing";
 import { WebcamPixelGrid } from "@/shared/components/aceternity/webcam-pixel-grid";
 import { useCamera } from "@/shared/context/CameraContext";
 import { visitorSnapshotService } from "@/shared/services/visitor-snapshot.service";
@@ -288,9 +288,9 @@ export function HeroSection() {
         >
           <Link
             href="/projects"
-            className="group relative inline-flex items-center gap-2 rounded-full bg-primary px-6 py-3 text-sm font-semibold text-primary-foreground transition-all hover:shadow-lg hover:shadow-primary/25"
+            className="group relative inline-flex items-center gap-2 rounded-full bg-emerald-700 px-6 py-3 text-sm font-semibold text-white transition-all hover:bg-emerald-800 hover:shadow-lg hover:shadow-emerald-700/25"
           >
-            <IconCode size={16} />
+            <IconCode size={16} aria-hidden="true" />
             {t("viewProjects")}
           </Link>
           <Link
@@ -339,23 +339,30 @@ export function HeroSection() {
 
       {/* Camera error popup - rendered outside opacity container */}
       {cameraError && showCameraPopup && (
-        <div className="fixed top-4 right-4 z-[9999] animate-in fade-in slide-in-from-top-2 duration-300">
+        <div
+          className="fixed top-4 right-4 z-[9999] animate-in fade-in slide-in-from-top-2 duration-300"
+          role="alert"
+        >
           <div className="relative flex items-start gap-3 rounded-lg border border-white/10 bg-black/80 p-4 backdrop-blur-xl shadow-2xl max-w-sm">
             <button
               type="button"
               onClick={() => setShowCameraPopup(false)}
-              className="absolute top-2 right-2 p-1 rounded-md text-white/40 hover:text-white/70 hover:bg-white/10 transition-colors"
+              className="absolute top-2 right-2 p-1 rounded-md text-white/70 hover:text-white hover:bg-white/10 transition-colors"
+              aria-label="Close camera access notification"
             >
-              <IconX size={16} />
+              <IconX size={16} aria-hidden="true" />
             </button>
-            <div className="shrink-0 w-10 h-10 rounded-full bg-white/10 flex items-center justify-center">
+            <div
+              className="shrink-0 w-10 h-10 rounded-full bg-white/10 flex items-center justify-center"
+              aria-hidden="true"
+            >
               <IconCameraOff size={20} className="text-white/60" />
             </div>
             <div className="flex-1 pr-4">
               <p className="text-sm font-medium text-white/90">
                 {tCamera("accessNeeded")}
               </p>
-              <p className="mt-1 text-xs text-white/50">
+              <p className="mt-1 text-xs text-white/60">
                 {tCamera("enableDescription")}
               </p>
               <button
@@ -363,7 +370,7 @@ export function HeroSection() {
                 onClick={() => cameraRetryRef.current?.()}
                 className="mt-3 inline-flex items-center gap-1.5 rounded-md bg-white/10 px-3 py-1.5 text-xs font-medium text-white hover:bg-white/20 transition-colors"
               >
-                <IconCamera size={14} />
+                <IconCamera size={14} aria-hidden="true" />
                 {tCamera("enableButton")}
               </button>
             </div>
@@ -376,10 +383,10 @@ export function HeroSection() {
         <button
           type="button"
           onClick={() => setShowCameraPopup(true)}
-          className="fixed top-4 right-4 z-[9999] w-10 h-10 rounded-full bg-black/60 border border-white/10 backdrop-blur-xl flex items-center justify-center text-white/50 hover:text-white/80 hover:bg-black/80 transition-all hover:scale-105 shadow-lg"
-          title={tCamera("accessRequired")}
+          className="fixed top-4 right-4 z-[9999] w-10 h-10 rounded-full bg-black/60 border border-white/10 backdrop-blur-xl flex items-center justify-center text-white/60 hover:text-white/90 hover:bg-black/80 transition-all hover:scale-105 shadow-lg"
+          aria-label={tCamera("accessRequired")}
         >
-          <IconCameraOff size={20} />
+          <IconCameraOff size={20} aria-hidden="true" />
         </button>
       )}
     </section>

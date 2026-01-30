@@ -18,7 +18,7 @@ import {
   useTransform,
 } from "motion/react";
 import { useRef, useState } from "react";
-import { Link, usePathname } from "@/i18n/navigation";
+import { Link, usePathname } from "@/i18n/routing";
 
 const NAV_ITEMS = [
   {
@@ -115,7 +115,11 @@ function NavIconContainer({
   const [hovered, setHovered] = useState(false);
 
   return (
-    <Link href={href}>
+    <Link
+      href={href}
+      aria-label={title}
+      aria-current={isActive ? "page" : undefined}
+    >
       <motion.div
         ref={ref}
         style={{ width, height }}
@@ -132,6 +136,7 @@ function NavIconContainer({
               animate={{ opacity: 1, y: 0, x: "-50%" }}
               exit={{ opacity: 0, y: 2, x: "-50%" }}
               className="absolute -top-8 left-1/2 w-fit rounded-md border border-white/10 bg-white/10 px-2 py-0.5 text-xs whitespace-pre text-foreground backdrop-blur-xl"
+              aria-hidden="true"
             >
               {title}
             </motion.div>
@@ -146,6 +151,7 @@ function NavIconContainer({
                 ? "text-orange-400"
                 : ""
           }`}
+          aria-hidden="true"
         >
           {icon}
         </motion.div>
@@ -220,6 +226,8 @@ export function NavDock() {
                   >
                     <Link
                       href={item.href}
+                      aria-label={item.title}
+                      aria-current={isActive ? "page" : undefined}
                       className={`flex h-12 w-12 items-center justify-center rounded-full border backdrop-blur-xl transition-all ${
                         isActive
                           ? "border-emerald-400/30 bg-emerald-400/10 shadow-lg shadow-emerald-400/25"
@@ -237,6 +245,7 @@ export function NavDock() {
                               ? "text-orange-400"
                               : "text-muted-foreground"
                         }`}
+                        aria-hidden="true"
                       >
                         {item.icon}
                       </div>
@@ -250,10 +259,13 @@ export function NavDock() {
         <button
           type="button"
           onClick={() => setOpen(!open)}
+          aria-label={open ? "Close navigation menu" : "Open navigation menu"}
+          aria-expanded={open}
           className={`flex h-12 w-12 items-center justify-center rounded-full border backdrop-blur-xl transition-colors ${open ? "border-white/10 bg-white/5" : "border-white/10 bg-white/5"}`}
         >
           <IconCategoryFilled
             className={`h-7 w-7 text-muted-foreground transition-transform ${open ? "rotate-180" : ""}`}
+            aria-hidden="true"
           />
         </button>
       </div>

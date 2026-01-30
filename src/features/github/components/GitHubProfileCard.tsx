@@ -81,10 +81,11 @@ export function GitHubProfileCard({ user }: Props) {
             href={user.html_url}
             target="_blank"
             rel="noopener noreferrer"
-            className="mt-4 inline-flex items-center gap-2 rounded-lg bg-primary px-5 py-2 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90"
+            aria-label={`${t("viewGithub")} - ${user.login}`}
+            className="mt-4 inline-flex items-center gap-2 rounded-lg bg-emerald-700 px-5 py-2 text-sm font-medium text-white transition-colors hover:bg-emerald-800"
           >
             {t("viewGithub")}
-            <IconExternalLink size={16} />
+            <IconExternalLink size={16} aria-hidden="true" />
           </a>
         </div>
       </GlareCard>

@@ -44,12 +44,13 @@ export function ChatForm({ onSend, disabled }: Props) {
         <button
           type="submit"
           disabled={disabled || isSending || !message.trim()}
-          className="flex items-center justify-center rounded-xl bg-primary px-4 py-3 text-primary-foreground shadow-lg shadow-primary/25 transition-all hover:scale-105 hover:shadow-xl active:scale-95 disabled:opacity-50 disabled:hover:scale-100 md:rounded-2xl md:px-5 md:py-4"
+          aria-label="Send message"
+          className="flex items-center justify-center rounded-xl bg-emerald-700 px-4 py-3 text-white shadow-lg shadow-emerald-700/25 transition-all hover:bg-emerald-800 hover:scale-105 hover:shadow-xl active:scale-95 disabled:opacity-50 disabled:hover:scale-100 md:rounded-2xl md:px-5 md:py-4"
         >
           {isSending ? (
-            <span className="h-5 w-5 animate-spin rounded-full border-2 border-primary-foreground border-t-transparent" />
+            <span className="h-5 w-5 animate-spin rounded-full border-2 border-white border-t-transparent" />
           ) : (
-            <IconSend size={20} />
+            <IconSend size={20} aria-hidden="true" />
           )}
         </button>
       </div>

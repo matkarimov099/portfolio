@@ -127,10 +127,11 @@ export function ContactSection() {
           animate="visible"
           variants={fadeUp}
           custom={0}
+          aria-hidden="true"
         >
           <p className="font-mono text-sm text-primary">{"// contact"}</p>
           <motion.h2
-            className="mt-2 text-3xl font-bold tracking-tight text-muted-foreground/20 md:text-5xl"
+            className="mt-2 text-3xl font-bold tracking-tight text-muted-foreground/30 md:text-5xl"
             initial="hidden"
             animate="visible"
             variants={fadeUp}
@@ -139,7 +140,7 @@ export function ContactSection() {
             {t("title")}
           </motion.h2>
           <motion.p
-            className="mt-3 text-lg text-muted-foreground/15"
+            className="mt-3 text-lg text-muted-foreground/30"
             initial="hidden"
             animate="visible"
             variants={fadeUp}
@@ -193,7 +194,7 @@ export function ContactSection() {
           initial={{ opacity: 0, y: -10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 2.2, duration: 0.5 }}
-          className="absolute top-8 flex items-center gap-2 text-sm text-muted-foreground/50"
+          className="absolute top-8 flex items-center gap-2 text-sm text-muted-foreground"
         >
           <IconGripVertical size={16} className="rotate-90" />
           <span>{t("dragHint")}</span>
