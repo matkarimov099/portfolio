@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "motion/react";
+import { useTranslations } from "next-intl";
 import { usePresence } from "@/shared/context/PresenceContext";
 
 interface Props {
@@ -9,6 +10,7 @@ interface Props {
 }
 
 export function OnlineCounter({ className = "", showLabel = true }: Props) {
+  const t = useTranslations("presence");
   const { onlineCount, isConnected } = usePresence();
 
   if (!isConnected) {
@@ -37,7 +39,7 @@ export function OnlineCounter({ className = "", showLabel = true }: Props) {
         >
           {onlineCount}
         </motion.span>
-        {showLabel && <span className="ml-1">online</span>}
+        {showLabel && <span className="ml-1">{t("online")}</span>}
       </span>
     </motion.div>
   );

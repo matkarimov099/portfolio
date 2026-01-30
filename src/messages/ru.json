@@ -111,6 +111,9 @@
     "github": "GitHub",
     "chat": "Чат"
   },
+  "presence": {
+    "online": "онлайн"
+  },
   "footer": {
     "builtWith": "Создано с Next.js и TypeScript",
     "copyright": "© {year} Маткарим. Все права защищены.",

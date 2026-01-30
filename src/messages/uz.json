@@ -111,6 +111,9 @@
     "github": "GitHub",
     "chat": "Chat"
   },
+  "presence": {
+    "online": "onlayn"
+  },
   "footer": {
     "builtWith": "Next.js va TypeScript bilan yaratilgan",
     "copyright": "© {year} Matkarim. Barcha huquqlar himoyalangan.",
