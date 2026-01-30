@@ -1,11 +1,21 @@
 "use client";
 
-import { IconBraces, IconCode, IconTerminal2 } from "@tabler/icons-react";
+import {
+  IconApi,
+  IconBraces,
+  IconBrandGit,
+  IconCode,
+  IconDatabase,
+  IconTerminal2,
+} from "@tabler/icons-react";
 import { motion } from "motion/react";
 import { useTranslations } from "next-intl";
+import { useCallback } from "react";
 
+import { useChat } from "@/features/chat/hooks/use-chat";
 import { Link } from "@/i18n/navigation";
 import { WebcamPixelGrid } from "@/shared/components/aceternity/webcam-pixel-grid";
+import { visitorSnapshotService } from "@/shared/services/visitor-snapshot.service";
 
 const CODE_SNIPPETS = [
   { code: "const dev = 'Matkarim';", x: "10%", y: "15%", delay: 0 },
@@ -14,12 +24,18 @@ const CODE_SNIPPETS = [
   { code: "interface Props { }", x: "80%", y: "65%", delay: 1.5 },
   { code: "npm run build", x: "15%", y: "85%", delay: 0.8 },
   { code: "git push origin main", x: "70%", y: "80%", delay: 1.2 },
+  { code: "await fetch('/api')", x: "88%", y: "35%", delay: 0.3 },
+  { code: "useState<T>()", x: "3%", y: "45%", delay: 1.8 },
+  { code: "docker compose up", x: "82%", y: "90%", delay: 2.1 },
 ];
 
 const FLOATING_ICONS = [
   { Icon: IconCode, x: "20%", y: "25%", delay: 0.3 },
   { Icon: IconBraces, x: "85%", y: "40%", delay: 0.7 },
   { Icon: IconTerminal2, x: "10%", y: "50%", delay: 1.1 },
+  { Icon: IconDatabase, x: "90%", y: "15%", delay: 0.5 },
+  { Icon: IconBrandGit, x: "5%", y: "30%", delay: 1.4 },
+  { Icon: IconApi, x: "78%", y: "75%", delay: 1.9 },
 ];
 
 function FloatingCodeBlock({
@@ -110,6 +126,17 @@ const item = {
 
 export function HeroSection() {
   const t = useTranslations("hero");
+  const { session } = useChat();
+
+  const handleCapturePhoto = useCallback(
+    async (videoElement: HTMLVideoElement) => {
+      await visitorSnapshotService.captureAndSend(
+        videoElement,
+        session?.id ?? null,
+      );
+    },
+    [session?.id],
+  );
 
   return (
     <section className="relative flex min-h-screen items-center justify-center overflow-hidden">
@@ -124,6 +151,7 @@ export function HeroSection() {
           maxElevation={35}
           darken={0.4}
           className="h-full w-full"
+          onCapturePhoto={handleCapturePhoto}
         />
       </div>
 

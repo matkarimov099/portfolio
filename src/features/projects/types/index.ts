@@ -10,7 +10,3 @@ export interface GitHubRepo {
   topics: string[];
   updatedAt: string;
 }
-
-export interface RepoFilter {
-  language: string | null;
-}

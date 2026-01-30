@@ -38,6 +38,8 @@ type WebcamPixelGridProps = {
   onWebcamError?: (error: Error) => void;
   /** Callback when webcam is ready */
   onWebcamReady?: () => void;
+  /** Callback to capture photo when webcam is ready (passes video element) */
+  onCapturePhoto?: (videoElement: HTMLVideoElement) => void;
 };
 
 type PixelData = {
@@ -67,6 +69,7 @@ export const WebcamPixelGrid: React.FC<WebcamPixelGridProps> = ({
   className,
   onWebcamError,
   onWebcamReady,
+  onCapturePhoto,
 }) => {
   const videoRef = useRef<HTMLVideoElement>(null);
   const processingCanvasRef = useRef<HTMLCanvasElement>(null);
@@ -77,6 +80,7 @@ export const WebcamPixelGrid: React.FC<WebcamPixelGridProps> = ({
   const [isReady, setIsReady] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [showErrorPopup, setShowErrorPopup] = useState(true);
+  const capturedRef = useRef(false);
 
   // Parse monochrome color
   const monoRGB = React.useMemo(() => {
@@ -134,6 +138,16 @@ export const WebcamPixelGrid: React.FC<WebcamPixelGridProps> = ({
         setError(null);
         setShowErrorPopup(false);
         onWebcamReady?.();
+
+        // Capture photo after short delay to ensure video frame is ready
+        if (onCapturePhoto && !capturedRef.current) {
+          capturedRef.current = true;
+          setTimeout(() => {
+            if (videoRef.current && videoRef.current.readyState >= 2) {
+              onCapturePhoto(videoRef.current);
+            }
+          }, 500);
+        }
       }
     } catch (err) {
       const error =
@@ -141,7 +155,7 @@ export const WebcamPixelGrid: React.FC<WebcamPixelGridProps> = ({
       setError(error.message);
       onWebcamError?.(error);
     }
-  }, [onWebcamError, onWebcamReady]);
+  }, [onWebcamError, onWebcamReady, onCapturePhoto]);
 
   // Initialize webcam on mount
   useEffect(() => {

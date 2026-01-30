@@ -31,7 +31,11 @@ export function AboutSection() {
           variants={fadeUp}
         >
           <TypewriterEffect
-            words={[{ text: t("title") }]}
+            words={t("title")
+              .split(" ")
+              .map((word) => ({
+                text: word,
+              }))}
             className="text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight"
             cursorClassName="bg-primary h-5 md:h-7"
           />

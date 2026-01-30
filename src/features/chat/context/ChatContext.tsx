@@ -86,6 +86,14 @@ export function ChatProvider({ children }: { children: ReactNode }) {
     localStorage.setItem(SESSION_KEY, newSession.id);
     setSession(newSession);
     setMessages([]);
+
+    // Snapshot bilan bog'lash (agar mavjud bo'lsa)
+    fetch("/api/visitor-snapshot/link-session", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ sessionId: newSession.id }),
+    }).catch(() => {});
+
     return newSession;
   }, []);
 

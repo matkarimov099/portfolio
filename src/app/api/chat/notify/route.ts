@@ -3,16 +3,26 @@ import { NextResponse } from "next/server";
 const TELEGRAM_BOT_TOKEN = process.env.TELEGRAM_BOT_TOKEN ?? "";
 const TELEGRAM_CHAT_ID = process.env.TELEGRAM_CHAT_ID ?? "";
 
+// Session ID dan qisqa hash yaratish (rasm bilan solishtirish uchun)
+function getSessionHash(sessionId: string): string {
+  return sessionId.slice(0, 8).toUpperCase();
+}
+
 export async function POST(request: Request) {
   try {
-    const { sessionId, visitorName, message, device, os, browser } =
+    const { sessionId, visitorName, message, device, os } =
       await request.json();
 
-    const deviceInfo =
-      [device, browser, os].filter(Boolean).join(" • ") || "Desktop";
+    // IP address olish
+    const forwardedFor = request.headers.get("x-forwarded-for");
+    const ip = forwardedFor?.split(",")[0]?.trim() || "Unknown";
+
+    const sessionHash = getSessionHash(sessionId);
+    const deviceInfo = [device, os].filter(Boolean).join(" • ") || "Desktop";
 
     const text = `🔔 <b>Yangi xabar</b>
 <tg-spoiler>🔑 ${sessionId} • 📱 ${deviceInfo}</tg-spoiler>
+🏷 <code>${sessionHash}</code> • 🌐 ${ip}
 
 👤 <b>${visitorName}</b>
 <blockquote>${message}</blockquote>`;
