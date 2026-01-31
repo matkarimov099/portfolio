@@ -1,5 +1,6 @@
 import { NextIntlClientProvider } from "next-intl";
 import { getMessages, setRequestLocale } from "next-intl/server";
+import { Toaster } from "sonner";
 import { JsonLd } from "@/components/seo";
 import { Providers } from "@/core/providers";
 import { ChatProvider, ChatWidget } from "@/features/chat";
@@ -45,6 +46,19 @@ export default async function LocaleLayout({
               <SocialDock />
               <LanguageSwitcher />
               <ChatWidget />
+              <Toaster
+                position="top-center"
+                richColors
+                closeButton
+                duration={4000}
+                toastOptions={{
+                  classNames: {
+                    toast: "font-sans",
+                    title: "text-foreground",
+                    description: "text-muted-foreground",
+                  },
+                }}
+              />
               {/* Online counter - chap yuqori burchak */}
               <div className="fixed left-4 top-4 z-40 rounded-full border border-white/10 bg-background/80 px-3 py-1.5 backdrop-blur-sm">
                 <OnlineCounter />

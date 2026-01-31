@@ -4,25 +4,76 @@ import { IconMessageCircle } from "@tabler/icons-react";
 import { motion } from "motion/react";
 import { useTranslations } from "next-intl";
 import { type FormEvent, useState } from "react";
+import { toast } from "sonner";
 
 interface Props {
   onStart: (name: string) => Promise<unknown>;
+}
+
+// Taqiqlangan belgilar
+const FORBIDDEN_CHARS = /[,.;":/\\|`_*@#%&()^!-]/g;
+
+// Ism validatsiyasi
+function validateName(name: string): { valid: boolean; error?: string } {
+  const trimmedName = name.trim();
+
+  // Bo'sh yoki juda qisqa
+  if (trimmedName.length < 3) {
+    return {
+      valid: false,
+      error: "Ism kamida 3 ta belgidan iborat bo'lishi kerak",
+    };
+  }
+
+  // Maxsus belgilar tekshiruvi
+  if (FORBIDDEN_CHARS.test(trimmedName)) {
+    return {
+      valid: false,
+      error:
+        'Ismda quyidagi belgilardan foydalanish mumkin emas: , . ; " : / \\ | ` - _ * @ # % & ( ) ^ !',
+    };
+  }
+
+  return { valid: true };
 }
 
 export function StartChatForm({ onStart }: Props) {
   const t = useTranslations("chat");
   const [name, setName] = useState("");
   const [isStarting, setIsStarting] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
-    if (!name.trim() || isStarting) return;
+    const trimmedName = name.trim();
 
+    if (!trimmedName || isStarting) return;
+
+    // Validatsiya
+    const validation = validateName(trimmedName);
+    if (!validation.valid) {
+      setError(validation.error || "Ism noto'g'ri kiritildi");
+      toast.error(validation.error || "Ism noto'g'ri kiritildi");
+      return;
+    }
+
+    setError(null);
     setIsStarting(true);
     try {
-      await onStart(name.trim());
+      await onStart(trimmedName);
     } finally {
       setIsStarting(false);
+    }
+  };
+
+  // Real-time validatsiya
+  const handleNameChange = (value: string) => {
+    setName(value);
+    if (error) {
+      const validation = validateName(value.trim());
+      if (validation.valid) {
+        setError(null);
+      }
     }
   };
 
@@ -58,11 +109,18 @@ export function StartChatForm({ onStart }: Props) {
           <input
             type="text"
             value={name}
-            onChange={(e) => setName(e.target.value)}
+            onChange={(e) => handleNameChange(e.target.value)}
             placeholder={t("namePlaceholder")}
             disabled={isStarting}
-            className="w-full rounded-2xl border border-white/10 bg-white/5 px-5 py-4 text-center text-base text-foreground placeholder:text-muted-foreground focus:border-primary focus:bg-white/10 focus:outline-none focus:ring-2 focus:ring-primary/20 disabled:opacity-50"
+            className={`w-full rounded-2xl border px-5 py-4 text-center text-base text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 disabled:opacity-50 transition-all ${
+              error
+                ? "border-red-500/50 bg-red-500/5 focus:border-red-500 focus:ring-red-500/20"
+                : "border-white/10 bg-white/5 focus:border-primary focus:bg-white/10 focus:ring-primary/20"
+            }`}
           />
+          {error && (
+            <p className="mt-2 text-xs text-red-400 text-center">{error}</p>
+          )}
         </div>
         <button
           type="submit"
