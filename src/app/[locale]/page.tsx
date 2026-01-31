@@ -9,19 +9,19 @@ type Props = {
 
 const seoData: Record<Locale, { title: string; description: string }> = {
   en: {
-    title: "Matkarim Matkarimov | Full Stack Developer",
+    title: "Matkarimov Matkarim | Full Stack Developer Uzbekistan",
     description:
-      "Full Stack Developer with 6+ years of experience building production-grade web applications with React, Next.js, and TypeScript",
+      "Matkarimov Matkarim (Matkarim Matkarimov) - Full Stack Developer from Uzbekistan with 6+ years of experience. Expert in React, Next.js, TypeScript, Node.js, PostgreSQL. Building modern web applications at UNICON-SOFT, Tashkent.",
   },
   ru: {
-    title: "Маткарим Маткаримов | Full Stack разработчик",
+    title: "Маткаримов Маткарим | Full Stack разработчик Узбекистан",
     description:
-      "Full Stack разработчик с опытом 6+ лет в создании продакшн-уровневых веб-приложений на React, Next.js и TypeScript",
+      "Маткаримов Маткарим (Маткарим Маткаримов) - Full Stack разработчик из Узбекистана с опытом 6+ лет. Эксперт в React, Next.js, TypeScript, Node.js, PostgreSQL. Разработка современных веб-приложений в UNICON-SOFT, Ташкент.",
   },
   uz: {
-    title: "Matkarim Matkarimov | Full Stack dasturchi",
+    title: "Matkarimov Matkarim | Full Stack dasturchi O'zbekiston",
     description:
-      "6+ yillik tajribaga ega Full Stack dasturchi — React, Next.js va TypeScript bilan production darajadagi veb-ilovalar yarataman",
+      "Matkarimov Matkarim (Matkarim Matkarimov) - O'zbekistondan 6+ yillik tajribaga ega Full Stack dasturchi. React, Next.js, TypeScript, Node.js, PostgreSQL bo'yicha ekspert. Zamonaviy veb-ilovalar ishlab chiqish, UNICON-SOFT, Toshkent.",
   },
 };
 

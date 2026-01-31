@@ -24,9 +24,10 @@ export const localeNames: Record<Locale, string> = {
 
 export const seoConfig = {
   siteName: "Matkarim Matkarimov",
-  siteNameShort: "Matkarim",
+  siteNameShort: "Matkarimov Matkarim",
   author: {
     name: "Matkarim Matkarimov",
+    alternateName: "Matkarimov Matkarim",
     url: BASE_URL,
     email: "matkarimov1099@gmail.com",
     jobTitle: "Full Stack Developer",
@@ -42,14 +43,33 @@ export const seoConfig = {
     backgroundColor: "#09090b",
   },
   keywords: [
+    // Asosiy ism variantlari
+    "Matkarimov Matkarim",
+    "Matkarim Matkarimov",
+    "Matkarimov",
+    "Matkarim",
+    // Lavozim
     "Full Stack Developer",
+    "Full Stack Developer Uzbekistan",
     "React Developer",
     "Next.js Developer",
-    "TypeScript",
+    "TypeScript Developer",
     "Frontend Developer",
-    "Matkarim Matkarimov",
-    "Web Developer Uzbekistan",
-    "Node.js Developer",
+    "Backend Developer",
+    "Web Developer",
+    // Texnologiyalar
+    "React",
+    "Next.js",
+    "TypeScript",
+    "Node.js",
+    "JavaScript",
+    "PostgreSQL",
+    // Joylashuv
     "Tashkent Developer",
+    "Uzbekistan Developer",
+    "Web Developer Uzbekistan",
+    "Software Engineer Uzbekistan",
+    // Kompaniya
+    "UNICON-SOFT",
   ],
 } as const;

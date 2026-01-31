@@ -10,9 +10,9 @@ export const metadata: Metadata = {
   metadataBase: new URL(BASE_URL),
   title: {
     default: `${seoConfig.siteName} | ${seoConfig.author.jobTitle}`,
-    template: `%s | ${seoConfig.siteNameShort}`,
+    template: `%s | ${seoConfig.author.name}`,
   },
-  description: `${seoConfig.author.jobTitle} with 6+ years of experience building production-grade web applications with React, Next.js, TypeScript, and Node.js`,
+  description: `Official portfolio of ${seoConfig.author.name} (${seoConfig.author.alternateName}) - ${seoConfig.author.jobTitle} from Uzbekistan. 6+ years building production-grade web applications with React, Next.js, TypeScript, Node.js, and PostgreSQL. Currently working at UNICON-SOFT.`,
   keywords: [...seoConfig.keywords],
   authors: [{ name: seoConfig.author.name, url: seoConfig.author.url }],
   creator: seoConfig.author.name,
@@ -28,21 +28,21 @@ export const metadata: Metadata = {
     alternateLocale: ["ru_RU", "uz_UZ"],
     url: BASE_URL,
     siteName: seoConfig.siteName,
-    title: `${seoConfig.siteName} | ${seoConfig.author.jobTitle}`,
-    description: `${seoConfig.author.jobTitle} with 6+ years of experience in React, Next.js, TypeScript`,
+    title: `${seoConfig.author.name} | ${seoConfig.author.jobTitle}`,
+    description: `${seoConfig.author.name} - Full Stack Developer from Uzbekistan. Expert in React, Next.js, TypeScript, Node.js, PostgreSQL. Building modern web applications.`,
     images: [
       {
         url: "/og/default.png",
         width: 1200,
         height: 630,
-        alt: `${seoConfig.siteName} - ${seoConfig.author.jobTitle}`,
+        alt: `${seoConfig.author.name} - ${seoConfig.author.jobTitle}`,
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: `${seoConfig.siteName} | ${seoConfig.author.jobTitle}`,
-    description: `${seoConfig.author.jobTitle} with 6+ years of experience in React, Next.js, TypeScript`,
+    title: `${seoConfig.author.name} | ${seoConfig.author.jobTitle}`,
+    description: `Full Stack Developer from Uzbekistan. Expert in React, Next.js, TypeScript, Node.js, PostgreSQL. Building modern web applications.`,
     images: ["/og/default.png"],
   },
   robots: {

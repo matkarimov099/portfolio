@@ -9,9 +9,11 @@ export function generatePersonSchema() {
     "@type": "Person",
     "@id": `${BASE_URL}/#person`,
     name: seoConfig.author.name,
+    alternateName: seoConfig.author.alternateName,
     url: BASE_URL,
     email: seoConfig.author.email,
     jobTitle: seoConfig.author.jobTitle,
+    description: `${seoConfig.author.name} - ${seoConfig.author.jobTitle} from Uzbekistan. Expert in React, Next.js, TypeScript, Node.js. Currently working at UNICON-SOFT.`,
     sameAs: [
       seoConfig.social.github,
       seoConfig.social.linkedin,
@@ -27,6 +29,10 @@ export function generatePersonSchema() {
       "PostgreSQL",
       "Full Stack Development",
       "Frontend Development",
+      "Backend Development",
+      "Web Development",
+      "REST APIs",
+      "PostgreSQL",
     ],
     alumniOf: {
       "@type": "CollegeOrUniversity",
@@ -46,6 +52,11 @@ export function generatePersonSchema() {
         addressCountry: "UZ",
       },
     },
+    address: {
+      "@type": "PostalAddress",
+      addressLocality: "Tashkent",
+      addressCountry: "Uzbekistan",
+    },
   };
 }
 
@@ -59,12 +70,17 @@ export function generateWebSiteSchema() {
     "@id": `${BASE_URL}/#website`,
     url: BASE_URL,
     name: seoConfig.siteName,
-    description:
-      "Full Stack Developer portfolio showcasing projects and expertise",
+    alternateName: seoConfig.siteNameShort,
+    description: `Official portfolio website of ${seoConfig.author.name}, ${seoConfig.author.jobTitle} from Uzbekistan. Expertise in React, Next.js, TypeScript, Node.js, and PostgreSQL.`,
     publisher: {
       "@id": `${BASE_URL}/#person`,
     },
     inLanguage: ["en", "ru", "uz"],
+    potentialAction: {
+      "@type": "SearchAction",
+      target: `${BASE_URL}/search?q={search_term_string}`,
+      "query-input": "required name=search_term_string",
+    },
   };
 }
 

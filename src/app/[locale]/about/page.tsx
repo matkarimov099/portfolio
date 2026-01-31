@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
 import { setRequestLocale } from "next-intl/server";
+import { JsonLd } from "@/components/seo";
 import { AboutSection } from "@/features/about";
 import { BASE_URL, type Locale } from "@/lib/seo/config";
+import { generateProfilePageSchema } from "@/lib/seo/structured-data";
 
 type Props = {
   params: Promise<{ locale: string }>;
@@ -9,19 +11,19 @@ type Props = {
 
 const seoData: Record<Locale, { title: string; description: string }> = {
   en: {
-    title: "About Me",
+    title: "About Matkarimov Matkarim - Full Stack Developer",
     description:
-      "Learn about Matkarim Matkarimov - Full Stack Developer with 6+ years of experience. Skills, education, and professional journey.",
+      "About Matkarim Matkarimov (Matkarimov Matkarim) - Full Stack Developer from Uzbekistan with 6+ years of experience. Expert in React, Next.js, TypeScript, Node.js. Graduate of TUIT, currently working at UNICON-SOFT in Tashkent.",
   },
   ru: {
-    title: "Обо мне",
+    title: "О Маткаримове Маткариме - Full Stack разработчик",
     description:
-      "Узнайте о Маткариме Маткаримове - Full Stack разработчик с опытом 6+ лет. Навыки, образование и профессиональный путь.",
+      "О Маткариме Маткаримове - Full Stack разработчик из Узбекистана с опытом 6+ лет. Эксперт в React, Next.js, TypeScript, Node.js. Выпускник ТУИТ, работает в UNICON-SOFT в Ташкенте.",
   },
   uz: {
-    title: "Men haqimda",
+    title: "Matkarimov Matkarim haqida - Full Stack dasturchi",
     description:
-      "Matkarim Matkarimov haqida - 6+ yillik tajribaga ega Full Stack dasturchi. Ko'nikmalar, ta'lim va professional yo'l.",
+      "Matkarim Matkarimov (Matkarimov Matkarim) haqida - O'zbekistondan 6+ yillik tajribaga ega Full Stack dasturchi. React, Next.js, TypeScript, Node.js bo'yicha ekspert. TUIT bitiruvchisi, Toshkentda UNICON-SOFTda ishlaydi.",
   },
 };
 
@@ -60,6 +62,7 @@ export default async function AboutPage({ params }: Props) {
 
   return (
     <main className="pt-10">
+      <JsonLd data={generateProfilePageSchema(locale)} />
       <AboutSection />
     </main>
   );
