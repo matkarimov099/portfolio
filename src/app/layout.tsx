@@ -30,20 +30,11 @@ export const metadata: Metadata = {
     siteName: seoConfig.siteName,
     title: `${seoConfig.author.name} | ${seoConfig.author.jobTitle}`,
     description: `${seoConfig.author.name} - Full Stack Developer from Uzbekistan. Expert in React, Next.js, TypeScript, Node.js, PostgreSQL. Building modern web applications.`,
-    images: [
-      {
-        url: "/og/default.png",
-        width: 1200,
-        height: 630,
-        alt: `${seoConfig.author.name} - ${seoConfig.author.jobTitle}`,
-      },
-    ],
   },
   twitter: {
     card: "summary_large_image",
     title: `${seoConfig.author.name} | ${seoConfig.author.jobTitle}`,
     description: `Full Stack Developer from Uzbekistan. Expert in React, Next.js, TypeScript, Node.js, PostgreSQL. Building modern web applications.`,
-    images: ["/og/default.png"],
   },
   robots: {
     index: true,
@@ -79,8 +70,6 @@ export default function RootLayout({
     <html lang="en" className="dark" suppressHydrationWarning>
       <head>
         <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
-        {/* Placeholder - Next.js metadata orqali override qilinadi */}
-        <title>Matkarim | Full Stack Developer</title>
       </head>
       <body className="font-sans antialiased">
         {children}

@@ -29,12 +29,11 @@ export function generatePageMetadata({
   description,
   path,
   locale,
-  image = "/og/default.png",
+  image,
   type = "website",
   noindex = false,
 }: GenerateMetadataOptions): Metadata {
   const url = `${BASE_URL}/${locale}${path}`;
-  const imageUrl = image.startsWith("http") ? image : `${BASE_URL}${image}`;
 
   // Hreflang uchun barcha til variantlari
   const languages: Record<string, string> = {};
@@ -43,7 +42,7 @@ export function generatePageMetadata({
   }
   languages["x-default"] = `${BASE_URL}/${defaultLocale}${path}`;
 
-  return {
+  const metadata: Metadata = {
     title,
     description,
     alternates: {
@@ -57,25 +56,31 @@ export function generatePageMetadata({
       siteName: seoConfig.siteName,
       locale: ogLocaleMap[locale],
       type,
-      images: [
-        {
-          url: imageUrl,
-          width: 1200,
-          height: 630,
-          alt: title,
-        },
-      ],
     },
     twitter: {
       card: "summary_large_image",
       title,
       description,
-      images: [imageUrl],
     },
     robots: noindex
       ? { index: false, follow: false }
       : { index: true, follow: true },
   };
+
+  // Agar maxsus rasm berilgan bo'lsa, qo'shish
+  if (image) {
+    const imageUrl = image.startsWith("http") ? image : `${BASE_URL}${image}`;
+    metadata.openGraph = {
+      ...metadata.openGraph,
+      images: [{ url: imageUrl, width: 1200, height: 630, alt: title }],
+    };
+    metadata.twitter = {
+      ...metadata.twitter,
+      images: [imageUrl],
+    };
+  }
+
+  return metadata;
 }
 
 // Default locale import qilish uchun

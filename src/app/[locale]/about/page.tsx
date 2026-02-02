@@ -2,7 +2,8 @@ import type { Metadata } from "next";
 import { setRequestLocale } from "next-intl/server";
 import { JsonLd } from "@/components/seo";
 import { AboutSection } from "@/features/about";
-import { BASE_URL, type Locale } from "@/lib/seo/config";
+import type { Locale } from "@/lib/seo/config";
+import { generatePageMetadata } from "@/lib/seo/metadata";
 import { generateProfilePageSchema } from "@/lib/seo/structured-data";
 
 type Props = {
@@ -31,29 +32,14 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { locale } = await params;
   const loc = locale as Locale;
   const data = seoData[loc] || seoData.en;
-  const path = "/about";
-  const url = `${BASE_URL}/${locale}${path}`;
 
-  return {
+  return generatePageMetadata({
     title: data.title,
     description: data.description,
-    alternates: {
-      canonical: url,
-      languages: {
-        en: `${BASE_URL}/en${path}`,
-        ru: `${BASE_URL}/ru${path}`,
-        uz: `${BASE_URL}/uz${path}`,
-        "x-default": `${BASE_URL}/en${path}`,
-      },
-    },
-    openGraph: {
-      title: data.title,
-      description: data.description,
-      url,
-      type: "profile",
-      locale: locale === "ru" ? "ru_RU" : locale === "uz" ? "uz_UZ" : "en_US",
-    },
-  };
+    path: "/about",
+    locale: loc,
+    type: "profile",
+  });
 }
 
 export default async function AboutPage({ params }: Props) {
