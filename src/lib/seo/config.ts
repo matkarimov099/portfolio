@@ -48,7 +48,12 @@ export const seoConfig = {
     "Matkarim Matkarimov",
     "Matkarimov",
     "Matkarim",
+    "MuhammadKarim",
+    "Muhammadkarim",
     // Lavozim
+    "Full Stack Dasturchi",
+    "Dasturchi",
+    "Dasturlash",
     "Full Stack Developer",
     "Full Stack Developer Uzbekistan",
     "React Developer",
@@ -66,10 +71,15 @@ export const seoConfig = {
     "PostgreSQL",
     // Joylashuv
     "Tashkent Developer",
+    "Urgench Developer",
+    "Khorezm Developer",
     "Uzbekistan Developer",
     "Web Developer Uzbekistan",
     "Software Engineer Uzbekistan",
     // Kompaniya
     "UNICON-SOFT",
+    "ITFORLEAD",
+    "IT-FORELEAD",
+    "UNIVERSITY",
   ],
 } as const;
