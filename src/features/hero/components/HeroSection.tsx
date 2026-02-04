@@ -7,6 +7,7 @@ import {
   IconCamera,
   IconCameraOff,
   IconCode,
+  IconCube,
   IconDatabase,
   IconTerminal2,
   IconX,
@@ -301,6 +302,17 @@ export function HeroSection() {
           >
             <IconTerminal2 size={16} />
             {t("contactMe")}
+          </Link>
+          <Link
+            href="/mind-world"
+            className="group relative inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-purple-600 via-pink-600 to-blue-600 px-6 py-3 text-sm font-semibold text-white transition-all hover:shadow-lg hover:shadow-purple-500/30 hover:scale-105"
+          >
+            <IconCube size={16} aria-hidden="true" className="animate-pulse" />
+            {t("explore3D")}
+            <span className="absolute -right-1 -top-1 flex h-3 w-3">
+              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-purple-400 opacity-75" />
+              <span className="relative inline-flex h-3 w-3 rounded-full bg-purple-500" />
+            </span>
           </Link>
         </motion.div>
       </motion.div>

@@ -5,7 +5,8 @@
     "role": "Full Stack разработчик",
     "description": "6+ лет опыта в создании продакшн-уровневых веб-приложений на React, Next.js и TypeScript",
     "viewProjects": "Мои проекты",
-    "contactMe": "Связаться"
+    "contactMe": "Связаться",
+    "explore3D": "3D Портфолио"
   },
   "about": {
     "title": "Обо мне",
@@ -126,5 +127,87 @@
     "enableDescription": "Включите камеру для интерактивного фонового эффекта",
     "enableButton": "Включить камеру",
     "accessRequired": "Требуется доступ к камере"
+  },
+  "mindWorld": {
+    "title": "Мир разработчика",
+    "subtitle": "3D портфолио",
+    "loading": "Загрузка нейронных путей...",
+    "controls": {
+      "move": "Движение",
+      "jump": "Прыжок",
+      "sprint": "Бег",
+      "interact": "Взаимодействие",
+      "pause": "Пауза"
+    },
+    "zones": {
+      "synapseHub": "Центр синапсов",
+      "synapseHubDesc": "Центральная нейронная сеть - командный центр вашего разума",
+      "memoryLane": "Аллея памяти",
+      "memoryLaneDesc": "Пройдите по карьерному пути с 2018 по настоящее время",
+      "skillConstellation": "Созвездие навыков",
+      "skillConstellationDesc": "Собирайте звёзды навыков в космическом пространстве",
+      "projectGallery": "Галерея проектов",
+      "projectGalleryDesc": "Исследуйте проекты как голографические дисплеи",
+      "connectionPort": "Порт связи",
+      "connectionPortDesc": "Связь с внешним миром через нейронные связи",
+      "chatNeuron": "Нейрон чата",
+      "chatNeuronDesc": "Общение через мысленные импульсы",
+      "statsObservatory": "Обсерватория статистики",
+      "statsObservatoryDesc": "Просмотр статистики GitHub сверху"
+    },
+    "achievements": {
+      "title": "Достижения",
+      "explorer": "Исследователь",
+      "explorerDesc": "Посетите все 7 зон",
+      "collector": "Коллекционер",
+      "collectorDesc": "Соберите все 18 звёзд навыков",
+      "timeTraveler": "Путешественник во времени",
+      "timeTravelerDesc": "Пройдите Аллею памяти",
+      "socialButterfly": "Социальная бабочка",
+      "socialButterflyDesc": "Найдите все 5 порталов контактов",
+      "curiousMind": "Любопытный ум",
+      "curiousMindDesc": "Найдите 5 скрытых секретов",
+      "stargazer": "Звездочёт",
+      "stargazerDesc": "Завершите Созвездие навыков",
+      "speedDemon": "Скоростной демон",
+      "speedDemonDesc": "Достигните 60+ СВМ в испытании печати",
+      "bugHunter": "Охотник за багами",
+      "bugHunterDesc": "Поймайте 50 багов",
+      "memoryMaster": "Мастер памяти",
+      "memoryMasterDesc": "Завершите игру Memory Match",
+      "codeWizard": "Волшебник кода",
+      "codeWizardDesc": "Решите все головоломки с кодом"
+    },
+    "skills": {
+      "title": "Инвентарь навыков",
+      "collected": "собрано",
+      "frontend": "Frontend разработка",
+      "state": "Управление состоянием",
+      "backend": "Backend и DevOps",
+      "tools": "Инструменты и дизайн"
+    },
+    "pause": {
+      "title": "Пауза",
+      "resume": "Продолжить",
+      "reset": "Сбросить прогресс",
+      "exit": "Выйти в портфолио",
+      "playTime": "Время игры"
+    },
+    "npc": {
+      "innerVoice": "Внутренний голос",
+      "innerVoiceGreeting": "Добро пожаловать в свой разум, исследователь.",
+      "robotAssistant": "Бот отладки",
+      "robotGreeting": "Бип-буп! Я могу помочь, если застрянете."
+    },
+    "tips": {
+      "tip1": "Используйте WASD для перемещения",
+      "tip2": "Нажмите ПРОБЕЛ для прыжка",
+      "tip3": "Удерживайте SHIFT для бега",
+      "tip4": "Кликните для осмотра",
+      "tip5": "Нажмите E для взаимодействия",
+      "tip6": "Собирайте звёзды навыков",
+      "tip7": "Посетите все 7 зон для достижений",
+      "tip8": "Проходите через порталы для путешествий"
+    }
   }
 }

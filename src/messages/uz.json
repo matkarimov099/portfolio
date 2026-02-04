@@ -5,7 +5,8 @@
     "role": "Full Stack dasturchi",
     "description": "6+ yillik tajriba — React, Next.js va TypeScript bilan production darajadagi veb-ilovalar yarataman",
     "viewProjects": "Loyihalarim",
-    "contactMe": "Bog'lanish"
+    "contactMe": "Bog'lanish",
+    "explore3D": "3D Portfolio"
   },
   "about": {
     "title": "Men haqimda",
@@ -126,5 +127,87 @@
     "enableDescription": "Interaktiv fon effekti uchun kamerani yoqing",
     "enableButton": "Kamerani yoqish",
     "accessRequired": "Kameraga ruxsat kerak"
+  },
+  "mindWorld": {
+    "title": "Dasturchi Aqli",
+    "subtitle": "3D Portfolio Tajribasi",
+    "loading": "Neyron yo'llar yuklanmoqda...",
+    "controls": {
+      "move": "Harakat",
+      "jump": "Sakrash",
+      "sprint": "Yugurish",
+      "interact": "Muloqot",
+      "pause": "Pauza"
+    },
+    "zones": {
+      "synapseHub": "Sinaps Markazi",
+      "synapseHubDesc": "Markaziy neyron tarmog'i - aql boshqaruv markazi",
+      "memoryLane": "Xotira Yo'li",
+      "memoryLaneDesc": "2018 dan hozirgacha karyera sayohati",
+      "skillConstellation": "Mahorat Yulduzlari",
+      "skillConstellationDesc": "Kosmik fazoda suzuvchi mahorat yulduzlarini yig'ing",
+      "projectGallery": "Loyihalar Galereyasi",
+      "projectGalleryDesc": "Loyihalarni holografik displey sifatida ko'ring",
+      "connectionPort": "Aloqa Porti",
+      "connectionPortDesc": "Tashqi dunyo bilan neyron aloqalar orqali bog'laning",
+      "chatNeuron": "Chat Neyroni",
+      "chatNeuronDesc": "Fikr impulslari orqali muloqot",
+      "statsObservatory": "Statistika Rasadxonasi",
+      "statsObservatoryDesc": "GitHub statistikasini yuqoridan ko'ring"
+    },
+    "achievements": {
+      "title": "Yutuqlar",
+      "explorer": "Sayohatchi",
+      "explorerDesc": "Barcha 7 zonani ziyorat qiling",
+      "collector": "Kolleksioner",
+      "collectorDesc": "Barcha 18 mahorat yulduzini yig'ing",
+      "timeTraveler": "Vaqt Sayohatchisi",
+      "timeTravelerDesc": "Xotira Yo'lini tugating",
+      "socialButterfly": "Ijtimoiy Kapalak",
+      "socialButterflyDesc": "Barcha 5 kontakt portalini toping",
+      "curiousMind": "Qiziquvchan Aql",
+      "curiousMindDesc": "5 ta yashirin sirni toping",
+      "stargazer": "Yulduzshunos",
+      "stargazerDesc": "Mahorat Yulduzlarini tugating",
+      "speedDemon": "Tezlik Jinni",
+      "speedDemonDesc": "Yozish sinovida 60+ SPM ga erishing",
+      "bugHunter": "Bug Ovchisi",
+      "bugHunterDesc": "50 ta bug ushlang",
+      "memoryMaster": "Xotira Ustasi",
+      "memoryMasterDesc": "Memory Match o'yinini tugating",
+      "codeWizard": "Kod Sehrgari",
+      "codeWizardDesc": "Barcha kod boshqotirmalarini yeching"
+    },
+    "skills": {
+      "title": "Mahorat Inventari",
+      "collected": "yig'ildi",
+      "frontend": "Frontend Dasturlash",
+      "state": "Holat Boshqaruvi",
+      "backend": "Backend va DevOps",
+      "tools": "Asboblar va Dizayn"
+    },
+    "pause": {
+      "title": "Pauzada",
+      "resume": "Davom etish",
+      "reset": "Progressni qaytarish",
+      "exit": "Portfolioga chiqish",
+      "playTime": "O'yin vaqti"
+    },
+    "npc": {
+      "innerVoice": "Ichki Ovoz",
+      "innerVoiceGreeting": "O'z aqlingizga xush kelibsiz, sayohatchi.",
+      "robotAssistant": "Debug Bot",
+      "robotGreeting": "Bip-bup! Qotib qolsangiz yordam beraman."
+    },
+    "tips": {
+      "tip1": "Harakat qilish uchun WASD tugmalarini ishlating",
+      "tip2": "Sakrash uchun PROBEL tugmasini bosing",
+      "tip3": "Yugurish uchun SHIFT tugmasini bosib turing",
+      "tip4": "Atrofga qarash uchun bosing",
+      "tip5": "Muloqot uchun E tugmasini bosing",
+      "tip6": "Mahorat yulduzlarini yig'ing",
+      "tip7": "Yutuqlarni ochish uchun barcha 7 zonani ziyorat qiling",
+      "tip8": "Zonalar orasida sayohat qilish uchun portallardan o'ting"
+    }
   }
 }

@@ -5,7 +5,8 @@
     "role": "Full Stack Developer",
     "description": "6+ years of experience building production-grade web applications with React, Next.js, and TypeScript",
     "viewProjects": "View Projects",
-    "contactMe": "Contact Me"
+    "contactMe": "Contact Me",
+    "explore3D": "3D Portfolio"
   },
   "about": {
     "title": "About Me",
@@ -126,5 +127,87 @@
     "enableDescription": "Enable camera for the interactive background effect",
     "enableButton": "Enable Camera",
     "accessRequired": "Camera access required"
+  },
+  "mindWorld": {
+    "title": "Developer's Mind",
+    "subtitle": "3D Portfolio Experience",
+    "loading": "Loading neural pathways...",
+    "controls": {
+      "move": "Move",
+      "jump": "Jump",
+      "sprint": "Sprint",
+      "interact": "Interact",
+      "pause": "Pause"
+    },
+    "zones": {
+      "synapseHub": "Synapse Hub",
+      "synapseHubDesc": "The central neural network - your mind's command center",
+      "memoryLane": "Memory Lane",
+      "memoryLaneDesc": "Walk through your career journey from 2018 to present",
+      "skillConstellation": "Skill Constellation",
+      "skillConstellationDesc": "Collect skill stars floating in cosmic space",
+      "projectGallery": "Project Gallery",
+      "projectGalleryDesc": "Explore your projects as holographic displays",
+      "connectionPort": "Connection Port",
+      "connectionPortDesc": "Connect with the outside world through neural links",
+      "chatNeuron": "Chat Neuron",
+      "chatNeuronDesc": "Communicate through thought impulses",
+      "statsObservatory": "Stats Observatory",
+      "statsObservatoryDesc": "View your GitHub statistics from above"
+    },
+    "achievements": {
+      "title": "Achievements",
+      "explorer": "Explorer",
+      "explorerDesc": "Visit all 7 zones",
+      "collector": "Collector",
+      "collectorDesc": "Collect all 18 skill stars",
+      "timeTraveler": "Time Traveler",
+      "timeTravelerDesc": "Complete the Memory Lane journey",
+      "socialButterfly": "Social Butterfly",
+      "socialButterflyDesc": "Discover all 5 contact portals",
+      "curiousMind": "Curious Mind",
+      "curiousMindDesc": "Find 5 hidden secrets",
+      "stargazer": "Stargazer",
+      "stargazerDesc": "Complete the Skill Constellation",
+      "speedDemon": "Speed Demon",
+      "speedDemonDesc": "Achieve 60+ WPM in Typing Challenge",
+      "bugHunter": "Bug Hunter",
+      "bugHunterDesc": "Catch 50 bugs",
+      "memoryMaster": "Memory Master",
+      "memoryMasterDesc": "Complete Memory Match game",
+      "codeWizard": "Code Wizard",
+      "codeWizardDesc": "Solve all code puzzles"
+    },
+    "skills": {
+      "title": "Skill Inventory",
+      "collected": "collected",
+      "frontend": "Frontend Development",
+      "state": "State Management",
+      "backend": "Backend & DevOps",
+      "tools": "Tools & Design"
+    },
+    "pause": {
+      "title": "Paused",
+      "resume": "Resume",
+      "reset": "Reset Progress",
+      "exit": "Exit to Portfolio",
+      "playTime": "Play Time"
+    },
+    "npc": {
+      "innerVoice": "Inner Voice",
+      "innerVoiceGreeting": "Welcome to your own mind, explorer.",
+      "robotAssistant": "Debug Bot",
+      "robotGreeting": "Beep boop! I can help you if you get stuck."
+    },
+    "tips": {
+      "tip1": "Use WASD to move around",
+      "tip2": "Press SPACE to jump",
+      "tip3": "Hold SHIFT to sprint",
+      "tip4": "Click to look around",
+      "tip5": "Press E to interact",
+      "tip6": "Collect skill stars to fill your inventory",
+      "tip7": "Visit all 7 zones to unlock achievements",
+      "tip8": "Walk through portals to travel between zones"
+    }
   }
 }
