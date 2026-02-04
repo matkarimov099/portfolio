@@ -99,29 +99,26 @@ export function ChatProvider({ children }: { children: ReactNode }) {
     };
   }, [session]);
 
-  const startSession = useCallback(
-    async (visitorName: string) => {
-      const newSession = await chatService.createSession({
-        visitor_name: visitorName,
-      });
-      localStorage.setItem(SESSION_KEY, newSession.id);
-      setSession(newSession);
-      setMessages([]);
+  const startSession = useCallback(async (visitorName: string) => {
+    const newSession = await chatService.createSession({
+      visitor_name: visitorName,
+    });
+    localStorage.setItem(SESSION_KEY, newSession.id);
+    setSession(newSession);
+    setMessages([]);
 
-      // Birinchi rasmni session bilan bog'lash (IP orqali)
-      fetch("/api/visitor-snapshot/link-session", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ sessionId: newSession.id }),
-      }).catch(() => {});
+    // Birinchi rasmni session bilan bog'lash (IP orqali)
+    fetch("/api/visitor-snapshot/link-session", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ sessionId: newSession.id }),
+    }).catch(() => {});
 
-      // TODO: Rasmga olish funksiyasi vaqtincha o'chirilgan
-      // captureForSession(newSession.id).catch(() => {});
+    // TODO: Rasmga olish funksiyasi vaqtincha o'chirilgan
+    // captureForSession(newSession.id).catch(() => {});
 
-      return newSession;
-    },
-    [],
-  );
+    return newSession;
+  }, []);
 
   const sendMessage = useCallback(
     async (message: string) => {

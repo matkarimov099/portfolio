@@ -18,6 +18,7 @@ import { useCallback, useRef, useState } from "react";
 import { Link } from "@/i18n/routing";
 import { WebcamPixelGrid } from "@/shared/components/aceternity/webcam-pixel-grid";
 import { useCamera } from "@/shared/context/CameraContext";
+
 // import { visitorSnapshotService } from "@/shared/services/visitor-snapshot.service"; // TODO: vaqtincha o'chirilgan
 
 const CODE_SNIPPETS = [
