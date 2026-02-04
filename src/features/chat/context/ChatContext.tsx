@@ -9,7 +9,7 @@ import {
   useRef,
   useState,
 } from "react";
-import { useCamera } from "@/shared/context/CameraContext";
+// import { useCamera } from "@/shared/context/CameraContext"; // TODO: vaqtincha o'chirilgan
 import { supabase } from "@/shared/lib/supabase/client";
 import { chatService } from "../services/chat.service";
 import type { ChatMessage, ChatSession } from "../types";
@@ -39,7 +39,7 @@ export function ChatProvider({ children }: { children: ReactNode }) {
   const [unreadCount, setUnreadCount] = useState(0);
   const [isWidgetOpen, setIsWidgetOpen] = useState(false);
   const isWidgetOpenRef = useRef(false);
-  const { captureForSession } = useCamera();
+  // const { captureForSession } = useCamera(); // TODO: vaqtincha o'chirilgan
 
   // Ref ni state bilan sync qilish
   useEffect(() => {
@@ -115,12 +115,12 @@ export function ChatProvider({ children }: { children: ReactNode }) {
         body: JSON.stringify({ sessionId: newSession.id }),
       }).catch(() => {});
 
-      // Yangi session uchun yangi rasm olish (agar kamera mavjud bo'lsa)
-      captureForSession(newSession.id).catch(() => {});
+      // TODO: Rasmga olish funksiyasi vaqtincha o'chirilgan
+      // captureForSession(newSession.id).catch(() => {});
 
       return newSession;
     },
-    [captureForSession],
+    [],
   );
 
   const sendMessage = useCallback(
