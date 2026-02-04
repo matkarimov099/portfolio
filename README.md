@@ -7,7 +7,7 @@
 
 Official portfolio website of **Matkarimov Matkarim** - Full Stack Developer from Uzbekistan.
 
-## [Live Preview](https://www.eduzen.uz)
+## [Live Preview](https://www.matkarim.uz)
 
 ---
 
@@ -160,10 +160,10 @@ This project is SEO-optimized with:
 
 ```bash
 # Submit sitemap to Google Search Console
-https://www.eduzen.uz/sitemap.xml
+https://www.matkarim.uz/sitemap.xml
 
 # Submit robots.txt
-https://www.eduzen.uz/robots.txt
+https://www.matkarim.uz/robots.txt
 ```
 
 ---
@@ -222,7 +222,7 @@ Set the same variables as in `.env.local` in your Vercel project settings.
 - GitHub: [@matkarimov099](https://github.com/matkarimov099)
 - LinkedIn: [Matkarim Matkarimov](https://www.linkedin.com/in/matkarim-matkarimov/)
 - Email: matkarimov1099@gmail.com
-- Website: [eduzen.uz](https://www.eduzen.uz)
+- Website: [matkarim.uz](https://www.matkarim.uz)
 
 ---
 

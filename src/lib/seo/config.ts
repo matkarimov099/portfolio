@@ -1,7 +1,7 @@
 // SEO Configuration - Markaziy sozlamalar
 // Domenni o'zgartirish uchun faqat BASE_URL ni o'zgartiring
 
-export const BASE_URL = "https://www.eduzen.uz";
+export const BASE_URL = "https://www.matkarim.uz";
 
 export const locales = ["en", "ru", "uz"] as const;
 export type Locale = (typeof locales)[number];
