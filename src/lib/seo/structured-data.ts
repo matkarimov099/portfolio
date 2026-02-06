@@ -101,8 +101,8 @@ export function generateProfilePageSchema(locale: string) {
     mainEntity: {
       "@id": `${BASE_URL}/#person`,
     },
-    dateCreated: "2024-01-01",
-    dateModified: new Date().toISOString().split("T")[0],
+    dateCreated: "2024-01-01T00:00:00Z",
+    dateModified: new Date().toISOString(),
     inLanguage: locale,
   };
 }
