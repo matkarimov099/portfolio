@@ -72,6 +72,7 @@ export default function RootLayout({
   return (
     <html lang="en" className="dark" suppressHydrationWarning>
       <head>
+        <meta name="yandex-verification" content="7860e7975d819b5f" />
         <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
       </head>
       <body className="font-sans antialiased">
