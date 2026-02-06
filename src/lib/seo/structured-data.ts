@@ -30,6 +30,7 @@ export function generatePersonSchema() {
       "Full Stack Development",
       "Frontend Development",
       "Backend Development",
+      "Software Engineering",
       "Web Development",
       "REST APIs",
       "PostgreSQL",

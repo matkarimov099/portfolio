@@ -6,7 +6,7 @@ export const NPC_CHARACTERS: NPCCharacter[] = [
     name: "Inner Voice",
     position: [0, 2, 5],
     rotation: [0, Math.PI, 0],
-    zone: "synapse-hub",
+    zone: "neon-plaza",
     dialogues: [
       {
         id: "iv-welcome",
@@ -28,7 +28,10 @@ export const NPC_CHARACTERS: NPCCharacter[] = [
         id: "iv-activities",
         text: "Explore zones, collect skill stars, play mini-games, and unlock achievements! There are secrets hidden throughout - can you find them all?",
         responses: [
-          { text: "Tell me about achievements", nextDialogueId: "iv-achievements" },
+          {
+            text: "Tell me about achievements",
+            nextDialogueId: "iv-achievements",
+          },
           { text: "What about mini-games?", nextDialogueId: "iv-games" },
         ],
       },
@@ -60,7 +63,7 @@ export const NPC_CHARACTERS: NPCCharacter[] = [
     name: "Debug Bot",
     position: [5, 1.5, 5],
     rotation: [0, -Math.PI / 4, 0],
-    zone: "synapse-hub",
+    zone: "neon-plaza",
     dialogues: [
       {
         id: "rb-greeting",

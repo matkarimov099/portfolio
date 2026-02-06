@@ -2,7 +2,9 @@
 
 import { useCallback } from "react";
 import { useWorldStore } from "../stores/world.store";
-import { useAchievementStore, checkCollectorAchievement } from "../stores/achievement.store";
+import {
+  checkCollectorAchievement,
+} from "../stores/achievement.store";
 import { SKILL_STARS, SKILL_COLLECTION_RADIUS } from "../constants/skills";
 
 export function useSkillCollection() {
@@ -19,7 +21,7 @@ export function useSkillCollection() {
 
         const [sx, sy, sz] = skill.position;
         const distance = Math.sqrt(
-          (px - sx) ** 2 + (py - sy) ** 2 + (pz - sz) ** 2
+          (px - sx) ** 2 + (py - sy) ** 2 + (pz - sz) ** 2,
         );
 
         if (distance <= SKILL_COLLECTION_RADIUS) {
@@ -31,7 +33,7 @@ export function useSkillCollection() {
 
       return null;
     },
-    [collectSkill, collectedSkills, isSkillCollected]
+    [collectSkill, collectedSkills, isSkillCollected],
   );
 
   const getUncollectedSkills = useCallback(() => {
@@ -40,7 +42,7 @@ export function useSkillCollection() {
 
   const getCollectedSkillsByCategory = useCallback(() => {
     const collected = SKILL_STARS.filter((skill) =>
-      collectedSkills.includes(skill.id)
+      collectedSkills.includes(skill.id),
     );
 
     return {

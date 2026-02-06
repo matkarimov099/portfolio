@@ -148,7 +148,9 @@ export function MusicPlayer() {
                     max="1"
                     step="0.01"
                     value={isMuted ? 0 : masterVolume}
-                    onChange={(e) => setMasterVolume(parseFloat(e.target.value))}
+                    onChange={(e) =>
+                      setMasterVolume(parseFloat(e.target.value))
+                    }
                     className="h-1 flex-1 cursor-pointer appearance-none rounded-full bg-gray-700 [&::-webkit-slider-thumb]:h-3 [&::-webkit-slider-thumb]:w-3 [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:bg-purple-500"
                   />
                   <span className="w-8 text-right text-xs text-gray-500">

@@ -34,7 +34,14 @@ export const MEMORY_STATIONS: MemoryStation[] = [
     description:
       "Significant professional growth. Mastered modern frontend technologies, worked on complex projects, and developed expertise in React ecosystem.",
     position: [0, 2, -60],
-    technologies: ["React", "Next.js", "TypeScript", "Tailwind CSS", "Redux", "React Query"],
+    technologies: [
+      "React",
+      "Next.js",
+      "TypeScript",
+      "Tailwind CSS",
+      "Redux",
+      "React Query",
+    ],
     photos: [],
   },
   {
@@ -46,7 +53,14 @@ export const MEMORY_STATIONS: MemoryStation[] = [
     description:
       "Current position where I apply all my accumulated knowledge and continue to grow as a full-stack developer, working on enterprise-level applications.",
     position: [0, 2, -90],
-    technologies: ["Next.js", "TypeScript", "Node.js", "PostgreSQL", "Docker", "GraphQL"],
+    technologies: [
+      "Next.js",
+      "TypeScript",
+      "Node.js",
+      "PostgreSQL",
+      "Docker",
+      "GraphQL",
+    ],
     photos: [],
   },
 ];

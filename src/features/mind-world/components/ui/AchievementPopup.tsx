@@ -4,15 +4,20 @@ import { useEffect } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { IconTrophy, IconX } from "@tabler/icons-react";
 import { useAchievementStore } from "../../stores/achievement.store";
-import { DIFFICULTY_COLORS, ACHIEVEMENT_POINTS } from "../../constants/achievements";
+import {
+  DIFFICULTY_COLORS,
+  ACHIEVEMENT_POINTS,
+} from "../../constants/achievements";
 
 export function AchievementPopup() {
-  const showNotification = useAchievementStore((state) => state.showNotification);
+  const showNotification = useAchievementStore(
+    (state) => state.showNotification,
+  );
   const currentNotification = useAchievementStore(
-    (state) => state.currentNotification
+    (state) => state.currentNotification,
   );
   const dismissNotification = useAchievementStore(
-    (state) => state.dismissNotification
+    (state) => state.dismissNotification,
   );
 
   // Auto-dismiss after 5 seconds
@@ -67,7 +72,9 @@ export function AchievementPopup() {
               {/* Achievement info */}
               <div className="mb-2">
                 <h3 className="font-bold text-white">{achievement.name}</h3>
-                <p className="text-sm text-gray-400">{achievement.description}</p>
+                <p className="text-sm text-gray-400">
+                  {achievement.description}
+                </p>
               </div>
 
               {/* Footer */}

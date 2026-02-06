@@ -61,7 +61,8 @@ export const useAchievementStore = create<AchievementStore>()(
             const achievements = state.achievements.map((a) => {
               if (a.id === achievementId) {
                 const newProgress = Math.min(progress, a.maxProgress);
-                const shouldUnlock = newProgress >= a.maxProgress && !a.unlocked;
+                const shouldUnlock =
+                  newProgress >= a.maxProgress && !a.unlocked;
 
                 if (shouldUnlock) {
                   // Trigger unlock in next tick to allow state update
@@ -109,7 +110,10 @@ export const useAchievementStore = create<AchievementStore>()(
 
             return {
               achievements,
-              unlockedAchievements: [...state.unlockedAchievements, achievementId],
+              unlockedAchievements: [
+                ...state.unlockedAchievements,
+                achievementId,
+              ],
               totalPoints: state.totalPoints + points,
             };
           }),
@@ -126,8 +130,7 @@ export const useAchievementStore = create<AchievementStore>()(
             return {
               notifications: [...state.notifications, notification],
               showNotification: true,
-              currentNotification:
-                state.currentNotification || notification,
+              currentNotification: state.currentNotification || notification,
             };
           }),
 
@@ -186,9 +189,9 @@ export const useAchievementStore = create<AchievementStore>()(
           unlockedAchievements: state.unlockedAchievements,
           totalPoints: state.totalPoints,
         }),
-      }
-    )
-  )
+      },
+    ),
+  ),
 );
 
 // Achievement check utilities - use with world store subscriptions

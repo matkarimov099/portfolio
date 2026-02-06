@@ -1,2 +1,2 @@
-export { PlayerController } from "./PlayerController";
+export { PersonController } from "./PersonController";
 export { PlayerCamera } from "./PlayerCamera";

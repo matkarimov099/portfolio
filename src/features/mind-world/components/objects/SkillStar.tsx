@@ -63,8 +63,7 @@ export function SkillStar({
 
     // Glow pulse
     if (glowRef.current) {
-      const scale =
-        1 + Math.sin(elapsedTime * 2) * 0.1;
+      const scale = 1 + Math.sin(elapsedTime * 2) * 0.1;
       glowRef.current.scale.setScalar(scale);
     }
   });
@@ -87,11 +86,7 @@ export function SkillStar({
           attenuation={(t) => t * t}
         >
           {/* Main star */}
-          <mesh
-            ref={meshRef}
-            geometry={starGeometry}
-            castShadow
-          >
+          <mesh ref={meshRef} geometry={starGeometry} castShadow>
             <meshStandardMaterial
               color={color}
               emissive={color}
@@ -105,21 +100,11 @@ export function SkillStar({
         {/* Glow sphere */}
         <mesh ref={glowRef} scale={1.5}>
           <sphereGeometry args={[STAR_CONFIG.baseSize, 16, 16]} />
-          <meshBasicMaterial
-            color={color}
-            transparent
-            opacity={0.2}
-          />
+          <meshBasicMaterial color={color} transparent opacity={0.2} />
         </mesh>
 
         {/* Sparkles */}
-        <Sparkles
-          count={20}
-          scale={2}
-          size={2}
-          speed={0.5}
-          color={color}
-        />
+        <Sparkles count={20} scale={2} size={2} speed={0.5} color={color} />
       </group>
     </Float>
   );

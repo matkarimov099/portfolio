@@ -34,8 +34,7 @@ export function RobotAssistant() {
     setIsNear(near);
 
     // Hovering animation
-    groupRef.current.position.y =
-      position[1] + Math.sin(elapsedTime * 2) * 0.1;
+    groupRef.current.position.y = position[1] + Math.sin(elapsedTime * 2) * 0.1;
 
     // Rotate towards player when near
     if (near) {
@@ -43,7 +42,7 @@ export function RobotAssistant() {
       groupRef.current.rotation.y = THREE.MathUtils.lerp(
         groupRef.current.rotation.y,
         angle,
-        0.1
+        0.1,
       );
     } else {
       // Idle rotation
@@ -52,8 +51,7 @@ export function RobotAssistant() {
 
     // Antenna animation
     if (antennaRef.current) {
-      antennaRef.current.rotation.z =
-        Math.sin(elapsedTime * 3) * 0.2;
+      antennaRef.current.rotation.z = Math.sin(elapsedTime * 3) * 0.2;
     }
 
     // Handle interaction
@@ -102,7 +100,11 @@ export function RobotAssistant() {
       {/* Antenna */}
       <group ref={antennaRef} position={[0, 0.4, 0]}>
         <Cylinder args={[0.02, 0.02, 0.2, 8]}>
-          <meshStandardMaterial color="#93c5fd" metalness={0.8} roughness={0.2} />
+          <meshStandardMaterial
+            color="#93c5fd"
+            metalness={0.8}
+            roughness={0.2}
+          />
         </Cylinder>
         <Sphere args={[0.05, 8, 8]} position={[0, 0.12, 0]}>
           <meshStandardMaterial
@@ -116,26 +118,50 @@ export function RobotAssistant() {
       {/* Arms */}
       <group position={[-0.4, 0, 0]}>
         <Cylinder args={[0.04, 0.04, 0.3, 8]} rotation={[0, 0, Math.PI / 2]}>
-          <meshStandardMaterial color="#93c5fd" metalness={0.8} roughness={0.2} />
+          <meshStandardMaterial
+            color="#93c5fd"
+            metalness={0.8}
+            roughness={0.2}
+          />
         </Cylinder>
         <Sphere args={[0.06, 8, 8]} position={[-0.15, 0, 0]}>
-          <meshStandardMaterial color="#60a5fa" metalness={0.8} roughness={0.2} />
+          <meshStandardMaterial
+            color="#60a5fa"
+            metalness={0.8}
+            roughness={0.2}
+          />
         </Sphere>
       </group>
       <group position={[0.4, 0, 0]}>
         <Cylinder args={[0.04, 0.04, 0.3, 8]} rotation={[0, 0, Math.PI / 2]}>
-          <meshStandardMaterial color="#93c5fd" metalness={0.8} roughness={0.2} />
+          <meshStandardMaterial
+            color="#93c5fd"
+            metalness={0.8}
+            roughness={0.2}
+          />
         </Cylinder>
         <Sphere args={[0.06, 8, 8]} position={[0.15, 0, 0]}>
-          <meshStandardMaterial color="#60a5fa" metalness={0.8} roughness={0.2} />
+          <meshStandardMaterial
+            color="#60a5fa"
+            metalness={0.8}
+            roughness={0.2}
+          />
         </Sphere>
       </group>
 
       {/* Hover jets */}
-      {[[-0.15, -0.4, -0.1], [0.15, -0.4, -0.1], [0, -0.4, 0.1]].map((pos, i) => (
+      {[
+        [-0.15, -0.4, -0.1],
+        [0.15, -0.4, -0.1],
+        [0, -0.4, 0.1],
+      ].map((pos, i) => (
         <group key={i} position={pos as [number, number, number]}>
           <Cylinder args={[0.08, 0.05, 0.1, 8]}>
-            <meshStandardMaterial color="#1a1a2e" metalness={0.9} roughness={0.1} />
+            <meshStandardMaterial
+              color="#1a1a2e"
+              metalness={0.9}
+              roughness={0.1}
+            />
           </Cylinder>
           <pointLight
             position={[0, -0.1, 0]}
@@ -182,8 +208,7 @@ export function RobotAssistant() {
 
       {/* Electric particles when near */}
       {isNear && (
-        <>
-          {[...Array(5)].map((_, i) => (
+        [...Array(5)].map((_, i) => (
             <mesh
               key={i}
               position={[
@@ -195,16 +220,11 @@ export function RobotAssistant() {
               <sphereGeometry args={[0.02, 4, 4]} />
               <meshBasicMaterial color="#60a5fa" />
             </mesh>
-          ))}
-        </>
+          ))
       )}
 
       {/* Main glow */}
-      <pointLight
-        color="#60a5fa"
-        intensity={isNear ? 1.5 : 0.8}
-        distance={4}
-      />
+      <pointLight color="#60a5fa" intensity={isNear ? 1.5 : 0.8} distance={4} />
     </group>
   );
 }

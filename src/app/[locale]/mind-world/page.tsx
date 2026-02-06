@@ -21,30 +21,43 @@ import { useWorldStore } from "@/features/mind-world/stores/world.store";
 const MindWorldCanvas = dynamic(
   () =>
     import("@/features/mind-world/components/canvas/MindWorldCanvas").then(
-      (mod) => mod.MindWorldCanvas
+      (mod) => mod.MindWorldCanvas,
     ),
   {
     ssr: false,
     loading: () => <LoadingScreen />,
-  }
+  },
 );
 
 export default function MindWorldPage() {
-  const togglePause = useWorldStore((state) => state.togglePause);
+  const setPaused = useWorldStore((state) => state.setPaused);
   const isPaused = useWorldStore((state) => state.isPaused);
-  const setShowInstructions = useWorldStore((state) => state.setShowInstructions);
 
-  // Handle ESC key for pause
+  // Handle pointer lock changes: lock = unpause, unlock = pause
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.code === "Escape") {
-        togglePause();
+      if (e.code === "Escape" && !document.pointerLockElement) {
+        setPaused(!useWorldStore.getState().isPaused);
+      }
+    };
+
+    const handleLockChange = () => {
+      if (document.pointerLockElement) {
+        // Pointer lock acquired → unpause (start exploring!)
+        setPaused(false);
+      } else {
+        // Pointer lock lost → pause
+        setPaused(true);
       }
     };
 
     window.addEventListener("keydown", handleKeyDown);
-    return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [togglePause]);
+    document.addEventListener("pointerlockchange", handleLockChange);
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+      document.removeEventListener("pointerlockchange", handleLockChange);
+    };
+  }, [setPaused]);
 
   // Reset session on mount (client-side only)
   useEffect(() => {
@@ -59,7 +72,7 @@ export default function MindWorldPage() {
   }, []);
 
   return (
-    <main className="relative h-screen w-screen overflow-hidden bg-[#0a0a1a]">
+    <main className="relative h-screen w-screen overflow-hidden bg-[#87CEEB]">
       {/* 3D Canvas */}
       <MindWorldCanvas className="h-full w-full" />
 
@@ -78,16 +91,14 @@ export default function MindWorldPage() {
       <CodePuzzle />
       <BugCatcher />
 
-      {/* Cursor lock hint */}
-      <div
-        className={`pointer-events-none fixed inset-0 z-30 flex items-center justify-center bg-black/50 transition-opacity duration-300 ${
-          isPaused ? "opacity-0" : "opacity-0"
-        }`}
-      >
-        <p className="rounded-lg bg-black/70 px-6 py-3 text-white">
-          Click to start
-        </p>
-      </div>
+      {/* Click to start hint (shown when paused / no pointer lock) */}
+      {isPaused && (
+        <div className="pointer-events-none fixed inset-0 z-30 flex items-center justify-center bg-black/30">
+          <p className="rounded-xl bg-black/70 px-8 py-4 text-lg font-medium text-white shadow-lg">
+            Click to explore
+          </p>
+        </div>
+      )}
     </main>
   );
 }

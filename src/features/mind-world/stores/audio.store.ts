@@ -106,7 +106,7 @@ export const useAudioStore = create<AudioStore>()(
             const newPlaylist = state.playlist.filter((t) => t.id !== trackId);
             const newIndex = Math.min(
               state.currentTrackIndex,
-              newPlaylist.length - 1
+              newPlaylist.length - 1,
             );
             return {
               playlist: newPlaylist,
@@ -205,7 +205,7 @@ export const useAudioStore = create<AudioStore>()(
           isMuted: state.isMuted,
           isVisualizerEnabled: state.isVisualizerEnabled,
         }),
-      }
-    )
-  )
+      },
+    ),
+  ),
 );

@@ -38,7 +38,8 @@ export function Neuron({
       for (let j = 0; j <= 10; j++) {
         const t = j / 10;
         const x = Math.cos(angle) * length * t + Math.sin(t * 3) * 0.2;
-        const y = Math.sin(angle * 0.5) * length * t * 0.3 + Math.cos(t * 2) * 0.1;
+        const y =
+          Math.sin(angle * 0.5) * length * t * 0.3 + Math.cos(t * 2) * 0.1;
         const z = Math.sin(angle) * length * t + Math.cos(t * 3) * 0.2;
         segments.push(new THREE.Vector3(x, y, z));
       }
@@ -52,7 +53,8 @@ export function Neuron({
   useFrame((state) => {
     if (!neuronRef.current) return;
 
-    pulseRef.current = Math.sin((state.clock.elapsedTime) * pulseSpeed) * 0.5 + 0.5;
+    pulseRef.current =
+      Math.sin(state.clock.elapsedTime * pulseSpeed) * 0.5 + 0.5;
 
     // Pulse glow
     if (glowRef.current) {
@@ -98,7 +100,7 @@ export function Neuron({
         const end = new THREE.Vector3(
           target[0] - position[0],
           target[1] - position[1],
-          target[2] - position[2]
+          target[2] - position[2],
         );
 
         // Create curved connection

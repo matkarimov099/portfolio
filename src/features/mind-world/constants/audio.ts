@@ -59,14 +59,14 @@ export const SOUND_EFFECTS = {
 };
 
 // Ambient Sounds per Zone
-export const ZONE_AMBIENT = {
-  "synapse-hub": "/mind-world/audio/ambient/neural-hum.mp3",
-  "memory-lane": "/mind-world/audio/ambient/time-flow.mp3",
-  "skill-constellation": "/mind-world/audio/ambient/cosmic-wind.mp3",
-  "project-gallery": "/mind-world/audio/ambient/digital-buzz.mp3",
-  "connection-port": "/mind-world/audio/ambient/electric-pulse.mp3",
-  "chat-neuron": "/mind-world/audio/ambient/thought-waves.mp3",
-  "stats-observatory": "/mind-world/audio/ambient/data-stream.mp3",
+export const ZONE_AMBIENT: Record<string, string> = {
+  "neon-plaza": "/mind-world/audio/ambient/neural-hum.mp3",
+  "memory-street": "/mind-world/audio/ambient/time-flow.mp3",
+  "code-district": "/mind-world/audio/ambient/cosmic-wind.mp3",
+  "project-tower": "/mind-world/audio/ambient/digital-buzz.mp3",
+  "comm-terminal": "/mind-world/audio/ambient/electric-pulse.mp3",
+  "chat-hq": "/mind-world/audio/ambient/thought-waves.mp3",
+  "data-bridge": "/mind-world/audio/ambient/data-stream.mp3",
 };
 
 // Audio Configuration

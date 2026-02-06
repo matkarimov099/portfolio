@@ -2,7 +2,12 @@
 
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence, Reorder } from "motion/react";
-import { IconX, IconPuzzle, IconTrophy, IconRefresh } from "@tabler/icons-react";
+import {
+  IconX,
+  IconPuzzle,
+  IconTrophy,
+  IconRefresh,
+} from "@tabler/icons-react";
 import { useWorldStore } from "../../stores/world.store";
 import { useAchievementStore } from "../../stores/achievement.store";
 import { CODE_PUZZLE_LEVELS } from "../../constants/mini-games";
@@ -26,7 +31,7 @@ export function CodePuzzle() {
     if (isActive) {
       loadLevel(0);
     }
-  }, [isActive]);
+  }, [isActive, loadLevel]);
 
   const loadLevel = (level: number) => {
     const levelData = CODE_PUZZLE_LEVELS[level];
@@ -44,7 +49,7 @@ export function CodePuzzle() {
     const levelData = CODE_PUZZLE_LEVELS[currentLevel];
     const currentOrder = blocks.map((b) => b.id);
     const isOrderCorrect = currentOrder.every(
-      (id, index) => id === levelData.correctOrder[index]
+      (id, index) => id === levelData.correctOrder[index],
     );
 
     setAttempts((a) => a + 1);
@@ -202,7 +207,9 @@ export function CodePuzzle() {
           {/* Stats */}
           <div className="mt-4 flex justify-between text-xs text-gray-500">
             <span>Attempts: {attempts}</span>
-            <span>Completed: {completedLevels.length}/{CODE_PUZZLE_LEVELS.length}</span>
+            <span>
+              Completed: {completedLevels.length}/{CODE_PUZZLE_LEVELS.length}
+            </span>
           </div>
         </motion.div>
       </motion.div>

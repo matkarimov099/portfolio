@@ -3,7 +3,7 @@
 import { useRef } from "react";
 import { useFrame } from "@react-three/fiber";
 import { Text, RoundedBox } from "@react-three/drei";
-import * as THREE from "three";
+import type * as THREE from "three";
 import type { MemoryStation } from "../../types";
 
 interface MemoryFrameProps {
@@ -32,7 +32,8 @@ export function MemoryFrame({ station, active = false }: MemoryFrameProps) {
     // Glow pulse when active
     if (glowRef.current && active) {
       const intensity = 0.5 + Math.sin(elapsedTime * 2) * 0.2;
-      (glowRef.current.material as THREE.MeshBasicMaterial).opacity = intensity * 0.3;
+      (glowRef.current.material as THREE.MeshBasicMaterial).opacity =
+        intensity * 0.3;
     }
   });
 
@@ -57,11 +58,7 @@ export function MemoryFrame({ station, active = false }: MemoryFrameProps) {
       {/* Inner content area */}
       <mesh position={[0, 0, 0.06]}>
         <planeGeometry args={[frameWidth, frameHeight]} />
-        <meshStandardMaterial
-          color="#1a1a2e"
-          metalness={0.5}
-          roughness={0.8}
-        />
+        <meshStandardMaterial color="#1a1a2e" metalness={0.5} roughness={0.8} />
       </mesh>
 
       {/* Year badge */}
@@ -151,11 +148,7 @@ export function MemoryFrame({ station, active = false }: MemoryFrameProps) {
       {active && (
         <mesh ref={glowRef} position={[0, 0, -0.1]}>
           <planeGeometry args={[frameWidth + 1, frameHeight + 1]} />
-          <meshBasicMaterial
-            color="#ffd700"
-            transparent
-            opacity={0.3}
-          />
+          <meshBasicMaterial color="#ffd700" transparent opacity={0.3} />
         </mesh>
       )}
     </group>

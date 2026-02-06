@@ -2,7 +2,7 @@
 
 import { useRef, useState } from "react";
 import { useFrame } from "@react-three/fiber";
-import { Cylinder, Sphere, Text, Billboard, Box } from "@react-three/drei";
+import { Cylinder, Sphere, Text, Billboard, } from "@react-three/drei";
 import * as THREE from "three";
 import { useWorldStore } from "../../stores/world.store";
 import { usePlayerStore } from "../../stores/player.store";
@@ -27,7 +27,9 @@ export function PastSelf({ stationId }: PastSelfProps) {
   const { name, appearance, npcId } = config;
 
   // Calculate position based on station
-  const stationIndex = PAST_SELF_CONFIGS.findIndex((c) => c.stationId === stationId);
+  const stationIndex = PAST_SELF_CONFIGS.findIndex(
+    (c) => c.stationId === stationId,
+  );
   const position: [number, number, number] = [
     (stationIndex % 2 === 0 ? -1 : 1) * 5,
     1,
@@ -53,7 +55,7 @@ export function PastSelf({ stationId }: PastSelfProps) {
       groupRef.current.rotation.y = THREE.MathUtils.lerp(
         groupRef.current.rotation.y,
         angle,
-        0.1
+        0.1,
       );
     }
 
@@ -70,7 +72,10 @@ export function PastSelf({ stationId }: PastSelfProps) {
   return (
     <group ref={groupRef} position={position}>
       {/* Body */}
-      <Cylinder args={[0.25, 0.3, appearance.height * 0.6, 8]} position={[0, appearance.height * 0.3, 0]}>
+      <Cylinder
+        args={[0.25, 0.3, appearance.height * 0.6, 8]}
+        position={[0, appearance.height * 0.3, 0]}
+      >
         <meshStandardMaterial
           color={appearance.color}
           emissive={appearance.color}
@@ -157,7 +162,11 @@ export function PastSelf({ stationId }: PastSelfProps) {
           <group position={[0, appearance.height + 0.6, 0]}>
             <mesh>
               <planeGeometry args={[1, 0.3]} />
-              <meshBasicMaterial color={appearance.color} transparent opacity={0.8} />
+              <meshBasicMaterial
+                color={appearance.color}
+                transparent
+                opacity={0.8}
+              />
             </mesh>
             <Text
               position={[0, 0, 0.01]}

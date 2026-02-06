@@ -1,7 +1,9 @@
-export { SynapseHub } from "./SynapseHub";
-export { MemoryLane } from "./MemoryLane";
-export { SkillConstellation } from "./SkillConstellation";
-export { ProjectGallery } from "./ProjectGallery";
-export { ConnectionPort } from "./ConnectionPort";
-export { ChatNeuron } from "./ChatNeuron";
-export { StatsObservatory } from "./StatsObservatory";
+export { CityMap } from "./CityMap";
+export { CityStreets } from "./CityStreets";
+export { CityPark } from "./CityPark";
+export { TechOffice } from "./TechOffice";
+export { ProjectBuilding } from "./ProjectBuilding";
+export { DataCenter } from "./DataCenter";
+export { ChatCafe } from "./ChatCafe";
+export { PostOffice } from "./PostOffice";
+export { CareerMuseum } from "./CareerMuseum";

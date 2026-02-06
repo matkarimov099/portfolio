@@ -5,7 +5,7 @@ export const MINI_GAMES: MiniGame[] = [
     id: "code-puzzle",
     name: "Code Puzzle",
     description: "Arrange code blocks in the correct order",
-    zone: "project-gallery",
+    zone: "project-tower",
     position: [10, 2, 0],
     highScore: 0,
     completed: false,
@@ -14,7 +14,7 @@ export const MINI_GAMES: MiniGame[] = [
     id: "memory-match",
     name: "Memory Match",
     description: "Match technology cards to reveal pairs",
-    zone: "memory-lane",
+    zone: "memory-street",
     position: [0, 2, -45],
     highScore: 0,
     completed: false,
@@ -23,7 +23,7 @@ export const MINI_GAMES: MiniGame[] = [
     id: "typing-challenge",
     name: "Typing Challenge",
     description: "Type code snippets as fast as you can",
-    zone: "synapse-hub",
+    zone: "neon-plaza",
     position: [-5, 2, -5],
     highScore: 0,
     completed: false,
@@ -32,7 +32,7 @@ export const MINI_GAMES: MiniGame[] = [
     id: "bug-catcher",
     name: "Bug Catcher",
     description: "Catch floating bugs before they escape",
-    zone: "project-gallery",
+    zone: "project-tower",
     position: [-10, 2, 0],
     highScore: 0,
     completed: false,
@@ -40,7 +40,10 @@ export const MINI_GAMES: MiniGame[] = [
 ];
 
 // Code Puzzle Levels
-export const CODE_PUZZLE_LEVELS: { blocks: CodeBlock[]; correctOrder: string[] }[] = [
+export const CODE_PUZZLE_LEVELS: {
+  blocks: CodeBlock[];
+  correctOrder: string[];
+}[] = [
   {
     blocks: [
       { id: "cp1-1", code: "function greet(name) {", position: 0 },
@@ -52,8 +55,16 @@ export const CODE_PUZZLE_LEVELS: { blocks: CodeBlock[]; correctOrder: string[] }
   {
     blocks: [
       { id: "cp2-1", code: "const fetchData = async () => {", position: 0 },
-      { id: "cp2-2", code: "  const response = await fetch(url);", position: 0 },
-      { id: "cp2-3", code: "  const data = await response.json();", position: 0 },
+      {
+        id: "cp2-2",
+        code: "  const response = await fetch(url);",
+        position: 0,
+      },
+      {
+        id: "cp2-3",
+        code: "  const data = await response.json();",
+        position: 0,
+      },
       { id: "cp2-4", code: "  return data;", position: 0 },
       { id: "cp2-5", code: "};", position: 0 },
     ],
@@ -62,10 +73,26 @@ export const CODE_PUZZLE_LEVELS: { blocks: CodeBlock[]; correctOrder: string[] }
   {
     blocks: [
       { id: "cp3-1", code: "const useCounter = () => {", position: 0 },
-      { id: "cp3-2", code: "  const [count, setCount] = useState(0);", position: 0 },
-      { id: "cp3-3", code: "  const increment = () => setCount(c => c + 1);", position: 0 },
-      { id: "cp3-4", code: "  const decrement = () => setCount(c => c - 1);", position: 0 },
-      { id: "cp3-5", code: "  return { count, increment, decrement };", position: 0 },
+      {
+        id: "cp3-2",
+        code: "  const [count, setCount] = useState(0);",
+        position: 0,
+      },
+      {
+        id: "cp3-3",
+        code: "  const increment = () => setCount(c => c + 1);",
+        position: 0,
+      },
+      {
+        id: "cp3-4",
+        code: "  const decrement = () => setCount(c => c - 1);",
+        position: 0,
+      },
+      {
+        id: "cp3-5",
+        code: "  return { count, increment, decrement };",
+        position: 0,
+      },
       { id: "cp3-6", code: "};", position: 0 },
     ],
     correctOrder: ["cp3-1", "cp3-2", "cp3-3", "cp3-4", "cp3-5", "cp3-6"],

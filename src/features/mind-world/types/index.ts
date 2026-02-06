@@ -23,13 +23,13 @@ export interface PlayerControls {
 
 // ==================== Zone Types ====================
 export type ZoneId =
-  | "synapse-hub"
-  | "memory-lane"
-  | "skill-constellation"
-  | "project-gallery"
-  | "connection-port"
-  | "chat-neuron"
-  | "stats-observatory";
+  | "neon-plaza"
+  | "code-district"
+  | "project-tower"
+  | "data-bridge"
+  | "chat-hq"
+  | "comm-terminal"
+  | "memory-street";
 
 export interface Zone {
   id: ZoneId;
@@ -39,14 +39,6 @@ export interface Zone {
   color: string;
   unlocked: boolean;
   visited: boolean;
-}
-
-export interface ZonePortal {
-  id: string;
-  fromZone: ZoneId;
-  toZone: ZoneId;
-  position: [number, number, number];
-  rotation: [number, number, number];
 }
 
 // ==================== Skill Types ====================
@@ -97,7 +89,12 @@ export interface Achievement {
 }
 
 // ==================== NPC Types ====================
-export type NPCId = "inner-voice" | "past-self-junior" | "past-self-mid" | "past-self-senior" | "robot-assistant";
+export type NPCId =
+  | "inner-voice"
+  | "past-self-junior"
+  | "past-self-mid"
+  | "past-self-senior"
+  | "robot-assistant";
 
 export interface NPCCharacter {
   id: NPCId;
@@ -122,7 +119,11 @@ export interface NPCResponse {
 }
 
 // ==================== Mini-Game Types ====================
-export type MiniGameId = "code-puzzle" | "memory-match" | "typing-challenge" | "bug-catcher";
+export type MiniGameId =
+  | "code-puzzle"
+  | "memory-match"
+  | "typing-challenge"
+  | "bug-catcher";
 
 export interface MiniGame {
   id: MiniGameId;
@@ -302,9 +303,93 @@ export interface NeuralGlowConfig {
   particleCount: number;
 }
 
-export interface PortalConfig {
+// ==================== District Types ====================
+export type DistrictId =
+  | "downtown"
+  | "cultural-quarter"
+  | "business-district"
+  | "entertainment"
+  | "tech-harbor"
+  | "central-park";
+
+export interface District {
+  id: DistrictId;
+  name: string;
+  center: [number, number, number];
+  bounds: { x: [number, number]; z: [number, number] };
+  groundColor: string;
+  buildingDensity: number;
+  buildingTypeWeights: Record<BuildingType, number>;
+}
+
+// ==================== Building Types ====================
+export type BuildingType =
+  | "office"
+  | "residential"
+  | "commercial"
+  | "warehouse";
+
+export interface BuildingConfig {
+  id: string;
+  type: BuildingType;
+  position: [number, number, number];
+  width: number;
+  height: number;
+  depth: number;
   color: string;
-  size: number;
-  rotationSpeed: number;
-  particleCount: number;
+  roofColor: string;
+  roofType: "flat" | "peaked" | "stepped";
+  windowColor: string;
+  districtId: DistrictId;
+}
+
+// ==================== Chunk Types ====================
+export type ChunkId = `${number}_${number}`;
+
+export interface ChunkConfig {
+  id: ChunkId;
+  gridX: number;
+  gridZ: number;
+  worldCenter: [number, number, number];
+  bounds: { x: [number, number]; z: [number, number] };
+}
+
+// ==================== Landmark Types ====================
+export type LandmarkId =
+  | "eiffel-tower"
+  | "big-ben"
+  | "empire-state"
+  | "burj-al-arab"
+  | "colosseum"
+  | "tokyo-tower";
+
+export interface LandmarkConfig {
+  id: LandmarkId;
+  name: string;
+  position: [number, number, number];
+  scale: number;
+  districtId: DistrictId;
+  height: number;
+  footprint: [number, number];
+}
+
+// ==================== Road Grid Types ====================
+export type RoadType = "boulevard" | "secondary";
+
+export interface GridRoad {
+  id: string;
+  type: RoadType;
+  axis: "x" | "z";
+  position: number;
+  start: number;
+  end: number;
+  width: number;
+}
+
+// ==================== Minimap Types ====================
+export interface MinimapState {
+  isVisible: boolean;
+  isFullScreen: boolean;
+  zoom: number;
+  discoveredChunks: ChunkId[];
 }

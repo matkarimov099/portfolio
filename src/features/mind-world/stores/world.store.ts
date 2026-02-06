@@ -1,6 +1,7 @@
 import { create } from "zustand";
 import { persist, subscribeWithSelector } from "zustand/middleware";
 import type { ZoneId, HUDState, NPCId, MiniGameId } from "../types";
+import { CITY_ZONES } from "../constants/city-layout";
 
 interface WorldStore {
   // Loading state
@@ -61,6 +62,9 @@ interface WorldStore {
   updatePlayTime: () => void;
   resetProgress: () => void;
 
+  // Actions - Zone Detection
+  detectZone: (x: number, z: number) => void;
+
   // Computed
   getVisitedZoneCount: () => number;
   getCollectedSkillCount: () => number;
@@ -86,7 +90,7 @@ export const useWorldStore = create<WorldStore>()(
         loadingProgress: 0,
         currentLoadingAsset: "",
 
-        currentZone: "synapse-hub",
+        currentZone: "neon-plaza",
         visitedZones: [],
         collectedSkills: [],
         secretsFound: [],
@@ -228,6 +232,30 @@ export const useWorldStore = create<WorldStore>()(
             },
           }),
 
+        // Actions - Zone Detection
+        detectZone: (x, z) => {
+          const { currentZone } = get();
+
+          // Check each zone's bounds to find which zone the player is in
+          for (const zone of CITY_ZONES) {
+            const { bounds } = zone;
+            if (
+              x >= bounds.x[0] &&
+              x <= bounds.x[1] &&
+              z >= bounds.z[0] &&
+              z <= bounds.z[1]
+            ) {
+              if (zone.id !== currentZone) {
+                set({ currentZone: zone.id });
+                get().visitZone(zone.id);
+              }
+              return;
+            }
+          }
+
+          // Player is on a street or between zones - keep current zone
+        },
+
         // Computed
         getVisitedZoneCount: () => get().visitedZones.length,
         getCollectedSkillCount: () => get().collectedSkills.length,
@@ -243,7 +271,7 @@ export const useWorldStore = create<WorldStore>()(
           totalPlayTime: state.totalPlayTime,
           miniGameScores: state.miniGameScores,
         }),
-      }
-    )
-  )
+      },
+    ),
+  ),
 );

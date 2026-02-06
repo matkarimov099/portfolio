@@ -4,6 +4,7 @@ import { Toaster } from "sonner";
 import { JsonLd } from "@/components/seo";
 import { Providers } from "@/core/providers";
 import { ChatProvider, ChatWidget } from "@/features/chat";
+import { FloatingUI } from "@/features/layout/components/FloatingUI";
 import { LanguageSwitcher } from "@/features/layout/components/LanguageSwitcher";
 import { NavDock } from "@/features/layout/components/NavDock";
 import { SocialDock } from "@/features/layout/components/SocialDock";
@@ -42,10 +43,16 @@ export default async function LocaleLayout({
               <JsonLd data={generateWebSiteSchema()} />
 
               {children}
-              <NavDock />
-              <SocialDock />
-              <LanguageSwitcher />
-              <ChatWidget />
+              <FloatingUI>
+                <NavDock />
+                <SocialDock />
+                <LanguageSwitcher />
+                <ChatWidget />
+                {/* Online counter - chap yuqori burchak */}
+                <div className="fixed left-4 top-4 z-40 rounded-full border border-white/10 bg-background/80 px-3 py-1.5 backdrop-blur-sm">
+                  <OnlineCounter />
+                </div>
+              </FloatingUI>
               <Toaster
                 position="top-center"
                 richColors
@@ -59,10 +66,6 @@ export default async function LocaleLayout({
                   },
                 }}
               />
-              {/* Online counter - chap yuqori burchak */}
-              <div className="fixed left-4 top-4 z-40 rounded-full border border-white/10 bg-background/80 px-3 py-1.5 backdrop-blur-sm">
-                <OnlineCounter />
-              </div>
             </ChatProvider>
           </CameraProvider>
         </PresenceProvider>

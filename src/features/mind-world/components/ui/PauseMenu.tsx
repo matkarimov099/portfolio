@@ -5,7 +5,6 @@ import {
   IconPlayerPlay,
   IconHome,
   IconRefresh,
-  IconSettings,
   IconTrophy,
   IconStar,
   IconVolume,
@@ -32,10 +31,14 @@ export function PauseMenu() {
   const sfxVolume = useAudioStore((state) => state.sfxVolume);
   const setSfxVolume = useAudioStore((state) => state.setSfxVolume);
 
-  const unlockedCount = useAchievementStore((state) => state.getUnlockedCount());
+  const unlockedCount = useAchievementStore((state) =>
+    state.getUnlockedCount(),
+  );
   const totalCount = useAchievementStore((state) => state.getTotalCount());
   const totalPoints = useAchievementStore((state) => state.totalPoints);
-  const resetAchievements = useAchievementStore((state) => state.resetAchievements);
+  const resetAchievements = useAchievementStore(
+    (state) => state.resetAchievements,
+  );
 
   const formatTime = (seconds: number) => {
     const hrs = Math.floor(seconds / 3600);
@@ -48,7 +51,11 @@ export function PauseMenu() {
   };
 
   const handleReset = () => {
-    if (confirm("Are you sure you want to reset all progress? This cannot be undone.")) {
+    if (
+      confirm(
+        "Are you sure you want to reset all progress? This cannot be undone.",
+      )
+    ) {
       resetProgress();
       resetAchievements();
       togglePause();
@@ -56,7 +63,11 @@ export function PauseMenu() {
   };
 
   const handleExit = () => {
-    if (confirm("Are you sure you want to exit? Your progress is automatically saved.")) {
+    if (
+      confirm(
+        "Are you sure you want to exit? Your progress is automatically saved.",
+      )
+    ) {
       router.push("/");
     }
   };
@@ -136,7 +147,9 @@ export function PauseMenu() {
                     max="1"
                     step="0.01"
                     value={masterVolume}
-                    onChange={(e) => setMasterVolume(parseFloat(e.target.value))}
+                    onChange={(e) =>
+                      setMasterVolume(parseFloat(e.target.value))
+                    }
                     className="h-1 flex-1 cursor-pointer appearance-none rounded-full bg-gray-700 [&::-webkit-slider-thumb]:h-3 [&::-webkit-slider-thumb]:w-3 [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:bg-purple-500"
                   />
                   <span className="w-10 text-right text-xs text-gray-500">

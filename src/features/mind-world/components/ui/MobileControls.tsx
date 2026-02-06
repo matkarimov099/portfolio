@@ -12,7 +12,7 @@ export function MobileControls() {
   const [isDragging, setIsDragging] = useState(false);
 
   const setControls = usePlayerStore((state) => state.setControls);
-  const resetControls = usePlayerStore((state) => state.resetControls);
+  const _resetControls = usePlayerStore((state) => state.resetControls);
   const togglePause = useWorldStore((state) => state.togglePause);
 
   // Check if mobile
@@ -21,7 +21,7 @@ export function MobileControls() {
       setIsMobile(
         "ontouchstart" in window ||
           navigator.maxTouchPoints > 0 ||
-          window.innerWidth < 768
+          window.innerWidth < 768,
       );
     };
     checkMobile();
@@ -29,10 +29,13 @@ export function MobileControls() {
     return () => window.removeEventListener("resize", checkMobile);
   }, []);
 
-  const handleJoystickStart = useCallback((e: React.TouchEvent | React.MouseEvent) => {
-    e.preventDefault();
-    setIsDragging(true);
-  }, []);
+  const handleJoystickStart = useCallback(
+    (e: React.TouchEvent | React.MouseEvent) => {
+      e.preventDefault();
+      setIsDragging(true);
+    },
+    [],
+  );
 
   const handleJoystickMove = useCallback(
     (e: React.TouchEvent | React.MouseEvent) => {
@@ -74,7 +77,7 @@ export function MobileControls() {
         right: deltaX > threshold,
       });
     },
-    [isDragging, setControls]
+    [isDragging, setControls],
   );
 
   const handleJoystickEnd = useCallback(() => {
@@ -128,7 +131,7 @@ export function MobileControls() {
       <div className="pointer-events-auto absolute bottom-24 right-8 flex flex-col gap-3">
         <button
           onTouchStart={handleJump}
-          className="flex h-16 w-16 items-center justify-center rounded-full border-2 border-white/20 bg-purple-500/30 text-white active:bg-purple-500/50"
+          className="flex h-16 w-16 items-center justify-center rounded-full border-2 border-white/20 bg-red-500/30 text-white active:bg-red-500/50"
         >
           <span className="text-sm font-bold">JUMP</span>
         </button>
@@ -140,7 +143,7 @@ export function MobileControls() {
         </button>
       </div>
 
-      {/* Sprint toggle */}
+      {/* Turbo toggle */}
       <div className="pointer-events-auto absolute bottom-24 right-28">
         <button
           onTouchStart={() => setControls({ sprint: true })}

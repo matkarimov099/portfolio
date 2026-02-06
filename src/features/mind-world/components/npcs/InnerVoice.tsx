@@ -3,7 +3,7 @@
 import { useRef, useState } from "react";
 import { useFrame } from "@react-three/fiber";
 import { Float, Sphere, Text, Billboard } from "@react-three/drei";
-import * as THREE from "three";
+import type * as THREE from "three";
 import { useWorldStore } from "../../stores/world.store";
 import { usePlayerStore } from "../../stores/player.store";
 import { NPC_CONFIG, NPC_CHARACTERS } from "../../constants/npcs";
@@ -35,7 +35,8 @@ export function InnerVoice() {
 
     // Floating animation
     groupRef.current.position.y =
-      position[1] + Math.sin(elapsedTime * NPC_CONFIG.floatSpeed) * NPC_CONFIG.floatAmplitude;
+      position[1] +
+      Math.sin(elapsedTime * NPC_CONFIG.floatSpeed) * NPC_CONFIG.floatAmplitude;
 
     // Rotate towards player when near
     if (near && NPC_CONFIG.rotateToPlayer) {
@@ -74,20 +75,12 @@ export function InnerVoice() {
 
       {/* Inner glow */}
       <Sphere ref={glowRef} args={[1.2, 16, 16]}>
-        <meshBasicMaterial
-          color="#C4B5FD"
-          transparent
-          opacity={0.2}
-        />
+        <meshBasicMaterial color="#C4B5FD" transparent opacity={0.2} />
       </Sphere>
 
       {/* Outer aura */}
       <Sphere args={[1.5, 16, 16]}>
-        <meshBasicMaterial
-          color="#8B5CF6"
-          transparent
-          opacity={0.1}
-        />
+        <meshBasicMaterial color="#8B5CF6" transparent opacity={0.1} />
       </Sphere>
 
       {/* Orbiting particles */}
@@ -146,11 +139,7 @@ export function InnerVoice() {
       )}
 
       {/* Point light for glow effect */}
-      <pointLight
-        color="#8B5CF6"
-        intensity={isNear ? 2 : 1}
-        distance={5}
-      />
+      <pointLight color="#8B5CF6" intensity={isNear ? 2 : 1} distance={5} />
     </group>
   );
 }

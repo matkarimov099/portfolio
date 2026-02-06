@@ -37,14 +37,16 @@ export function MemoryMatch() {
     if (isActive) {
       initializeGame();
     }
-  }, [isActive]);
+  }, [isActive, initializeGame]);
 
   const initializeGame = () => {
-    const initialCards: MemoryCard[] = shuffleArray(MEMORY_CARDS).map((card) => ({
-      ...card,
-      isFlipped: false,
-      isMatched: false,
-    }));
+    const initialCards: MemoryCard[] = shuffleArray(MEMORY_CARDS).map(
+      (card) => ({
+        ...card,
+        isFlipped: false,
+        isMatched: false,
+      }),
+    );
     setCards(initialCards);
     setFlippedCards([]);
     setMatchedPairs([]);
@@ -57,7 +59,14 @@ export function MemoryMatch() {
       if (isChecking) return;
       if (flippedCards.length >= 2) return;
       if (flippedCards.includes(cardId)) return;
-      if (matchedPairs.some((id) => cards.find((c) => c.id === cardId)?.icon === cards.find((c) => c.id === id)?.icon)) return;
+      if (
+        matchedPairs.some(
+          (id) =>
+            cards.find((c) => c.id === cardId)?.icon ===
+            cards.find((c) => c.id === id)?.icon,
+        )
+      )
+        return;
 
       const newFlipped = [...flippedCards, cardId];
       setFlippedCards(newFlipped);
@@ -78,8 +87,8 @@ export function MemoryMatch() {
               prev.map((c) =>
                 c.id === firstId || c.id === secondId
                   ? { ...c, isMatched: true }
-                  : c
-              )
+                  : c,
+              ),
             );
             setFlippedCards([]);
             setIsChecking(false);
@@ -99,7 +108,7 @@ export function MemoryMatch() {
         }
       }
     },
-    [cards, flippedCards, matchedPairs, isChecking, updateProgress]
+    [cards, flippedCards, matchedPairs, isChecking, updateProgress],
   );
 
   const handleClose = () => {
@@ -134,7 +143,9 @@ export function MemoryMatch() {
               </div>
               <div>
                 <h2 className="text-xl font-bold text-white">Memory Match</h2>
-                <p className="text-sm text-gray-400">Match the technology cards</p>
+                <p className="text-sm text-gray-400">
+                  Match the technology cards
+                </p>
               </div>
             </div>
             <button
@@ -152,11 +163,15 @@ export function MemoryMatch() {
               <p className="text-xs text-gray-400">Moves</p>
             </div>
             <div className="rounded-lg bg-white/5 p-3 text-center">
-              <p className="text-2xl font-bold text-green-400">{matchedPairs.length / 2}</p>
+              <p className="text-2xl font-bold text-green-400">
+                {matchedPairs.length / 2}
+              </p>
               <p className="text-xs text-gray-400">Pairs Found</p>
             </div>
             <div className="rounded-lg bg-white/5 p-3 text-center">
-              <p className="text-2xl font-bold text-purple-400">{cards.length / 2 - matchedPairs.length / 2}</p>
+              <p className="text-2xl font-bold text-purple-400">
+                {cards.length / 2 - matchedPairs.length / 2}
+              </p>
               <p className="text-xs text-gray-400">Remaining</p>
             </div>
           </div>
@@ -188,8 +203,12 @@ export function MemoryMatch() {
                       exit={{ rotateY: 90 }}
                       transition={{ duration: 0.2 }}
                     >
-                      <span className="text-2xl">{getIconForCard(card.icon)}</span>
-                      <span className="mt-1 text-xs text-gray-400">{card.name}</span>
+                      <span className="text-2xl">
+                        {getIconForCard(card.icon)}
+                      </span>
+                      <span className="mt-1 text-xs text-gray-400">
+                        {card.name}
+                      </span>
                     </motion.div>
                   ) : (
                     <motion.div
@@ -217,9 +236,7 @@ export function MemoryMatch() {
             >
               <div className="flex items-center justify-center gap-2 text-green-400">
                 <IconTrophy className="h-5 w-5" />
-                <span className="font-medium">
-                  Completed in {moves} moves!
-                </span>
+                <span className="font-medium">Completed in {moves} moves!</span>
               </div>
             </motion.div>
           )}

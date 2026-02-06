@@ -2,7 +2,7 @@
 
 import { useRef, useState } from "react";
 import { useFrame } from "@react-three/fiber";
-import { Text, RoundedBox, Html } from "@react-three/drei";
+import { Text, RoundedBox, } from "@react-three/drei";
 import * as THREE from "three";
 
 interface HologramProps {
@@ -55,13 +55,12 @@ export function Hologram({
     // Scan line animation
     if (scanLineRef.current) {
       scanLineRef.current.position.y =
-        ((elapsedTime * 0.5) % 1 - 0.5) * height;
+        (((elapsedTime * 0.5) % 1) - 0.5) * height;
     }
 
     // Gentle rotation when not expanded
     if (!isExpanded) {
-      groupRef.current.rotation.y =
-        Math.sin(elapsedTime * 0.3) * 0.1;
+      groupRef.current.rotation.y = Math.sin(elapsedTime * 0.3) * 0.1;
     }
   });
 
@@ -144,7 +143,12 @@ export function Hologram({
               <RoundedBox args={[1, 0.25, 0.02]} radius={0.02}>
                 <meshBasicMaterial color={color} transparent opacity={0.3} />
               </RoundedBox>
-              <Text fontSize={0.1} color="white" anchorX="center" position={[0, 0, 0.02]}>
+              <Text
+                fontSize={0.1}
+                color="white"
+                anchorX="center"
+                position={[0, 0, 0.02]}
+              >
                 {stats.language}
               </Text>
             </group>
@@ -153,11 +157,13 @@ export function Hologram({
       )}
 
       {/* Corner decorations */}
-      {[[-1, 1], [1, 1], [-1, -1], [1, -1]].map(([x, y], i) => (
-        <group
-          key={i}
-          position={[(x * width) / 2, (y * height) / 2, 0]}
-        >
+      {[
+        [-1, 1],
+        [1, 1],
+        [-1, -1],
+        [1, -1],
+      ].map(([x, y], i) => (
+        <group key={i} position={[(x * width) / 2, (y * height) / 2, 0]}>
           <mesh>
             <planeGeometry args={[0.15, 0.02]} />
             <meshBasicMaterial color={color} transparent opacity={0.8} />

@@ -25,7 +25,9 @@ export function BugCatcher() {
   const [bugs, setBugs] = useState<Bug[]>([]);
   const [caughtCount, setCaughtCount] = useState(0);
   const [missedCount, setMissedCount] = useState(0);
-  const [timeRemaining, setTimeRemaining] = useState(BUG_CATCHER_CONFIG.gameDuration);
+  const [timeRemaining, setTimeRemaining] = useState(
+    BUG_CATCHER_CONFIG.gameDuration,
+  );
   const [isActive, setIsActive] = useState(false);
   const [isGameOver, setIsGameOver] = useState(false);
   const [highScore, setHighScore] = useState(0);
@@ -53,7 +55,8 @@ export function BugCatcher() {
     const type = types[Math.floor(Math.random() * types.length)];
     const speed =
       BUG_CATCHER_CONFIG.bugSpeed.min +
-      Math.random() * (BUG_CATCHER_CONFIG.bugSpeed.max - BUG_CATCHER_CONFIG.bugSpeed.min);
+      Math.random() *
+        (BUG_CATCHER_CONFIG.bugSpeed.max - BUG_CATCHER_CONFIG.bugSpeed.min);
 
     const newBug: Bug = {
       id: `bug-${Date.now()}-${Math.random()}`,
@@ -101,7 +104,7 @@ export function BugCatcher() {
               return false;
             }
             return true;
-          })
+          }),
       );
 
       animationRef.current = requestAnimationFrame(gameLoop);
@@ -146,14 +149,12 @@ export function BugCatcher() {
   // Catch bug
   const catchBug = (bugId: string) => {
     setBugs((prev) =>
-      prev.map((bug) =>
-        bug.id === bugId ? { ...bug, isCaught: true } : bug
-      )
+      prev.map((bug) => (bug.id === bugId ? { ...bug, isCaught: true } : bug)),
     );
 
     const bug = bugs.find((b) => b.id === bugId);
     if (bug) {
-      const type = BUG_CATCHER_CONFIG.bugTypes.find((t) => t.type === bug.type);
+      const _type = BUG_CATCHER_CONFIG.bugTypes.find((t) => t.type === bug.type);
       setCaughtCount((c) => c + 1);
     }
 
@@ -173,7 +174,7 @@ export function BugCatcher() {
     return typeConfig?.color || "#EF4444";
   };
 
-  const getScore = () => {
+  const _getScore = () => {
     return bugs.reduce((score, bug) => {
       if (!bug.isCaught) return score;
       const type = BUG_CATCHER_CONFIG.bugTypes.find((t) => t.type === bug.type);
@@ -205,7 +206,9 @@ export function BugCatcher() {
               </div>
               <div>
                 <h2 className="text-xl font-bold text-white">Bug Catcher</h2>
-                <p className="text-sm text-gray-400">Click to catch the bugs!</p>
+                <p className="text-sm text-gray-400">
+                  Click to catch the bugs!
+                </p>
               </div>
             </div>
             <button
@@ -227,7 +230,9 @@ export function BugCatcher() {
               <p className="text-xs text-gray-400">Missed</p>
             </div>
             <div className="rounded-lg bg-white/5 p-2 text-center">
-              <p className="text-xl font-bold text-yellow-400">{timeRemaining}s</p>
+              <p className="text-xl font-bold text-yellow-400">
+                {timeRemaining}s
+              </p>
               <p className="text-xs text-gray-400">Time</p>
             </div>
             <div className="rounded-lg bg-white/5 p-2 text-center">
@@ -256,7 +261,9 @@ export function BugCatcher() {
               <div className="absolute inset-0 flex flex-col items-center justify-center bg-black/50">
                 <IconTrophy className="mb-2 h-12 w-12 text-yellow-400" />
                 <p className="text-2xl font-bold text-white">Game Over!</p>
-                <p className="mb-4 text-gray-400">You caught {caughtCount} bugs</p>
+                <p className="mb-4 text-gray-400">
+                  You caught {caughtCount} bugs
+                </p>
                 <button
                   onClick={startGame}
                   className="flex items-center gap-2 rounded-lg bg-red-500 px-6 py-2 font-medium text-white transition-colors hover:bg-red-600"
@@ -278,7 +285,11 @@ export function BugCatcher() {
                   transform: "translate(-50%, -50%)",
                 }}
                 onClick={() => !bug.isCaught && catchBug(bug.id)}
-                animate={bug.isCaught ? { scale: 0, opacity: 0 } : { scale: 1, opacity: 1 }}
+                animate={
+                  bug.isCaught
+                    ? { scale: 0, opacity: 0 }
+                    : { scale: 1, opacity: 1 }
+                }
                 whileHover={{ scale: 1.2 }}
                 transition={{ duration: 0.2 }}
               >
@@ -295,7 +306,9 @@ export function BugCatcher() {
             {BUG_CATCHER_CONFIG.bugTypes.map((type) => (
               <div key={type.type} className="flex items-center gap-1">
                 <IconBug className="h-4 w-4" style={{ color: type.color }} />
-                <span>{type.type}: {type.points}pts</span>
+                <span>
+                  {type.type}: {type.points}pts
+                </span>
               </div>
             ))}
           </div>

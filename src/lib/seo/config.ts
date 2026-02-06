@@ -30,7 +30,7 @@ export const seoConfig = {
     alternateName: "Matkarimov Matkarim",
     url: BASE_URL,
     email: "matkarimov1099@gmail.com",
-    jobTitle: "Full Stack Developer",
+    jobTitle: "Full Stack Developer | Software Engineer | Frontend Developer",
   },
   social: {
     github: "https://github.com/matkarimov099",
@@ -52,6 +52,7 @@ export const seoConfig = {
     "Muhammadkarim",
     // Lavozim
     "Full Stack Dasturchi",
+    "Software Engineer",
     "Dasturchi",
     "Dasturlash",
     "Full Stack Developer",

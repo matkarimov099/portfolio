@@ -3,6 +3,7 @@
 import { useEffect, useCallback } from "react";
 import { usePlayerStore } from "../stores/player.store";
 import { useWorldStore } from "../stores/world.store";
+import { useMapStore } from "../stores/map.store";
 
 export function usePlayerControls() {
   const setControls = usePlayerStore((state) => state.setControls);
@@ -12,13 +13,20 @@ export function usePlayerControls() {
 
   const handleKeyDown = useCallback(
     (event: KeyboardEvent) => {
-      // Don't process controls when paused or in mini-game
+      // Toggle full-screen map (works even when paused)
+      if (event.code === "KeyM") {
+        event.preventDefault();
+        useMapStore.getState().toggleFullScreenMap();
+        return;
+      }
+
+      // Don't process movement controls when paused or in mini-game
       if (isPaused || activeMiniGame) return;
 
       // Prevent default for game controls
       if (
         ["KeyW", "KeyA", "KeyS", "KeyD", "Space", "ShiftLeft", "KeyE"].includes(
-          event.code
+          event.code,
         )
       ) {
         event.preventDefault();
@@ -54,7 +62,7 @@ export function usePlayerControls() {
           break;
       }
     },
-    [setControls, isPaused, activeMiniGame]
+    [setControls, isPaused, activeMiniGame],
   );
 
   const handleKeyUp = useCallback(
@@ -89,7 +97,7 @@ export function usePlayerControls() {
           break;
       }
     },
-    [setControls]
+    [setControls],
   );
 
   // Handle window blur - reset all controls

@@ -11,7 +11,9 @@ import {
 import type { SkillCategory } from "../../types";
 
 export function SkillInventory() {
-  const showSkillInventory = useWorldStore((state) => state.hud.showSkillInventory);
+  const showSkillInventory = useWorldStore(
+    (state) => state.hud.showSkillInventory,
+  );
   const setHUD = useWorldStore((state) => state.setHUD);
   const collectedSkills = useWorldStore((state) => state.collectedSkills);
 
@@ -49,7 +51,9 @@ export function SkillInventory() {
             {/* Header */}
             <div className="mb-6 flex items-center justify-between">
               <div>
-                <h2 className="text-2xl font-bold text-white">Skill Inventory</h2>
+                <h2 className="text-2xl font-bold text-white">
+                  Skill Inventory
+                </h2>
                 <p className="text-sm text-gray-400">
                   {collectedSkills.length} / {SKILL_STARS.length} skills
                   collected
@@ -76,7 +80,9 @@ export function SkillInventory() {
                 />
               </div>
               <p className="text-center text-xs text-gray-500">
-                {Math.round((collectedSkills.length / SKILL_STARS.length) * 100)}
+                {Math.round(
+                  (collectedSkills.length / SKILL_STARS.length) * 100,
+                )}
                 % Complete
               </p>
             </div>
@@ -92,10 +98,7 @@ export function SkillInventory() {
                   <div key={category}>
                     {/* Category header */}
                     <div className="mb-3 flex items-center justify-between">
-                      <h3
-                        className="font-medium"
-                        style={{ color }}
-                      >
+                      <h3 className="font-medium" style={{ color }}>
                         {SKILL_CATEGORY_NAMES[category]}
                       </h3>
                       <span className="text-sm text-gray-400">

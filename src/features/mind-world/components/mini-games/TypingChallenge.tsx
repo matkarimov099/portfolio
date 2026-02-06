@@ -10,7 +10,9 @@ import { TYPING_SNIPPETS } from "../../constants/mini-games";
 export function TypingChallenge() {
   const activeMiniGame = useWorldStore((state) => state.activeMiniGame);
   const endMiniGame = useWorldStore((state) => state.endMiniGame);
-  const updateMiniGameScore = useWorldStore((state) => state.updateMiniGameScore);
+  const updateMiniGameScore = useWorldStore(
+    (state) => state.updateMiniGameScore,
+  );
   const updateProgress = useAchievementStore((state) => state.updateProgress);
 
   const [currentSnippet, setCurrentSnippet] = useState("");
@@ -30,10 +32,11 @@ export function TypingChallenge() {
     if (isActive) {
       startNewRound();
     }
-  }, [isActive]);
+  }, [isActive, startNewRound]);
 
   const startNewRound = () => {
-    const randomSnippet = TYPING_SNIPPETS[Math.floor(Math.random() * TYPING_SNIPPETS.length)];
+    const randomSnippet =
+      TYPING_SNIPPETS[Math.floor(Math.random() * TYPING_SNIPPETS.length)];
     setCurrentSnippet(randomSnippet);
     setUserInput("");
     setStartTime(null);
@@ -78,7 +81,7 @@ export function TypingChallenge() {
     if (value === currentSnippet) {
       setIsComplete(true);
       const finalWpm = calculateWPM(value, startTime!);
-      const finalAccuracy = calculateAccuracy(value, currentSnippet);
+      const _finalAccuracy = calculateAccuracy(value, currentSnippet);
 
       if (finalWpm > highScore) {
         setHighScore(finalWpm);
@@ -125,8 +128,12 @@ export function TypingChallenge() {
                 <IconKeyboard className="h-6 w-6 text-purple-400" />
               </div>
               <div>
-                <h2 className="text-xl font-bold text-white">Typing Challenge</h2>
-                <p className="text-sm text-gray-400">Type the code snippet as fast as you can</p>
+                <h2 className="text-xl font-bold text-white">
+                  Typing Challenge
+                </h2>
+                <p className="text-sm text-gray-400">
+                  Type the code snippet as fast as you can
+                </p>
               </div>
             </div>
             <button

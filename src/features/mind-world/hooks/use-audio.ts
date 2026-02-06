@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useCallback } from "react";
-import { Howl, Howler } from "howler";
+import { Howl, } from "howler";
 import { useAudioStore } from "../stores/audio.store";
 import { SOUND_EFFECTS, ZONE_AMBIENT, AUDIO_CONFIG } from "../constants/audio";
 import type { ZoneId } from "../types";
@@ -56,7 +56,7 @@ export function useAudio() {
       onplay: () => {
         // Update current time periodically
         const updateTime = () => {
-          if (musicRef.current && musicRef.current.playing()) {
+          if (musicRef.current?.playing()) {
             setCurrentTime(musicRef.current.seek() as number);
             requestAnimationFrame(updateTime);
           }
@@ -80,7 +80,7 @@ export function useAudio() {
         musicRef.current.unload();
       }
     };
-  }, [currentTrack?.id]);
+  }, [currentTrack?.id, currentTrack.src, isMuted, isPlaying, masterVolume, musicVolume, nextTrack, setCurrentTime, currentTrack, setDuration]);
 
   // Handle play/pause
   useEffect(() => {
@@ -125,14 +125,18 @@ export function useAudio() {
     });
 
     ambientRef.current.play();
-    ambientRef.current.fade(0, effectiveVolume, AUDIO_CONFIG.fadeTransitionTime);
+    ambientRef.current.fade(
+      0,
+      effectiveVolume,
+      AUDIO_CONFIG.fadeTransitionTime,
+    );
 
     return () => {
       if (ambientRef.current) {
         ambientRef.current.unload();
       }
     };
-  }, [currentAmbient]);
+  }, [currentAmbient, ambientVolume, isMuted, masterVolume]);
 
   // Update ambient volume
   useEffect(() => {
@@ -160,24 +164,24 @@ export function useAudio() {
 
       sfx.play();
     },
-    [masterVolume, sfxVolume, isMuted]
+    [masterVolume, sfxVolume, isMuted],
   );
 
   // Set ambient for zone
-  const setZoneAmbient = useCallback(
-    (zone: ZoneId) => {
-      useAudioStore.getState().setCurrentAmbient(zone);
-    },
-    []
-  );
+  const setZoneAmbient = useCallback((zone: ZoneId) => {
+    useAudioStore.getState().setCurrentAmbient(zone);
+  }, []);
 
   // Seek to position
-  const seekTo = useCallback((time: number) => {
-    if (musicRef.current) {
-      musicRef.current.seek(time);
-      setCurrentTime(time);
-    }
-  }, [setCurrentTime]);
+  const seekTo = useCallback(
+    (time: number) => {
+      if (musicRef.current) {
+        musicRef.current.seek(time);
+        setCurrentTime(time);
+      }
+    },
+    [setCurrentTime],
+  );
 
   // Audio visualizer setup
   useEffect(() => {
@@ -188,13 +192,17 @@ export function useAudio() {
 
     // Create audio context for visualization
     if (!audioContextRef.current) {
-      audioContextRef.current = new (window.AudioContext ||
-        (window as unknown as { webkitAudioContext: typeof AudioContext }).webkitAudioContext)();
+      audioContextRef.current = new (
+        window.AudioContext ||
+        (window as unknown as { webkitAudioContext: typeof AudioContext })
+          .webkitAudioContext
+      )();
     }
 
     const analyser = audioContextRef.current.createAnalyser();
     analyser.fftSize = 64;
-    analyser.smoothingTimeConstant = AUDIO_CONFIG.visualizerSmoothingTimeConstant;
+    analyser.smoothingTimeConstant =
+      AUDIO_CONFIG.visualizerSmoothingTimeConstant;
     analyserRef.current = analyser;
 
     const dataArray = new Uint8Array(analyser.frequencyBinCount);
