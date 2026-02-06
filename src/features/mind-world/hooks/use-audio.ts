@@ -1,9 +1,9 @@
 "use client";
 
-import { useEffect, useRef, useCallback } from "react";
-import { Howl, } from "howler";
+import { Howl } from "howler";
+import { useCallback, useEffect, useRef } from "react";
+import { AUDIO_CONFIG, SOUND_EFFECTS, ZONE_AMBIENT } from "../constants/audio";
 import { useAudioStore } from "../stores/audio.store";
-import { SOUND_EFFECTS, ZONE_AMBIENT, AUDIO_CONFIG } from "../constants/audio";
 import type { ZoneId } from "../types";
 
 // Sound effect cache
@@ -80,7 +80,18 @@ export function useAudio() {
         musicRef.current.unload();
       }
     };
-  }, [currentTrack?.id, currentTrack.src, isMuted, isPlaying, masterVolume, musicVolume, nextTrack, setCurrentTime, currentTrack, setDuration]);
+  }, [
+    currentTrack?.id,
+    currentTrack?.src,
+    isMuted,
+    isPlaying,
+    masterVolume,
+    musicVolume,
+    nextTrack,
+    setCurrentTime,
+    currentTrack,
+    setDuration,
+  ]);
 
   // Handle play/pause
   useEffect(() => {
