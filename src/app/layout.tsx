@@ -47,6 +47,9 @@ export const metadata: Metadata = {
       "max-snippet": -1,
     },
   },
+  verification: {
+    yandex: "7860e7975d819b5f",
+  },
   category: "technology",
 };
 
