@@ -29,12 +29,12 @@ export const metadata: Metadata = {
     url: BASE_URL,
     siteName: seoConfig.siteName,
     title: `${seoConfig.author.name} | ${seoConfig.author.jobTitle}`,
-    description: `${seoConfig.author.name} - Full Stack Developer from Uzbekistan. Expert in React, Next.js, TypeScript, Node.js, PostgreSQL. Building modern web applications.`,
+    description: `${seoConfig.author.name} - Dasturchi | Software Engineer | Full Stack Developer from Uzbekistan. Expert in React, Next.js, TypeScript, Node.js, PostgreSQL. Building modern web applications.`,
   },
   twitter: {
     card: "summary_large_image",
     title: `${seoConfig.author.name} | ${seoConfig.author.jobTitle}`,
-    description: `Full Stack Developer from Uzbekistan. Expert in React, Next.js, TypeScript, Node.js, PostgreSQL. Building modern web applications.`,
+    description: ` Dasturchi | Software Engineer | Full Stack Developer from Uzbekistan. Expert in React, Next.js, TypeScript, Node.js, PostgreSQL. Building modern web applications.`,
   },
   robots: {
     index: true,

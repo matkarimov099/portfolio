@@ -23,14 +23,14 @@ export const localeNames: Record<Locale, string> = {
 };
 
 export const seoConfig = {
-  siteName: "Matkarim Matkarimov",
-  siteNameShort: "Matkarimov Matkarim",
+  siteName: "Matkarim Matkarimov | Маткарим Маткаримов",
+  siteNameShort: "Matkarimov Matkarim | Маткаримов Маткарим",
   author: {
-    name: "Matkarim Matkarimov",
-    alternateName: "Matkarimov Matkarim",
+    name: "Matkarim Matkarimov | Маткаримов Маткарим",
+    alternateName: "Matkarimov Matkarim | Маткарим Маткаримов",
     url: BASE_URL,
     email: "matkarimov1099@gmail.com",
-    jobTitle: "Full Stack Developer",
+    jobTitle: "Full Stack Developer | Software Engineer | Muhandis dasturchi",
   },
   social: {
     github: "https://github.com/matkarimov099",
@@ -46,14 +46,18 @@ export const seoConfig = {
     // Asosiy ism variantlari
     "Matkarimov Matkarim",
     "Matkarim Matkarimov",
+    "Маткаримов Маткарим",
+    "Маткарим Маткаримов",
     "Matkarimov",
     "Matkarim",
     "MuhammadKarim",
     "Muhammadkarim",
     // Lavozim
     "Full Stack Dasturchi",
+    "Software Engineer",
     "Dasturchi",
     "Dasturlash",
+    "Muhandis dasturchi",
     "Full Stack Developer",
     "Full Stack Developer Uzbekistan",
     "React Developer",
@@ -62,6 +66,7 @@ export const seoConfig = {
     "Frontend Developer",
     "Backend Developer",
     "Web Developer",
+    "Veb dasturchi",
     // Texnologiyalar
     "React",
     "Next.js",
@@ -70,8 +75,13 @@ export const seoConfig = {
     "JavaScript",
     "PostgreSQL",
     // Joylashuv
+    "Xorazm",
+    "Urganch",
+    "Xorazmlik dasturchi",
     "Tashkent Developer",
     "Urgench Developer",
+    "O'zbek dasturchi",
+    "Xorazm Guch",
     "Khorezm Developer",
     "Uzbekistan Developer",
     "Web Developer Uzbekistan",

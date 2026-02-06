@@ -10,19 +10,22 @@ type Props = {
 
 const seoData: Record<Locale, { title: string; description: string }> = {
   en: {
-    title: "Matkarimov Matkarim | Full Stack Developer Uzbekistan",
+    title:
+      "Matkarimov Matkarim | Full Stack Developer Uzbekistan | Software Engineer | React, Next.js, TypeScript, Node.js, PostgreSQL, UNICON-SOFT, Tashkent | Urgench",
     description:
-      "Matkarimov Matkarim (Matkarim Matkarimov) - Full Stack Developer from Uzbekistan with 6+ years of experience. Expert in React, Next.js, TypeScript, Node.js, PostgreSQL. Building modern web applications at UNICON-SOFT, Tashkent.",
+      "Matkarimov Matkarim (Matkarim Matkarimov) - Full Stack Developer | Software Engineer from Uzbekistan with 6+ years of experience. Expert in React, Next.js, TypeScript, Node.js, PostgreSQL. Building modern web applications at UNICON-SOFT, Tashkent | Urgench.",
   },
   ru: {
-    title: "Маткаримов Маткарим | Full Stack разработчик Узбекистан",
+    title:
+      "Маткаримов Маткарим | Full Stack разработчик Узбекистан | Software Engineer | React, Next.js, TypeScript, Node.js, PostgreSQL, UNICON-SOFT, Ташкент | Ургенч",
     description:
-      "Маткаримов Маткарим (Маткарим Маткаримов) - Full Stack разработчик из Узбекистана с опытом 6+ лет. Эксперт в React, Next.js, TypeScript, Node.js, PostgreSQL. Разработка современных веб-приложений в UNICON-SOFT, Ташкент.",
+      "Маткаримов Маткарим (Маткарим Маткаримов) - Full Stack разработчик из Узбекистана с опытом 6+ лет. Эксперт в React, Next.js, TypeScript, Node.js, PostgreSQL. Разработка современных веб-приложений в UNICON-SOFT, Ташкент | Ургенч.",
   },
   uz: {
-    title: "Matkarimov Matkarim | Full Stack dasturchi O'zbekiston",
+    title:
+      "Matkarimov Matkarim | Full Stack dasturchi O'zbekiston | Muhandis Dasturchi | React, Next.js, TypeScript, Node.js, PostgreSQL, UNICON-SOFT, Tashkent | Urgench",
     description:
-      "Matkarimov Matkarim (Matkarim Matkarimov) - O'zbekistondan 6+ yillik tajribaga ega Full Stack dasturchi. React, Next.js, TypeScript, Node.js, PostgreSQL bo'yicha ekspert. Zamonaviy veb-ilovalar ishlab chiqish, UNICON-SOFT, Toshkent.",
+      "Matkarimov Matkarim (Matkarim Matkarimov) - O'zbekistondan 6+ yillik tajribaga ega Full Stack dasturchi | Muhandis Dasturchi. React, Next.js, TypeScript, Node.js, PostgreSQL bo'yicha ekspert. Zamonaviy veb-ilovalar ishlab chiqish, UNICON-SOFT, Toshkent | Urganch.",
   },
 };
 

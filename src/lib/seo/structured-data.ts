@@ -21,6 +21,10 @@ export function generatePersonSchema() {
       seoConfig.social.instagram,
     ],
     knowsAbout: [
+      "Xorazm",
+      "Urganch",
+      "Xorazmlik dasturchi",
+      "Urganch tumani",
       "React",
       "Next.js",
       "TypeScript",
@@ -33,6 +37,9 @@ export function generatePersonSchema() {
       "Web Development",
       "REST APIs",
       "PostgreSQL",
+      "O'zbek dasturchi",
+      "Xorazm Guch",
+      "Khorezm Developer",
     ],
     alumniOf: {
       "@type": "CollegeOrUniversity",
@@ -81,24 +88,6 @@ export function generateWebSiteSchema() {
       target: `${BASE_URL}/search?q={search_term_string}`,
       "query-input": "required name=search_term_string",
     },
-  };
-}
-
-/**
- * Schema.org BreadcrumbList - Navigatsiya uchun
- */
-export function generateBreadcrumbSchema(
-  items: { name: string; url: string }[],
-) {
-  return {
-    "@context": "https://schema.org",
-    "@type": "BreadcrumbList",
-    itemListElement: items.map((item, index) => ({
-      "@type": "ListItem",
-      position: index + 1,
-      name: item.name,
-      item: item.url,
-    })),
   };
 }
 
