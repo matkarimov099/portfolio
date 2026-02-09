@@ -31,9 +31,9 @@ export function CodePuzzle() {
     if (isActive) {
       loadLevel(0);
     }
-  }, [isActive, loadLevel]);
+  }, [isActive]);
 
-  const loadLevel = (level: number) => {
+  function loadLevel(level: number) {
     const levelData = CODE_PUZZLE_LEVELS[level];
     if (!levelData) return;
 
@@ -43,7 +43,7 @@ export function CodePuzzle() {
     setCurrentLevel(level);
     setIsCorrect(false);
     setAttempts(0);
-  };
+  }
 
   const checkOrder = () => {
     const levelData = CODE_PUZZLE_LEVELS[currentLevel];

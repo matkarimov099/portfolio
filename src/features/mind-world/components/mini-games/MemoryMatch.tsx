@@ -37,9 +37,9 @@ export function MemoryMatch() {
     if (isActive) {
       initializeGame();
     }
-  }, [isActive, initializeGame]);
+  }, [isActive]);
 
-  const initializeGame = () => {
+  function initializeGame() {
     const initialCards: MemoryCard[] = shuffleArray(MEMORY_CARDS).map(
       (card) => ({
         ...card,
@@ -52,7 +52,7 @@ export function MemoryMatch() {
     setMatchedPairs([]);
     setMoves(0);
     setIsComplete(false);
-  };
+  }
 
   const handleCardClick = useCallback(
     (cardId: string) => {

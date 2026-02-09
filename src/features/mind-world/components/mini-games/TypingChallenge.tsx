@@ -32,9 +32,9 @@ export function TypingChallenge() {
     if (isActive) {
       startNewRound();
     }
-  }, [isActive, startNewRound]);
+  }, [isActive]);
 
-  const startNewRound = () => {
+  function startNewRound() {
     const randomSnippet =
       TYPING_SNIPPETS[Math.floor(Math.random() * TYPING_SNIPPETS.length)];
     setCurrentSnippet(randomSnippet);
@@ -44,7 +44,7 @@ export function TypingChallenge() {
     setWpm(0);
     setAccuracy(100);
     setTimeout(() => inputRef.current?.focus(), 100);
-  };
+  }
 
   const calculateWPM = useCallback((input: string, startMs: number) => {
     const timeInMinutes = (Date.now() - startMs) / 60000;
