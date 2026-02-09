@@ -103,12 +103,24 @@
     "emptyChat": "Начните разговор...",
     "maximize": "Открыть полный чат"
   },
+  "blog": {
+    "title": "Блог",
+    "subtitle": "Мои последние статьи на DEV.to",
+    "noArticles": "Статьи не найдены",
+    "readMore": "Читать",
+    "readTime": "{min} мин чтения",
+    "totalArticles": "{count} статей",
+    "totalReactions": "{count} реакций",
+    "totalComments": "{count} комментариев",
+    "viewOnDevTo": "Смотреть на DEV.to"
+  },
   "nav": {
     "home": "Главная",
     "about": "Обо мне",
     "projects": "Проекты",
     "contact": "Контакт",
     "github": "GitHub",
+    "blog": "Блог",
     "chat": "Чат"
   },
   "presence": {

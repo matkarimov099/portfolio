@@ -103,12 +103,24 @@
     "emptyChat": "Suhbatni boshlang...",
     "maximize": "To'liq chatni ochish"
   },
+  "blog": {
+    "title": "Blog",
+    "subtitle": "DEV.to dagi so'nggi maqolalarim",
+    "noArticles": "Maqolalar topilmadi",
+    "readMore": "O'qish",
+    "readTime": "{min} daqiqa",
+    "totalArticles": "{count} maqola",
+    "totalReactions": "{count} reaktsiya",
+    "totalComments": "{count} izoh",
+    "viewOnDevTo": "DEV.to da ko'rish"
+  },
   "nav": {
     "home": "Bosh sahifa",
     "about": "Men haqimda",
     "projects": "Loyihalar",
     "contact": "Bog'lanish",
     "github": "GitHub",
+    "blog": "Blog",
     "chat": "Chat"
   },
   "presence": {

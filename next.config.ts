@@ -8,6 +8,8 @@ const nextConfig: NextConfig = {
       { hostname: "api.microlink.io" },
       { hostname: "avatars.githubusercontent.com" },
       { hostname: "opengraph.githubassets.com" },
+      { hostname: "media2.dev.to" },
+      { hostname: "dev-to-uploads.s3.amazonaws.com" },
     ],
   },
 };

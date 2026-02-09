@@ -1,6 +1,7 @@
 "use client";
 
 import {
+  IconArticle,
   IconBrandGithub,
   IconCategoryFilled,
   IconCode,
@@ -42,6 +43,11 @@ const NAV_ITEMS = [
     href: "/github" as const,
   },
   {
+    title: "Blog",
+    icon: <IconArticle className="h-full w-full" />,
+    href: "/blog" as const,
+  },
+  {
     title: "Chat",
     icon: <IconMessageCircle className="h-full w-full text-orange-400" />,
     href: "/chat" as const,
@@ -65,7 +71,14 @@ function NavIconContainer({
   mouseX: MotionValue;
   title: string;
   icon: React.ReactNode;
-  href: "/" | "/about" | "/projects" | "/github" | "/chat" | "/contact";
+  href:
+    | "/"
+    | "/about"
+    | "/projects"
+    | "/github"
+    | "/blog"
+    | "/chat"
+    | "/contact";
   isHighlighted?: boolean;
   isActive?: boolean;
 }) {

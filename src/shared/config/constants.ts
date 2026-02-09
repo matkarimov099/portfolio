@@ -1,10 +1,12 @@
 export const GITHUB_USERNAME = "matkarimov099";
+export const DEVTO_USERNAME = "matkarimov099";
 
 export const NAV_ITEMS = [
   { key: "home", href: "/" },
   { key: "about", href: "/about" },
   { key: "projects", href: "/projects" },
   { key: "github", href: "/github" },
+  { key: "blog", href: "/blog" },
   { key: "chat", href: "/chat" },
   { key: "contact", href: "/contact" },
 ] as const;

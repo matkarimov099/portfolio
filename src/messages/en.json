@@ -103,12 +103,24 @@
     "emptyChat": "Start the conversation...",
     "maximize": "Open full chat"
   },
+  "blog": {
+    "title": "Blog",
+    "subtitle": "My latest articles on DEV.to",
+    "noArticles": "No articles found",
+    "readMore": "Read",
+    "readTime": "{min} min read",
+    "totalArticles": "{count} articles",
+    "totalReactions": "{count} reactions",
+    "totalComments": "{count} comments",
+    "viewOnDevTo": "View on DEV.to"
+  },
   "nav": {
     "home": "Home",
     "about": "About",
     "projects": "Projects",
     "contact": "Contact",
     "github": "GitHub",
+    "blog": "Blog",
     "chat": "Chat"
   },
   "presence": {
