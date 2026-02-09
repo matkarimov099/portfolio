@@ -9,5 +9,6 @@ export const siteConfig = {
     telegram: "https://t.me/m_matkarimov",
     instagram: "https://www.instagram.com/matkarimov099",
     email: "mailto:matkarimov1099@gmail.com",
+    devto: "https://dev.to/matkarimov099",
   },
 } as const;
