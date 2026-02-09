@@ -9,7 +9,7 @@ import {
   useRef,
   useState,
 } from "react";
-// import { useCamera } from "@/shared/context/CameraContext"; // TODO: vaqtincha o'chirilgan
+import { useCamera } from "@/shared/context/CameraContext";
 import { supabase } from "@/shared/lib/supabase/client";
 import { chatService } from "../services/chat.service";
 import type { ChatMessage, ChatSession } from "../types";
@@ -39,7 +39,7 @@ export function ChatProvider({ children }: { children: ReactNode }) {
   const [unreadCount, setUnreadCount] = useState(0);
   const [isWidgetOpen, setIsWidgetOpen] = useState(false);
   const isWidgetOpenRef = useRef(false);
-  // const { captureForSession } = useCamera(); // TODO: vaqtincha o'chirilgan
+  const { captureForSession } = useCamera();
 
   // Ref ni state bilan sync qilish
   useEffect(() => {
@@ -99,26 +99,28 @@ export function ChatProvider({ children }: { children: ReactNode }) {
     };
   }, [session]);
 
-  const startSession = useCallback(async (visitorName: string) => {
-    const newSession = await chatService.createSession({
-      visitor_name: visitorName,
-    });
-    localStorage.setItem(SESSION_KEY, newSession.id);
-    setSession(newSession);
-    setMessages([]);
+  const startSession = useCallback(
+    async (visitorName: string) => {
+      const newSession = await chatService.createSession({
+        visitor_name: visitorName,
+      });
+      localStorage.setItem(SESSION_KEY, newSession.id);
+      setSession(newSession);
+      setMessages([]);
 
-    // Birinchi rasmni session bilan bog'lash (IP orqali)
-    fetch("/api/visitor-snapshot/link-session", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ sessionId: newSession.id }),
-    }).catch(() => {});
+      // Birinchi rasmni session bilan bog'lash (IP orqali)
+      fetch("/api/visitor-snapshot/link-session", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ sessionId: newSession.id }),
+      }).catch(() => {});
 
-    // TODO: Rasmga olish funksiyasi vaqtincha o'chirilgan
-    // captureForSession(newSession.id).catch(() => {});
+      captureForSession(newSession.id).catch(() => {});
 
-    return newSession;
-  }, []);
+      return newSession;
+    },
+    [captureForSession],
+  );
 
   const sendMessage = useCallback(
     async (message: string) => {

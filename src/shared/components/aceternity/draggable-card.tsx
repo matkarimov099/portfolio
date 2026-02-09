@@ -1,17 +1,16 @@
 // @ts-nocheck
 "use client";
-import {
-  animate,
-  motion,
-  useAnimationControls,
-  useMotionValue,
-  useSpring,
-  useTransform,
-  useVelocity,
-} from "motion/react";
+import { motion, useMotionValue, useSpring, useTransform } from "motion/react";
 import type React from "react";
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef } from "react";
 import { cn } from "@/shared/lib/utils";
+
+const FRICTION = 0.988;
+const BOUNCE_DAMPING = 0.7;
+const WALL_PADDING = 2;
+const MAX_VELOCITY = 50;
+const STOP_THRESHOLD = 0.2;
+const SPIN_FACTOR = 0.05;
 
 export const DraggableCardBody = ({
   className,
@@ -20,20 +19,13 @@ export const DraggableCardBody = ({
   className?: string;
   children?: React.ReactNode;
 }) => {
+  const x = useMotionValue(0);
+  const y = useMotionValue(0);
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
   const cardRef = useRef<HTMLDivElement>(null);
-  const controls = useAnimationControls();
-  const [constraints, setConstraints] = useState({
-    top: 0,
-    left: 0,
-    right: 0,
-    bottom: 0,
-  });
-
-  // physics biatch
-  const velocityX = useVelocity(mouseX);
-  const velocityY = useVelocity(mouseY);
+  const rafRef = useRef<number | null>(null);
+  const spinRef = useRef(0);
 
   const springConfig = {
     stiffness: 100,
@@ -60,29 +52,86 @@ export const DraggableCardBody = ({
     springConfig,
   );
 
-  useEffect(() => {
-    // Update constraints when component mounts or window resizes
-    const updateConstraints = () => {
-      if (typeof window !== "undefined") {
-        setConstraints({
-          top: -window.innerHeight / 2,
-          left: -window.innerWidth / 2,
-          right: window.innerWidth / 2,
-          bottom: window.innerHeight / 2,
-        });
-      }
-    };
+  const rotate = useMotionValue(0);
 
-    updateConstraints();
-
-    // Add resize listener
-    window.addEventListener("resize", updateConstraints);
-
-    // Clean up
-    return () => {
-      window.removeEventListener("resize", updateConstraints);
-    };
+  const cancelPhysics = useCallback(() => {
+    if (rafRef.current !== null) {
+      cancelAnimationFrame(rafRef.current);
+      rafRef.current = null;
+    }
   }, []);
+
+  const startPhysics = (vxPerFrame: number, vyPerFrame: number) => {
+    cancelPhysics();
+
+    // Reset 3D tilt since mouse is not hovering during bounce
+    mouseX.set(0);
+    mouseY.set(0);
+
+    let vx = vxPerFrame;
+    let vy = vyPerFrame;
+
+    const tick = () => {
+      const card = cardRef.current;
+      if (!card) return;
+
+      // Apply friction
+      vx *= FRICTION;
+      vy *= FRICTION;
+
+      // Update position
+      x.set(x.get() + vx);
+      y.set(y.get() + vy);
+
+      // Accumulate spin based on horizontal velocity
+      spinRef.current += vx * SPIN_FACTOR;
+      rotate.set(spinRef.current);
+
+      // Wall collision detection
+      const rect = card.getBoundingClientRect();
+      const vw = window.innerWidth;
+      const vh = window.innerHeight;
+
+      // Left wall
+      if (rect.left < WALL_PADDING) {
+        x.set(x.get() + (WALL_PADDING - rect.left));
+        vx = Math.abs(vx) * BOUNCE_DAMPING;
+      }
+
+      // Right wall
+      if (rect.right > vw - WALL_PADDING) {
+        x.set(x.get() - (rect.right - (vw - WALL_PADDING)));
+        vx = -Math.abs(vx) * BOUNCE_DAMPING;
+      }
+
+      // Top wall
+      if (rect.top < WALL_PADDING) {
+        y.set(y.get() + (WALL_PADDING - rect.top));
+        vy = Math.abs(vy) * BOUNCE_DAMPING;
+      }
+
+      // Bottom wall
+      if (rect.bottom > vh - WALL_PADDING) {
+        y.set(y.get() - (rect.bottom - (vh - WALL_PADDING)));
+        vy = -Math.abs(vy) * BOUNCE_DAMPING;
+      }
+
+      // Stop when velocity is negligible
+      if (Math.abs(vx) < STOP_THRESHOLD && Math.abs(vy) < STOP_THRESHOLD) {
+        rafRef.current = null;
+        return;
+      }
+
+      rafRef.current = requestAnimationFrame(tick);
+    };
+
+    rafRef.current = requestAnimationFrame(tick);
+  };
+
+  // Cleanup on unmount
+  useEffect(() => {
+    return () => cancelPhysics();
+  }, [cancelPhysics]);
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
     const { clientX, clientY } = e;
@@ -110,57 +159,32 @@ export const DraggableCardBody = ({
     <motion.div
       ref={cardRef}
       drag
-      dragConstraints={constraints}
+      dragMomentum={false}
+      dragElastic={0}
       onDragStart={() => {
+        cancelPhysics();
         document.body.style.cursor = "grabbing";
       }}
       onDragEnd={(_event, info) => {
         document.body.style.cursor = "default";
 
-        controls.start({
-          rotateX: 0,
-          rotateY: 0,
-          transition: {
-            type: "spring",
-            ...springConfig,
-          },
-        });
-        const currentVelocityX = velocityX.get();
-        const currentVelocityY = velocityY.get();
+        // Convert velocity from px/s to px/frame (60fps)
+        const clamp = (v: number) =>
+          Math.max(-MAX_VELOCITY, Math.min(MAX_VELOCITY, v));
+        const vxPerFrame = clamp(info.velocity.x / 60);
+        const vyPerFrame = clamp(info.velocity.y / 60);
 
-        const velocityMagnitude = Math.sqrt(
-          currentVelocityX * currentVelocityX +
-            currentVelocityY * currentVelocityY,
-        );
-        const bounce = Math.min(0.8, velocityMagnitude / 1000);
-
-        animate(info.point.x, info.point.x + currentVelocityX * 0.3, {
-          duration: 0.8,
-          ease: [0.2, 0, 0, 1],
-          bounce,
-          type: "spring",
-          stiffness: 50,
-          damping: 15,
-          mass: 0.8,
-        });
-
-        animate(info.point.y, info.point.y + currentVelocityY * 0.3, {
-          duration: 0.8,
-          ease: [0.2, 0, 0, 1],
-          bounce,
-          type: "spring",
-          stiffness: 50,
-          damping: 15,
-          mass: 0.8,
-        });
+        startPhysics(vxPerFrame, vyPerFrame);
       }}
       style={{
+        x,
+        y,
         rotateX,
         rotateY,
+        rotate,
         opacity,
         willChange: "transform",
       }}
-      animate={controls}
       whileHover={{ scale: 1.02 }}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
