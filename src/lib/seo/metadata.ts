@@ -67,18 +67,17 @@ export function generatePageMetadata({
       : { index: true, follow: true },
   };
 
-  // Agar maxsus rasm berilgan bo'lsa, qo'shish
-  if (image) {
-    const imageUrl = image.startsWith("http") ? image : `${BASE_URL}${image}`;
-    metadata.openGraph = {
-      ...metadata.openGraph,
-      images: [{ url: imageUrl, width: 1200, height: 630, alt: title }],
-    };
-    metadata.twitter = {
-      ...metadata.twitter,
-      images: [imageUrl],
-    };
-  }
+  const imageUrl = image
+    ? image.startsWith("http") ? image : `${BASE_URL}${image}`
+    : `${BASE_URL}/${locale}/opengraph-image`;
+  metadata.openGraph = {
+    ...metadata.openGraph,
+    images: [{ url: imageUrl, width: 1200, height: 630, alt: title }],
+  };
+  metadata.twitter = {
+    ...metadata.twitter,
+    images: [imageUrl],
+  };
 
   return metadata;
 }

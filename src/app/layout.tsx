@@ -30,11 +30,13 @@ export const metadata: Metadata = {
     siteName: seoConfig.siteName,
     title: `${seoConfig.author.name} | ${seoConfig.author.jobTitle}`,
     description: `${seoConfig.author.name} - Dasturchi | Software Engineer | Full Stack Developer from Uzbekistan. Expert in React, Next.js, TypeScript, Node.js, PostgreSQL. Building modern web applications.`,
+    images: [{ url: `${BASE_URL}/en/opengraph-image`, width: 1200, height: 630, alt: seoConfig.author.name }],
   },
   twitter: {
     card: "summary_large_image",
     title: `${seoConfig.author.name} | ${seoConfig.author.jobTitle}`,
-    description: ` Dasturchi | Software Engineer | Full Stack Developer from Uzbekistan. Expert in React, Next.js, TypeScript, Node.js, PostgreSQL. Building modern web applications.`,
+    description: `Dasturchi | Software Engineer | Full Stack Developer from Uzbekistan. Expert in React, Next.js, TypeScript, Node.js, PostgreSQL. Building modern web applications.`,
+    images: [`${BASE_URL}/en/opengraph-image`],
   },
   robots: {
     index: true,
