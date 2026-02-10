@@ -1,8 +1,13 @@
 import type { Metadata } from "next";
 import { setRequestLocale } from "next-intl/server";
+import { JsonLd } from "@/components/seo";
 import { ProjectsSection } from "@/features/projects";
 import type { Locale } from "@/lib/seo/config";
 import { generatePageMetadata } from "@/lib/seo/metadata";
+import {
+  generateBreadcrumbSchema,
+  generateProjectsListSchema,
+} from "@/lib/seo/structured-data";
 
 type Props = {
   params: Promise<{ locale: string }>;
@@ -45,6 +50,12 @@ export default async function ProjectsPage({ params }: Props) {
 
   return (
     <main className="pt-10">
+      <JsonLd data={generateProjectsListSchema(locale)} />
+      <JsonLd
+        data={generateBreadcrumbSchema(locale, [
+          { name: "Projects", path: "/projects" },
+        ])}
+      />
       <ProjectsSection />
     </main>
   );

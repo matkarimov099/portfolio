@@ -9,6 +9,7 @@ const staticPages = [
   { path: "/github", priority: 0.8, changeFrequency: "daily" as const },
   { path: "/contact", priority: 0.8, changeFrequency: "monthly" as const },
   { path: "/chat", priority: 0.7, changeFrequency: "monthly" as const },
+  { path: "/blog", priority: 0.8, changeFrequency: "weekly" as const },
 ];
 
 export default function sitemap(): MetadataRoute.Sitemap {

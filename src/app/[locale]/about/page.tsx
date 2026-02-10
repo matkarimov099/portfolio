@@ -4,7 +4,10 @@ import { JsonLd } from "@/components/seo";
 import { AboutSection } from "@/features/about";
 import type { Locale } from "@/lib/seo/config";
 import { generatePageMetadata } from "@/lib/seo/metadata";
-import { generateProfilePageSchema } from "@/lib/seo/structured-data";
+import {
+  generateBreadcrumbSchema,
+  generateProfilePageSchema,
+} from "@/lib/seo/structured-data";
 
 type Props = {
   params: Promise<{ locale: string }>;
@@ -49,6 +52,11 @@ export default async function AboutPage({ params }: Props) {
   return (
     <main className="pt-10">
       <JsonLd data={generateProfilePageSchema(locale)} />
+      <JsonLd
+        data={generateBreadcrumbSchema(locale, [
+          { name: "About", path: "/about" },
+        ])}
+      />
       <AboutSection />
     </main>
   );

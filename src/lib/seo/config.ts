@@ -23,14 +23,14 @@ export const localeNames: Record<Locale, string> = {
 };
 
 export const seoConfig = {
-  siteName: "Matkarim Matkarimov | Маткарим Маткаримов",
-  siteNameShort: "Matkarimov Matkarim | Маткаримов Маткарим",
+  siteName: "Matkarim Matkarimov - Full Stack Developer",
+  siteNameShort: "Matkarim Matkarimov",
   author: {
-    name: "Matkarim Matkarimov | Маткаримов Маткарим",
-    alternateName: "Matkarimov Matkarim | Маткарим Маткаримов",
+    name: "Matkarim Matkarimov",
+    alternateName: "Matkarimov Matkarim",
     url: BASE_URL,
     email: "matkarimov1099@gmail.com",
-    jobTitle: "Full Stack Developer | Software Engineer | Muhandis dasturchi",
+    jobTitle: "Full Stack Developer",
   },
   social: {
     github: "https://github.com/matkarimov099",
