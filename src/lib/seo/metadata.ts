@@ -68,7 +68,9 @@ export function generatePageMetadata({
   };
 
   const imageUrl = image
-    ? image.startsWith("http") ? image : `${BASE_URL}${image}`
+    ? image.startsWith("http")
+      ? image
+      : `${BASE_URL}${image}`
     : `${BASE_URL}/${locale}/opengraph-image`;
   metadata.openGraph = {
     ...metadata.openGraph,

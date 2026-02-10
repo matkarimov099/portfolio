@@ -30,7 +30,14 @@ export const metadata: Metadata = {
     siteName: seoConfig.siteName,
     title: `${seoConfig.author.name} - ${seoConfig.author.jobTitle}`,
     description: `${seoConfig.author.name} - Full Stack Developer and Software Engineer from Uzbekistan. 6+ years of experience in React, Next.js, TypeScript, Node.js, PostgreSQL. Currently at UNICON-SOFT, Tashkent.`,
-    images: [{ url: `${BASE_URL}/en/opengraph-image`, width: 1200, height: 630, alt: `${seoConfig.author.name} - Portfolio` }],
+    images: [
+      {
+        url: `${BASE_URL}/en/opengraph-image`,
+        width: 1200,
+        height: 630,
+        alt: `${seoConfig.author.name} - Portfolio`,
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
