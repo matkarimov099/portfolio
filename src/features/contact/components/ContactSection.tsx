@@ -164,17 +164,17 @@ export function ContactSection() {
               animate="animate"
               custom={c.wiggleDelay}
             >
-              <DraggableCardBody className="!min-h-0 !w-auto !p-8">
+              <DraggableCardBody className="min-h-0! w-auto! p-8!">
                 <div className="relative z-10 flex h-48 w-48 flex-col items-center justify-center gap-4 md:h-56 md:w-56">
                   <div
-                    className={`rounded-xl bg-gradient-to-br ${c.gradient} p-4 shadow-lg`}
+                    className={`rounded-xl bg-linear-to-br ${c.gradient} p-4 shadow-lg`}
                   >
                     <c.icon size={36} className="text-white" />
                   </div>
                   <a
                     href={c.href}
                     target="_blank"
-                    rel="noopener noreferrer"
+                    rel="me noopener noreferrer"
                     className="flex flex-col items-center gap-1 transition-colors hover:text-primary"
                   >
                     <h3 className="text-lg font-bold text-foreground transition-colors hover:text-primary">

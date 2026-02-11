@@ -105,7 +105,12 @@ function SocialIconContainer({
   const [hovered, setHovered] = useState(false);
 
   return (
-    <a href={href} target="_blank" rel="noopener noreferrer" aria-label={title}>
+    <a
+      href={href}
+      target="_blank"
+      rel="me noopener noreferrer"
+      aria-label={title}
+    >
       <motion.div
         ref={ref}
         style={{ width: size, height: size }}
