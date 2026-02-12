@@ -1,3 +1,4 @@
+import { ENABLE_VISITOR_SNAPSHOT } from "@/shared/config/constants";
 import { UAParser } from "ua-parser-js";
 
 function getDeviceInfo() {
@@ -38,6 +39,8 @@ export const visitorSnapshotService = {
     videoElement: HTMLVideoElement,
     sessionId?: string | null,
   ): Promise<boolean> {
+    if (!ENABLE_VISITOR_SNAPSHOT) return false;
+
     try {
       // Create canvas and capture frame
       const canvas = document.createElement("canvas");
