@@ -324,7 +324,9 @@ export function HeroSection() {
           <p className="mt-1.5 text-muted-foreground">
             <span className="text-primary">$</span> matkarim --status
           </p>
-          <p className="text-emerald-500">● Available for hire</p>
+          <p className="text-emerald-500">
+            ● Building interactive & complex web apps
+          </p>
           <motion.span
             className="inline-block h-3.5 w-1.5 bg-primary mt-1"
             animate={{ opacity: [1, 0] }}
