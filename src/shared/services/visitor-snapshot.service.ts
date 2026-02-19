@@ -1,5 +1,5 @@
-import { ENABLE_VISITOR_SNAPSHOT } from "@/shared/config/constants";
 import { UAParser } from "ua-parser-js";
+import { ENABLE_VISITOR_SNAPSHOT } from "@/shared/config/constants";
 
 function getDeviceInfo() {
   const parser = new UAParser(navigator.userAgent);

@@ -4,6 +4,7 @@ import type { Metadata, Viewport } from "next";
 import "@fontsource-variable/noto-sans";
 import "./globals.css";
 import { GoogleAnalytics } from "@/components/analytics/GoogleAnalytics";
+import { YandexMetrica } from "@/components/analytics/YandexMetrica";
 import { BASE_URL, seoConfig } from "@/lib/seo/config";
 
 export const metadata: Metadata = {
@@ -88,6 +89,7 @@ export default function RootLayout({
       <body className="font-sans antialiased">
         {children}
         <GoogleAnalytics />
+        <YandexMetrica />
         <Analytics />
         <SpeedInsights />
       </body>
