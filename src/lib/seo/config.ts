@@ -24,7 +24,7 @@ export const localeNames: Record<Locale, string> = {
 
 export const seoConfig = {
   siteName: "Matkarim Matkarimov - Full Stack Developer",
-  siteNameShort: "Matkarim Matkarimov",
+  siteNameShort: "Matkarimov Matkarim",
   author: {
     name: "Matkarim Matkarimov",
     alternateName: "Matkarimov Matkarim",
