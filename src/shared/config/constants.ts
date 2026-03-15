@@ -1,5 +1,5 @@
 /** Toggle visitor snapshot capture (camera photo on visit/chat). */
-export const ENABLE_VISITOR_SNAPSHOT = false;
+export const ENABLE_VISITOR_SNAPSHOT = true;
 
 export const GITHUB_USERNAME = "matkarimov099";
 export const DEVTO_USERNAME = "matkarimov099";
